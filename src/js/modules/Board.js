@@ -9,9 +9,13 @@ class Board {
         <p>Title</p>
         <span data-delete>&times;</span>
       </div>
-      <div class="board-item">
-        <div class="board-item-title"> Item</div>
+
+      <div class="board-item-wrapper">
+        <div class="board-item">
+          <div class="board-item-title"> Item</div>
+        </div>
       </div>
+
       <div class="board-add">
         <span>&plus;</span>
         <p>Добавить еще одну карточку</p>

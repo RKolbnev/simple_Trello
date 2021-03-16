@@ -142,12 +142,15 @@ module.exports["default"] = module.exports, module.exports.__esModule = true;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_addBoard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/addBoard */ "./src/js/modules/addBoard.js");
-/* harmony import */ var _modules_deleteBoard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/deleteBoard */ "./src/js/modules/deleteBoard.js");
+/* harmony import */ var _modules_addItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/addItem */ "./src/js/modules/addItem.js");
+/* harmony import */ var _modules_deleteBoard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/deleteBoard */ "./src/js/modules/deleteBoard.js");
+
 
 
 window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_addBoard__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  Object(_modules_deleteBoard__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  Object(_modules_addItem__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  Object(_modules_deleteBoard__WEBPACK_IMPORTED_MODULE_2__["default"])();
 });
 
 /***/ }),
@@ -179,7 +182,7 @@ var Board = /*#__PURE__*/function () {
     value: function render(parent) {
       var board = document.createElement("div");
       board.classList.add("board");
-      board.innerHTML = "\n      <div class=\"board-header\">\n        <p>Title</p>\n        <span data-delete>&times;</span>\n      </div>\n      <div class=\"board-item\">\n        <div class=\"board-item-title\"> Item</div>\n      </div>\n      <div class=\"board-add\">\n        <span>&plus;</span>\n        <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0435\u0449\u0435 \u043E\u0434\u043D\u0443 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n      </div>\n    ";
+      board.innerHTML = "\n      <div class=\"board-header\">\n        <p>Title</p>\n        <span data-delete>&times;</span>\n      </div>\n\n      <div class=\"board-item-wrapper\">\n        <div class=\"board-item\">\n          <div class=\"board-item-title\"> Item</div>\n        </div>\n      </div>\n\n      <div class=\"board-add\">\n        <span>&plus;</span>\n        <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0435\u0449\u0435 \u043E\u0434\u043D\u0443 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n      </div>\n    ";
       parent.append(board);
     }
   }]);
@@ -218,6 +221,31 @@ var addBoard = function addBoard() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (addBoard);
+
+/***/ }),
+
+/***/ "./src/js/modules/addItem.js":
+/*!***********************************!*\
+  !*** ./src/js/modules/addItem.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var addItem = function addItem() {
+  var body = document.querySelector('body');
+  body.addEventListener('click', function (e) {
+    if (e.target.parentElement.classList.contains('board-add')) {
+      var elem = document.createElement('div');
+      elem.classList.add('board-item');
+      elem.innerHTML = "\n        <div class=\"board-item-title\" contenteditable=\"true\"> \u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A \u0434\u043B\u044F \u044D\u0442\u043E\u0439 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438</div>\n      ";
+      e.target.parentElement.previousElementSibling.append(elem);
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (addItem);
 
 /***/ }),
 

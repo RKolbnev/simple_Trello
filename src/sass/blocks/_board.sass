@@ -4,20 +4,19 @@
   overflow-x: auto
   &::-webkit-scrollbar
     height: 0.5em
-    background-color: $b
   &::-webkit-scrollbar-thumb
-    background-color: white
+    background-color: #ffffffa8
     border-radius: 1em
   &::-webkit-scrollbar-button
     width: 5em
     background-color: $c
 
-
 .board
   display: flex
   flex-direction: column
-  min-width: 20vw
+  width: 20vw
   height: fit-content
+  max-height: 85vh
   margin: 1em
   padding: 0.5em
   background-color: $b
@@ -41,14 +40,24 @@
     flex-direction: row
     align-items: center
     padding: 0.5em
+    margin-bottom: 1em
     background-color: $f
     border-radius: 0.25em
+    &-wrapper
+      padding: 0.25em
+      overflow-y: scroll
+      &::-webkit-scrollbar
+        width: 0.35em
+      &::-webkit-scrollbar-thumb
+        background-color: #ffffffa8
+        width: 0.2em
+        border-radius: 1em
+
   &-add
     cursor: pointer
     display: flex
     flex-direction: row
     align-items: center
-    margin-top: 1em
     color: lighten($b, 35%)
     & span
       font-size: 1.5em
