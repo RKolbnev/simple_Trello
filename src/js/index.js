@@ -1,16 +1,13 @@
-import addBoard from './modules/addBoard';
-import addItem from './modules/addItem';
-import deleteBoard from './modules/deleteBoard';
-
-
-
+import addColumn from './modules/addColumn';
+import addCard from './modules/addCard';
+import deleteColumn from './modules/deleteColumn';
 
 
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  addBoard();
-  addItem();
-  deleteBoard()
+  addColumn();
+  addCard()
+  deleteColumn();
 
 })

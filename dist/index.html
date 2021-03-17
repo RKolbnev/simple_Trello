@@ -1,34 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="main.css">
-  <title>Simple trello</title>
-</head>
-<body>
-  <header class="header">
-    <div class="header-logo"><img src="https://cdn2.downdetector.com/static/uploads/logo/trello.png" alt=""></div>
-    <div class="header-plus"><span>&plus;</span></div>
-  </header>
-  <section class="main">
-    <div class="board">
-      <div class="board-header">
-        <p>Title</p>
-        <span data-delete>&times;</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <title>Simple trello</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trello-logo-blue.svg/1200px-Trello-logo-blue.svg.png"
+          alt=""
+        />
       </div>
-      <div class="board-item-wrapper">
-        <div class="board-item">
-          <div class="board-item-title"> Item</div>
-        </div>
-      </div>
-      <div class="board-add">
+      <div class="header-plus"><span>&plus;</span></div>
+    </header>
+    <section class="main">
+
+      <div class="column column-add new__column">
         <span>&plus;</span>
-        <p>Добавить еще одну карточку</p>
+        <p>Добавить еще одну колонку</p>
       </div>
-    </div>
-  </section>
-  <script src="main.js"></script>
-</body>
+
+    </section>
+    <script src="main.js"></script>
+  </body>
 </html>
+
+
+
+
+<!--
+  ? Одна колонна с картами
+      <div class="column">
+
+ *      <div class="column-header">
+ *        <p>Title</p>
+ *        <span data-delete>&times;</span>
+ *      </div>
+
+        <div class="column-item-wrapper">
+
+          <div class="column-item">
+            <div class="column-item-title">Item</div>
+          </div>
+
+        </div>
+
+        <div class="column-add">
+          <span>&plus;</span>
+          <p>Добавить еще одну карточку</p>
+        </div>
+
+      </div>
+
+ -->

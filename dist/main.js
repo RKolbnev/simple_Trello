@@ -141,30 +141,30 @@ module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_addBoard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/addBoard */ "./src/js/modules/addBoard.js");
-/* harmony import */ var _modules_addItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/addItem */ "./src/js/modules/addItem.js");
-/* harmony import */ var _modules_deleteBoard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/deleteBoard */ "./src/js/modules/deleteBoard.js");
+/* harmony import */ var _modules_addColumn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/addColumn */ "./src/js/modules/addColumn.js");
+/* harmony import */ var _modules_addCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/addCard */ "./src/js/modules/addCard.js");
+/* harmony import */ var _modules_deleteColumn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/deleteColumn */ "./src/js/modules/deleteColumn.js");
 
 
 
 window.addEventListener('DOMContentLoaded', function () {
-  Object(_modules_addBoard__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  Object(_modules_addItem__WEBPACK_IMPORTED_MODULE_1__["default"])();
-  Object(_modules_deleteBoard__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  Object(_modules_addColumn__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  Object(_modules_addCard__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  Object(_modules_deleteColumn__WEBPACK_IMPORTED_MODULE_2__["default"])();
 });
 
 /***/ }),
 
-/***/ "./src/js/modules/Board.js":
-/*!*********************************!*\
-  !*** ./src/js/modules/Board.js ***!
-  \*********************************/
-/*! exports provided: Board */
+/***/ "./src/js/modules/Column.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/Column.js ***!
+  \**********************************/
+/*! exports provided: Column */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Board", function() { return Board; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Column", function() { return Column; });
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
@@ -172,104 +172,149 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Board = /*#__PURE__*/function () {
-  function Board() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Board);
+var Column = /*#__PURE__*/function () {
+  function Column() {
+    var title = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "Введите название";
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Column);
+
+    this.title = title;
+    this.cardsArray = {};
+    this.length = 0;
+    this.column = null;
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Board, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Column, [{
+    key: "addCard",
+    value: function addCard(title) {
+      var newCard = new Card(title);
+      this.cardsArray["id".concat(this.length)] = newCard;
+    }
+  }, {
     key: "render",
-    value: function render(parent) {
-      var board = document.createElement("div");
-      board.classList.add("board");
-      board.innerHTML = "\n      <div class=\"board-header\">\n        <p>Title</p>\n        <span data-delete>&times;</span>\n      </div>\n\n      <div class=\"board-item-wrapper\">\n        <div class=\"board-item\">\n          <div class=\"board-item-title\"> Item</div>\n        </div>\n      </div>\n\n      <div class=\"board-add\">\n        <span>&plus;</span>\n        <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0435\u0449\u0435 \u043E\u0434\u043D\u0443 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n      </div>\n    ";
-      parent.append(board);
+    value: function render(element) {
+      var column = document.createElement("div");
+      this.column = column;
+      column.classList.add("column");
+      column.innerHTML = "\n      <div class=\"column-header\">\n        <p>".concat(this.title, "</p>\n        <span data-delete>&times;</span>\n      </div>\n      <div class=\"column-item-wrapper\"></div>\n      <div class=\"column-add\" data-add-card>\n        <span>&plus;</span>\n        <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0435\u0449\u0435 \u043E\u0434\u043D\u0443 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n      </div>\n    ");
+      element.before(column);
+    }
+  }, {
+    key: "renderCard",
+    value: function renderCard(card) {
+      var wrapper = this.column.querySelector(".column-item-wrapper");
+      var newCard = document.createElement('div');
+      newCard.classList.add('column-item');
+      newCard.innerHTML = "<div class=\"column-item-title\"> ".concat(card.title, "</div>");
+      wrapper.append(newCard);
     }
   }]);
 
-  return Board;
+  return Column;
 }();
 
-var BoardItem = function BoardItem() {
-  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, BoardItem);
+var Card = function Card(title) {
+  var desc = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Добавить более подробное описание...";
+  var comments = arguments.length > 2 ? arguments[2] : undefined;
+
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Card);
+
+  this.title = title;
+  this.desc = desc;
+  this.comments = comments;
 };
 
-
+ //<div class="column-item"> */}
+//<div class="column-item-title"> item</div> */}
+//</div>
 
 /***/ }),
 
-/***/ "./src/js/modules/addBoard.js":
-/*!************************************!*\
-  !*** ./src/js/modules/addBoard.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Board__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Board */ "./src/js/modules/Board.js");
-
-
-var addBoard = function addBoard() {
-  var trigger = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '.header-plus';
-  var parent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '.main';
-  var triggerBtn = document.querySelector(trigger);
-  var parentElement = document.querySelector(parent);
-  triggerBtn.addEventListener('click', function () {
-    new _Board__WEBPACK_IMPORTED_MODULE_0__["Board"]().render(parentElement);
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (addBoard);
-
-/***/ }),
-
-/***/ "./src/js/modules/addItem.js":
+/***/ "./src/js/modules/addCard.js":
 /*!***********************************!*\
-  !*** ./src/js/modules/addItem.js ***!
+  !*** ./src/js/modules/addCard.js ***!
   \***********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var addItem = function addItem() {
-  var body = document.querySelector('body');
-  body.addEventListener('click', function (e) {
-    if (e.target.parentElement.classList.contains('board-add')) {
-      var elem = document.createElement('div');
-      elem.classList.add('board-item');
-      elem.innerHTML = "\n        <div class=\"board-item-title\" contenteditable=\"true\"> \u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A \u0434\u043B\u044F \u044D\u0442\u043E\u0439 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438</div>\n      ";
-      e.target.parentElement.previousElementSibling.append(elem);
+var addCard = function addCard() {
+  var body = document.querySelector("body");
+  body.addEventListener("click", function (e) {
+    if (e.target.parentElement.hasAttribute("data-add-card")) {
+      var parent = e.target.parentElement;
+      parent.innerHTML = "\n      <div>\n        <input class=\"column-item input column-item-title\" placeholder=\"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A \u0434\u043B\u044F \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438\">\n\n        <div class=\"input-btn input-btn__card\">\n          <button class=\"btn-add\"><span>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043B\u043E\u043D\u043A\u0443</span></button>\n          <button class=\"btn-add\"><span>&times;</span></button>\n        </div>\n\n      </div>\n      ";
+      var value = parent.querySelector('INPUT').value;
     }
   });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (addItem);
+/* harmony default export */ __webpack_exports__["default"] = (addCard);
 
 /***/ }),
 
-/***/ "./src/js/modules/deleteBoard.js":
-/*!***************************************!*\
-  !*** ./src/js/modules/deleteBoard.js ***!
-  \***************************************/
+/***/ "./src/js/modules/addColumn.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/addColumn.js ***!
+  \*************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var deleteBoard = function deleteBoard() {
+/* harmony import */ var _Column__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Column */ "./src/js/modules/Column.js");
+
+
+var addColumn = function addColumn() {
+  var trigger = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '.new__column';
+  var triggerBtn = document.querySelector(trigger);
+  triggerBtn.addEventListener('click', function () {
+    var input = document.createElement('div');
+    input.classList.add('column');
+    input.innerHTML = "\n\n      <input class=\"column-item input column-item-title\" placeholder=\"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A \u0441\u043F\u0438\u0441\u043A\u0430\">\n      <div class=\"input-btn\">\n        <button class=\"btn-add\"><span>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043B\u043E\u043D\u043A\u0443</span></button>\n        <button class=\"btn-add\"><span>&times;</span></button>\n      </div>\n    ";
+    triggerBtn.before(input);
+    var btns = input.querySelectorAll('BUTTON');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (btn.textContent === "Добавить колонку") {
+          var value = btn.parentElement.previousElementSibling.value;
+
+          if (value.length > 0) {
+            var column = new _Column__WEBPACK_IMPORTED_MODULE_0__["Column"](value).render(input);
+            input.remove();
+          }
+        } else {
+          input.remove();
+        }
+      });
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (addColumn);
+
+/***/ }),
+
+/***/ "./src/js/modules/deleteColumn.js":
+/*!****************************************!*\
+  !*** ./src/js/modules/deleteColumn.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var deleteColumn = function deleteColumn() {
   var mainSection = document.querySelector('.main');
   mainSection.addEventListener('click', function (e) {
-    console.log(e.target);
-
     if (e.target.hasAttribute('data-delete')) {
       e.target.parentElement.parentElement.remove();
     }
   });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (deleteBoard);
+/* harmony default export */ __webpack_exports__["default"] = (deleteColumn);
 
 /***/ })
 
