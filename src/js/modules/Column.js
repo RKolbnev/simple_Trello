@@ -1,20 +1,31 @@
 class Column {
-  constructor(title="Введите название") {
+  constructor({title="Введите название", id=null} = {}) {
+    this.id = id;
     this.title = title;
-    this.cardsArray = {};
+    this.cards = {};
     this.length = 0;
-    this.column = null;
+    this.elemDOM = null;
   }
 
   addCard(title) {
     const newCard = new Card(title);
-    this.cardsArray[`id${this.length}`] = newCard;
+    this.cards[`id${this.length}`] = newCard;
+    this.length += 1;
+
+    const wrapper = this.elemDOM.querySelector(".column-item-wrapper");
+    const card = document.createElement("div");
+    card.setAttribute('data-card-id', `id${this.length-1}`)
+    card.classList.add("column-item");
+    card.innerHTML = `<div class="column-item-title"> ${title}</div>`;
+
+    wrapper.append(card);
   }
 
   render(element) {
     const column = document.createElement("div");
-    this.column = column;
+    this.elemDOM = column;
     column.classList.add("column")
+    column.setAttribute('data-column-id', this.id)
     column.innerHTML = `
       <div class="column-header">
         <p>${this.title}</p>
@@ -29,32 +40,32 @@ class Column {
 
     element.before(column);
   }
-
-  renderCard(card) {
-    const wrapper = this.column.querySelector(".column-item-wrapper");
-    const newCard = document.createElement('div');
-    newCard.classList.add('column-item');
-    newCard.innerHTML = `<div class="column-item-title"> ${card.title}</div>`;
-
-    wrapper.append(newCard)
-  }
 }
 
 class Card {
-  constructor(title, desc="Добавить более подробное описание...", comments) {
+  constructor(title, desc="Добавить более подробное описание...") {
     this.title = title;
     this.desc = desc;
-    this.comments = comments;
+    this.comments = [];
   }
+
+  addDesc(desc) {
+    this.desc = desc;
+  }
+
+  addComment(text) {
+    this.comments.push(text);
+  }
+
+  openModal() {
+    const elem = document.createElement('div');
+    elem.classList.add('card-modal');
+    elem.innerHTML = `
+
+    `
+  }
+
 }
 
 
-export {Column}
-
-
-
-
-
-        //<div class="column-item"> */}
-          //<div class="column-item-title"> item</div> */}
-        //</div>
+export {Column};

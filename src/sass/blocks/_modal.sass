@@ -1,0 +1,38 @@
+.modal
+  position: fixed
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100vw
+  height: 100vh
+  top: 0
+  left: 0
+  color: $d
+  background-color: #0000004b
+  &-popup
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    margin-top: -5em
+    padding: 2em
+    border-radius: 0.5em
+    background-color: $a
+  &-main
+    margin-right: 2em
+  &__item
+    display: flex
+    margin-top: 1em
+  &-logo
+    font-size: 2em
+    min-width: 1em
+    padding: 0 0.5em
+  &-content
+    min-height: 5em
+    & textarea
+      border-radius: 0.5em
+      outline: none
+    & p
+      margin: 0.5em
+
+.title, .comments
+  margin-top: 2em
