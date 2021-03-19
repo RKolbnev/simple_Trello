@@ -47,6 +47,8 @@ class Card {
     this.title = title;
     this.desc = desc;
     this.comments = [];
+    this.checkList = null;
+    this.background = null;
   }
 
   addDesc(desc) {
@@ -56,15 +58,6 @@ class Card {
   addComment(text) {
     this.comments.push(text);
   }
-
-  openModal() {
-    const elem = document.createElement('div');
-    elem.classList.add('card-modal');
-    elem.innerHTML = `
-
-    `
-  }
-
 }
 
 

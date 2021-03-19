@@ -232,6 +232,8 @@ var Card = /*#__PURE__*/function () {
     this.title = title;
     this.desc = desc;
     this.comments = [];
+    this.checkList = null;
+    this.background = null;
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Card, [{
@@ -243,13 +245,6 @@ var Card = /*#__PURE__*/function () {
     key: "addComment",
     value: function addComment(text) {
       this.comments.push(text);
-    }
-  }, {
-    key: "openModal",
-    value: function openModal() {
-      var elem = document.createElement('div');
-      elem.classList.add('card-modal');
-      elem.innerHTML = "\n\n    ";
     }
   }]);
 
@@ -336,7 +331,10 @@ var addCard = function addCard() {
           if (btn.hasAttribute("data-add-card")) {
             var id = input.parentElement.getAttribute('data-column-id');
             var column = _index__WEBPACK_IMPORTED_MODULE_1__["store"][id];
-            column.addCard(value);
+
+            if (value.length > 0) {
+              column.addCard(value);
+            }
           }
 
           input.nextElementSibling.style.display = "";
@@ -391,6 +389,12 @@ var deleteColumn = function deleteColumn() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "openCard", function() { return openCard; });
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 var openCard = function openCard() {
@@ -409,9 +413,91 @@ var openCard = function openCard() {
       var idCard = target.getAttribute("data-card-id");
       var idColumn = parent.getAttribute('data-column-id');
       var card = _index__WEBPACK_IMPORTED_MODULE_0__["store"][idColumn].cards[idCard];
+      var modal = createModal(card);
+      main.append(modal);
     }
   });
 };
+
+function createModal(card) {
+  var modal = document.createElement('div');
+  modal.classList.add('modal');
+  modal.innerHTML = "\n    <div class=\"modal-popup\">\n      <div class=\"modal-main\">\n\n        <div class=\"title modal__item\">\n          <span class=\"modal-logo\">&#x2712;</span>\n          <div class=\"modal-content\">\n            <p>".concat(card.title, "</p>\n          </div>\n        </div>\n\n        <div class=\"desc modal__item\">\n          <span class=\"modal-logo\"> &equiv;</span>\n          <div class=\"modal-content\">\n            <p>\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</p>\n            <input placeholder=\"").concat(card.desc, "\">\n            <div class=\"input-btn hide modal-btn\">\n              <button class=\"btn-add\" data-add-desc>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n              <button class=\"btn-add\"><span>&times;</span></button>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"comments modal__item\">\n          <span class=\"modal-logo\"> &#x270E;</span>\n          <div class=\"modal-content\">\n            <p>\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0438</p>\n            <input placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439\">\n            <div class=\"input-btn hide modal-btn\">\n              <button class=\"btn-add\" data-add-comment>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n              <button class=\"btn-add\"><span>&times;</span></button>\n            </div>\n            <div class=\"comments-wrapper\"></div>\n          </div>\n        </div>\n\n      </div>\n\n      <div class=\"modal-add\">\n        <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0430 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n        <div>\n          <button>\u0427\u0435\u043A-\u043B\u0438\u0441\u0442</button>\n          <button>\u041E\u0431\u043B\u043E\u0436\u043A\u0430</button>\n        </div>\n      </div>\n\n      <span class=\"modal-close\" data-delete-modal>&times;</span>\n\n    </div>\n\n  ");
+  var title = modal.querySelector(".title");
+  var desc = modal.querySelector(".desc");
+  var comments = modal.querySelector(".comments");
+
+  if (card.comments.length > 0) {
+    var _iterator = _createForOfIteratorHelper(card.comments),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var i = _step.value;
+        addComment(i);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  }
+
+  modal.addEventListener('input', function (e) {
+    if (e.target.parentElement.classList.contains("modal-content")) {
+      e.target.nextElementSibling.classList.remove("hide");
+    }
+  });
+  modal.addEventListener('click', function (e) {
+    if (e.target.hasAttribute("data-delete-modal")) {
+      modal.remove();
+    }
+
+    if (e.target.hasAttribute("data-add-comment")) {
+      var value = e.target.parentElement.previousElementSibling;
+      card.addComment(value.value);
+      addComment(value.value);
+      value.value = '';
+      value.nextElementSibling.classList.add("hide");
+    }
+
+    if (e.target.hasAttribute("data-add-desc")) {
+      var _value = e.target.parentElement.previousElementSibling;
+      card.addDesc(_value.value);
+
+      _value.nextElementSibling.classList.add("hide");
+
+      var _desc = document.createElement('div');
+
+      _desc.classList.add('modal-desc');
+
+      _desc.textContent = _value.value;
+
+      _value.nextElementSibling.before(_desc);
+
+      _value.remove();
+    }
+
+    if (e.target.parentElement.classList.contains("btn-add")) {
+      e.target.parentElement.parentElement.classList.add("hide");
+    }
+
+    if (e.target.textContent === 'Чек-лист') {
+      var checkList = document.createElement('div');
+      checkList.classList.add("modal-check");
+      desc.after(checkLict);
+    }
+  });
+
+  function addComment(text) {
+    var wrapper = comments.querySelector(".comments-wrapper");
+    var comment = document.createElement("p");
+    comment.textContent = text;
+    wrapper.append(comment);
+  }
+
+  return modal;
+}
 
 
 

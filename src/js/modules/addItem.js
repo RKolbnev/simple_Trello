@@ -51,7 +51,9 @@ const addCard = () => {
         if (btn.hasAttribute("data-add-card")) {
           const id = input.parentElement.getAttribute('data-column-id');
           const column = store[id];
-          column.addCard(value);
+          if (value.length > 0) {
+            column.addCard(value);
+          }
         }
         input.nextElementSibling.style.display = "";
         input.remove()

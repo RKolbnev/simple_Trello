@@ -12,13 +12,15 @@
   &-popup
     display: flex
     flex-direction: row
-    justify-content: space-around
+    justify-content: space-between
     margin-top: -5em
     padding: 2em
+    width: 60%
     border-radius: 0.5em
     background-color: $a
   &-main
-    margin-right: 2em
+    width: 70%
+    padding: 0 1em
   &__item
     display: flex
     margin-top: 1em
@@ -27,12 +29,59 @@
     min-width: 1em
     padding: 0 0.5em
   &-content
-    min-height: 5em
-    & textarea
+    width: 100%
+    & input
+      width: 90%
+      padding: 0.5em 1em
       border-radius: 0.5em
       outline: none
     & p
       margin: 0.5em
+  &-add
+    & div
+      display: flex
+      flex-direction: column
+      & button
+        margin: 0.5em
+        border-radius: 0.25em
+        padding: 0.25em 0.5em
+  &-close
+    cursor: pointer
+    margin-top: -1em
+    margin-right: -0.5em
+    font-size: 1.7em
+  &-btn button
+    margin: 0.3em 0
+    padding: 0 1em
+    color: $f
+    background-color: $b
+  &-desc
+    padding: 0.5em 1em
+    border-radius: 0.5em
+    color: $a
+    background-color: $f
+
+.hide
+  display: none
 
 .title, .comments
-  margin-top: 2em
+  margin-top: 1em
+.comments
+  &-wrapper
+    display: flex
+    flex-direction: column
+    justify-content: start
+    max-height: 40vh
+    overflow-x: auto
+    &::-webkit-scrollbar
+      width: 0.35em
+    &::-webkit-scrollbar-thumb
+      background-color: #ffffffa8
+      width: 0.2em
+      border-radius: 1em
+    & p
+      width: 80%
+      color: $a
+      padding: 0.5em
+      border-radius: 0.5em
+      background-color: $f
