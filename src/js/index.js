@@ -1,17 +1,17 @@
-import { addColumn, addCard } from "./modules/addItem";
-import { openCard } from "./modules/openCard";
-import deleteColumn from "./modules/deleteColumn";
+import addColumn from './modules/addColumn';
+import addCard from './modules/addCard';
+import removeColumn from './modules/removeColumn';
+import {openCard} from './modules/openCard';
 
 const link = "http://simple-trello-a0138-default-rtdb.firebaseio.com/column.json";
 
 const store = {};
 
 window.addEventListener("DOMContentLoaded", () => {
-  addColumn("new__column", {});
+  addColumn();
+  removeColumn();
   addCard();
-  deleteColumn();
-  openCard();
-
+  openCard()
 
 
 

@@ -1,24 +1,19 @@
 class Column {
-  constructor({title="Введите название", id=null} = {}) {
+  constructor(title="Введите название", id = Math.random(), card = {}, length = 0) {
     this.id = id;
     this.title = title;
-    this.cards = {};
-    this.length = 0;
+    this.cards = card;
+    this.length = length;
     this.elemDOM = null;
   }
 
   addCard(title) {
     const newCard = new Card(title);
     this.cards[`id${this.length}`] = newCard;
+    const id = `id${this.length}`;
     this.length += 1;
-
     const wrapper = this.elemDOM.querySelector(".column-item-wrapper");
-    const card = document.createElement("div");
-    card.setAttribute('data-card-id', `id${this.length-1}`)
-    card.classList.add("column-item");
-    card.innerHTML = `<div class="column-item-title"> ${title}</div>`;
-
-    wrapper.append(card);
+    wrapper.append(newCard.render(title, id));
   }
 
   render(element) {
@@ -32,31 +27,48 @@ class Column {
         <span data-delete>&times;</span>
       </div>
       <div class="column-item-wrapper"></div>
-      <div class="column-add" data-add-card>
+      <div class="add-item new__card" data-add-card>
         <span>&plus;</span>
         <p>Добавить еще одну карточку</p>
       </div>
     `;
+    if (this.length > 0) {
+      const wrap = column.querySelector('column-item-wrapper');
+      for (let [key, value] of Object.entries(this.cards)) {
+        wrap.append(value.render(value.card, key));
+      }
+    }
 
     element.before(column);
   }
 }
 
 class Card {
-  constructor(title, desc="Добавить более подробное описание...") {
+  constructor(title, desc = null, comments = [], checkList = [], background = null) {
     this.title = title;
     this.desc = desc;
-    this.comments = [];
-    this.checkList = null;
-    this.background = null;
+    this.comments = comments;
+    this.checkList = checkList;
+    this.background = background;
   }
 
   addDesc(desc) {
     this.desc = desc;
   }
 
-  addComment(text) {
-    this.comments.push(text);
+  addComment(comment) {
+    this.comments.push(comment);
+  }
+
+  render(title,id) {
+    const card = document.createElement('div');
+    card.setAttribute("data-card-id", `${id}`);
+    card.classList.add("column-item");
+    card.innerHTML = `<div class="column-item-title"> ${title}</div>`;
+    if (this.background) {
+      card.style.background = this.background;
+    }
+    return card;
   }
 }
 

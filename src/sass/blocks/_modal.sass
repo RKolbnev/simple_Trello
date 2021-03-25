@@ -8,35 +8,47 @@
   top: 0
   left: 0
   color: $d
-  background-color: #0000004b
+  background-color: #00000094
   &-popup
     display: flex
-    flex-direction: row
-    justify-content: space-between
-    margin-top: -5em
+    flex-direction: column
+    margin-top: -2em
     padding: 2em
-    width: 60%
+    width: 50vw
+    min-height: 70vh
     border-radius: 0.5em
-    background-color: $a
+    background-color: $b
   &-main
     width: 70%
-    padding: 0 1em
+    padding: 0 1em 0 0
   &__item
     display: flex
     margin-top: 1em
   &-logo
     font-size: 2em
     min-width: 1em
-    padding: 0 0.5em
+    padding: 0
+    padding-right: 0.5em
   &-content
+    display: flex
+    flex-direction: column
+    flex-shrink: 1
     width: 100%
+    max-height: 50vh
+    color: $a
+    background-color: $f
+    border-radius: 0.5em
     & input
-      width: 90%
+      width: -webkit-fill-available
       padding: 0.5em 1em
       border-radius: 0.5em
       outline: none
     & p
       margin: 0.5em
+      color: $b
+      &:first-child
+        color: $a
+        font-size: 1.1em
   &-add
     & div
       display: flex
@@ -46,6 +58,7 @@
         border-radius: 0.25em
         padding: 0.25em 0.5em
   &-close
+    text-align: right
     cursor: pointer
     margin-top: -1em
     margin-right: -0.5em
@@ -76,12 +89,30 @@
     &::-webkit-scrollbar
       width: 0.35em
     &::-webkit-scrollbar-thumb
-      background-color: #ffffffa8
+      background-color: $a
       width: 0.2em
       border-radius: 1em
-    & p
-      width: 80%
+    & div
+      padding: 0.2em
+      margin: 0.5em
       color: $a
-      padding: 0.5em
+      background-color: $c
       border-radius: 0.5em
-      background-color: $f
+      & p:first-child
+        margin: 0
+        padding: 0.25em
+        color: $f
+        border-bottom: 1px solid $a
+      & span
+        display: block
+        text-align: center
+        padding-top: 0.5em
+        // width: 100%
+        // margin: 1em
+        font-size: 0.8em
+
+
+.wrapper
+  display: flex
+  font-display: row
+  width: -webkit-fill-available
