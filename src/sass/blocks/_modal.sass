@@ -57,11 +57,16 @@
         margin: 0.5em
         border-radius: 0.25em
         padding: 0.25em 0.5em
+    & .hide
+      display: none
   &-close
-    text-align: right
     cursor: pointer
-    margin-top: -1em
-    margin-right: -0.5em
+    margin-top: -1.2em
+    margin-right: -1.2em
+    margin-left: -1.2em
+    border-radius: 0.25em
+    text-align: right
+    padding: 0.25em 0.5em
     font-size: 1.7em
   &-btn button
     margin: 0.3em 0
@@ -73,6 +78,53 @@
     border-radius: 0.5em
     color: $a
     background-color: $f
+
+
+  &__bg
+    border-radius: 0.25em
+    margin: -1.2em -1.2em 1em -1.2em
+    padding: 0.5em 1em
+    padding-bottom: 3em
+  &-bg
+    &-popup
+      display: flex
+      flex-direction: column
+      position: absolute
+      margin-top: 5em
+      max-width: 14.5vw
+      border-radius: 0.5em
+      padding: 0 0.5em
+      color: $a
+      background-color: $f
+      & div
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        width: 100%
+        & span
+          cursor: pointer
+          width: 2.5em
+          height: 2em
+          margin: 0.5em
+          border-radius: 0.25em
+          background-color: black
+          &[data-modal-bg="modal__bg-red"]
+            background-color: red
+          &[data-modal-bg="modal__bg-blue"]
+            background-color: blue
+          &[data-modal-bg="modal__bg-green"]
+            background-color: green
+          &[data-modal-bg="modal__bg-yellow"]
+            background-color: yellow
+          &[data-modal-bg="modal__bg-darkblue"]
+            background-color: #454a5e
+          &[data-modal-bg="modal__bg-darkred"]
+            background-color: #811717
+          &[data-modal-bg="modal__bg-darkgreen"]
+            background-color: #317728
+          &[data-modal-bg="modal__bg-darkgrey"]
+            background-color: #7c7171
+
 
 .hide
   display: none

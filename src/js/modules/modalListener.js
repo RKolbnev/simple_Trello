@@ -2,24 +2,27 @@ import addInput from './addInput';
 
 const modalListener = (modal, card) => {
   modal.addEventListener('click', (e) => {
-    if (e.target.hasAttribute('data-delete-modal') || e.target === modal) {
+    // Закрытие модального окна
+    if (e.target.hasAttribute("data-delete-modal") || e.target === modal) {
       e.stopPropagation();
       modal.remove();
     }
-    if (e.target.hasAttribute('data-modal-desc')) {
+    // Добавление/изменение описания задачи
+    if (e.target.hasAttribute("data-modal-desc")) {
       const callback = (value) => {
         e.target.textContent = value;
         card.addDesc(value);
-      }
+      };
 
-      e.target.style.display = 'none';
+      e.target.style.display = "none";
       addInput(e.target, e.target.textContent, callback, "input-add__modal");
     }
 
-    if (e.target.hasAttribute('data-modal-comments')) {
+    // Добавление комментариев
+    if (e.target.hasAttribute("data-modal-comments")) {
       const callback = (value) => {
         const wrap = e.target.nextElementSibling;
-        const div = document.createElement('div');
+        const div = document.createElement("div");
         const options = {
           year: "numeric",
           month: "long",
@@ -35,11 +38,26 @@ const modalListener = (modal, card) => {
           <span>${date}</span>
         `;
         wrap.prepend(div);
-        card.addComment({value, date});
-      }
+        card.addComment({ value, date });
+      };
 
-      e.target.style.display = 'none';
-      addInput(e.target, '', callback, "input-add__modal")
+      e.target.style.display = "none";
+      addInput(e.target, "", callback, "input-add__modal");
+    }
+    // Открытие popup Bg
+    if (e.target.textContent === 'Обложка') {
+      e.target.nextElementSibling.classList.toggle('hide');
+    }
+    // Смена bg
+    if (e.target.hasAttribute('data-modal-bg')) {
+      const color = window.getComputedStyle(e.target).backgroundColor;
+      const bg = modal.querySelector('.modal-close');
+      if (!bg.classList.contains('modal__bg')) {
+        bg.classList.add('modal__bg');
+      }
+      bg.style.backgroundColor = color;
+      card.addBackground(color);
+
     }
 
   })

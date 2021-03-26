@@ -25,7 +25,9 @@ function createModal(card) {
   modal.classList.add('modal');
   modal.innerHTML = `
     <div class="modal-popup">
-      <span class="modal-close" data-delete-modal>&times;</span>
+      <div class="modal-close">
+        <span data-delete-modal>&times;</span>
+      </div>
       <div class="wrapper">
         <div class="modal-main">
 
@@ -60,6 +62,19 @@ function createModal(card) {
           <div>
             <button>Чек-лист</button>
             <button>Обложка</button>
+            <div class="modal-bg-popup hide">
+              <p>Цвета</p>
+              <div class="modal-bg-color">
+                <span data-modal-bg="modal__bg-red"></span>
+                <span data-modal-bg="modal__bg-blue"></span>
+                <span data-modal-bg="modal__bg-green"></span>
+                <span data-modal-bg="modal__bg-yellow"></span>
+                <span data-modal-bg="modal__bg-darkred"></span>
+                <span data-modal-bg="modal__bg-darkgreen"></span>
+                <span data-modal-bg="modal__bg-darkblue"></span>
+                <span data-modal-bg="modal__bg-darkgrey"></span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -83,6 +98,12 @@ function createModal(card) {
       `;
       wrap.prepend(div);
     }
+  }
+
+  if (card.background) {
+    const bg = modal.querySelector('.modal-close');
+    bg.classList.add('modal__bg');
+    bg.style.backgroundColor = card.background;
   }
 
   modalListener(modal, card);

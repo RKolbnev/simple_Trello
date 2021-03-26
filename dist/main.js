@@ -366,7 +366,7 @@ var Column = /*#__PURE__*/function () {
               key = _Object$entries$_i[0],
               value = _Object$entries$_i[1];
 
-          wrap.append(value.render(value.card, key));
+          wrap.append(value.render(value.title, key));
         }
       }
 
@@ -402,6 +402,11 @@ var Card = /*#__PURE__*/function () {
     key: "addComment",
     value: function addComment(comment) {
       this.comments.push(comment);
+    }
+  }, {
+    key: "addBackground",
+    value: function addBackground(color) {
+      this.background = color;
     }
   }, {
     key: "render",
@@ -558,25 +563,28 @@ __webpack_require__.r(__webpack_exports__);
 
 var modalListener = function modalListener(modal, card) {
   modal.addEventListener('click', function (e) {
-    if (e.target.hasAttribute('data-delete-modal') || e.target === modal) {
+    // Закрытие модального окна
+    if (e.target.hasAttribute("data-delete-modal") || e.target === modal) {
       e.stopPropagation();
       modal.remove();
-    }
+    } // Добавление/изменение описания задачи
 
-    if (e.target.hasAttribute('data-modal-desc')) {
+
+    if (e.target.hasAttribute("data-modal-desc")) {
       var callback = function callback(value) {
         e.target.textContent = value;
         card.addDesc(value);
       };
 
-      e.target.style.display = 'none';
+      e.target.style.display = "none";
       Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(e.target, e.target.textContent, callback, "input-add__modal");
-    }
+    } // Добавление комментариев
 
-    if (e.target.hasAttribute('data-modal-comments')) {
+
+    if (e.target.hasAttribute("data-modal-comments")) {
       var _callback = function _callback(value) {
         var wrap = e.target.nextElementSibling;
-        var div = document.createElement('div');
+        var div = document.createElement("div");
         var options = {
           year: "numeric",
           month: "long",
@@ -595,8 +603,26 @@ var modalListener = function modalListener(modal, card) {
         });
       };
 
-      e.target.style.display = 'none';
-      Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(e.target, '', _callback, "input-add__modal");
+      e.target.style.display = "none";
+      Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(e.target, "", _callback, "input-add__modal");
+    } // Открытие popup Bg
+
+
+    if (e.target.textContent === 'Обложка') {
+      e.target.nextElementSibling.classList.toggle('hide');
+    } // Смена bg
+
+
+    if (e.target.hasAttribute('data-modal-bg')) {
+      var color = window.getComputedStyle(e.target).backgroundColor;
+      var bg = modal.querySelector('.modal-close');
+
+      if (!bg.classList.contains('modal__bg')) {
+        bg.classList.add('modal__bg');
+      }
+
+      bg.style.backgroundColor = color;
+      card.addBackground(color);
     }
   });
 };
@@ -643,7 +669,7 @@ var openCard = function openCard() {
 function createModal(card) {
   var modal = document.createElement('div');
   modal.classList.add('modal');
-  modal.innerHTML = "\n    <div class=\"modal-popup\">\n      <span class=\"modal-close\" data-delete-modal>&times;</span>\n      <div class=\"wrapper\">\n        <div class=\"modal-main\">\n\n          <div class=\"title modal__item\">\n            <span class=\"modal-logo\">&#x2712;</span>\n            <div class=\"modal-content\">\n              <p>".concat(card.title, "</p>\n            </div>\n          </div>\n\n          <div class=\"desc modal__item\">\n            <span class=\"modal-logo\"> &equiv;</span>\n            <div class=\"modal-content\">\n              <p>\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</p>\n              <p data-modal-desc>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0431\u043E\u043B\u0435\u0435 \u043F\u043E\u0434\u0440\u043E\u0431\u043D\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435..</p>\n            </div>\n          </div>\n\n          <div class=\"comments modal__item\">\n            <span class=\"modal-logo\"> &#x270E;</span>\n            <div class=\"modal-content\">\n              <p>\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0438</p>\n              <p data-modal-comments>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439</p>\n              <div class=\"comments-wrapper\"></div>\n            </div>\n          </div>\n\n        </div>\n\n        <div class=\"modal-add\">\n          <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0430 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n          <div>\n            <button>\u0427\u0435\u043A-\u043B\u0438\u0441\u0442</button>\n            <button>\u041E\u0431\u043B\u043E\u0436\u043A\u0430</button>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  ");
+  modal.innerHTML = "\n    <div class=\"modal-popup\">\n      <div class=\"modal-close\">\n        <span data-delete-modal>&times;</span>\n      </div>\n      <div class=\"wrapper\">\n        <div class=\"modal-main\">\n\n          <div class=\"title modal__item\">\n            <span class=\"modal-logo\">&#x2712;</span>\n            <div class=\"modal-content\">\n              <p>".concat(card.title, "</p>\n            </div>\n          </div>\n\n          <div class=\"desc modal__item\">\n            <span class=\"modal-logo\"> &equiv;</span>\n            <div class=\"modal-content\">\n              <p>\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</p>\n              <p data-modal-desc>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0431\u043E\u043B\u0435\u0435 \u043F\u043E\u0434\u0440\u043E\u0431\u043D\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435..</p>\n            </div>\n          </div>\n\n          <div class=\"comments modal__item\">\n            <span class=\"modal-logo\"> &#x270E;</span>\n            <div class=\"modal-content\">\n              <p>\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0438</p>\n              <p data-modal-comments>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439</p>\n              <div class=\"comments-wrapper\"></div>\n            </div>\n          </div>\n\n        </div>\n\n        <div class=\"modal-add\">\n          <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0430 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n          <div>\n            <button>\u0427\u0435\u043A-\u043B\u0438\u0441\u0442</button>\n            <button>\u041E\u0431\u043B\u043E\u0436\u043A\u0430</button>\n            <div class=\"modal-bg-popup hide\">\n              <p>\u0426\u0432\u0435\u0442\u0430</p>\n              <div class=\"modal-bg-color\">\n                <span data-modal-bg=\"modal__bg-red\"></span>\n                <span data-modal-bg=\"modal__bg-blue\"></span>\n                <span data-modal-bg=\"modal__bg-green\"></span>\n                <span data-modal-bg=\"modal__bg-yellow\"></span>\n                <span data-modal-bg=\"modal__bg-darkred\"></span>\n                <span data-modal-bg=\"modal__bg-darkgreen\"></span>\n                <span data-modal-bg=\"modal__bg-darkblue\"></span>\n                <span data-modal-bg=\"modal__bg-darkgrey\"></span>\n              </div>\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  ");
 
   if (card.desc) {
     var desc = modal.querySelector('[data-modal-desc]');
@@ -669,6 +695,12 @@ function createModal(card) {
     } finally {
       _iterator.f();
     }
+  }
+
+  if (card.background) {
+    var bg = modal.querySelector('.modal-close');
+    bg.classList.add('modal__bg');
+    bg.style.backgroundColor = card.background;
   }
 
   Object(_modalListener__WEBPACK_IMPORTED_MODULE_1__["default"])(modal, card);

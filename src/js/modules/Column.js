@@ -35,7 +35,7 @@ class Column {
     if (this.length > 0) {
       const wrap = column.querySelector('column-item-wrapper');
       for (let [key, value] of Object.entries(this.cards)) {
-        wrap.append(value.render(value.card, key));
+        wrap.append(value.render(value.title, key));
       }
     }
 
@@ -58,6 +58,10 @@ class Card {
 
   addComment(comment) {
     this.comments.push(comment);
+  }
+
+  addBackground(color) {
+    this.background = color;
   }
 
   render(title,id) {
