@@ -64,11 +64,36 @@ class Card {
     this.background = color;
   }
 
+  addChecklist(id) {
+    this.checkList.push({id, checkItems: []});
+  }
+
+  addChecklistItems(id, body) {
+    this.checkList.forEach(item => {
+      if (+item.id === +id) {
+        item.checkItems.push(body);
+      }
+    })
+  }
+
+  changeChecklistItem(id, value) {
+    this.checkList.forEach(item => {
+      if (+item.id == +id) {
+        item.checkItems.forEach(task => {
+          if (task.value == value) {
+            task.status = !task.status
+          }
+        })
+      }
+    })
+  }
+
+
   render(title,id) {
     const card = document.createElement('div');
     card.setAttribute("data-card-id", `${id}`);
     card.classList.add("column-item");
-    card.innerHTML = `<div class="column-item-title"> ${title}</div>`;
+    card.innerHTML = `<div> ${title}</div> <span class="column-item__bg"></span>`;
     if (this.background) {
       card.style.background = this.background;
     }

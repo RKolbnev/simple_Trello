@@ -42,12 +42,17 @@
   &-item
     cursor: pointer
     display: flex
-    flex-direction: row
-    align-items: center
+    flex-direction: column
+    align-items: start
     padding: 0.5em
     margin-bottom: 1em
     background-color: $f
     border-radius: 0.25em
+    &__bg
+      width: -webkit-fill-available
+      margin: auto -0.5em -0.5em -0.5em
+      padding: 0.25em
+      border-radius: 0.5em
     &-wrapper
       padding: 0.25em
       overflow-y: scroll
@@ -84,7 +89,6 @@
     height: fit-content
     width: -webkit-fill-available
     max-width: 20vw
-    padding: 0.5em
     border-radius: 0.5em
     background-color: transparent
     & input
@@ -102,9 +106,11 @@
       color: $f
       background-color: transparent
     &__column
+      padding: 0.5em
       background-color: $b
     &__modal
       max-width: none
+      padding: 0.5em
       & button:first-child
         background-color: $a
       & button:last-child

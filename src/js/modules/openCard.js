@@ -1,5 +1,6 @@
 import { store } from "../index";
 import modalListener from './modalListener';
+import {createCheckList} from './modalListener';
 
 
 const openCard = () => {
@@ -12,14 +13,14 @@ const openCard = () => {
       const idCard = e.target.getAttribute("data-card-id");
       const idColumn = parent.getAttribute('data-column-id')
       const card = store[idColumn].cards[idCard];
-      const modal = createModal(card);
+      const modal = createModal(card, e.target);
 
       main.append(modal);
     }
   });
 };
 
-function createModal(card) {
+function createModal(card, elem) {
   const modal = document.createElement('div');
 
   modal.classList.add('modal');
@@ -34,7 +35,7 @@ function createModal(card) {
           <div class="title modal__item">
             <span class="modal-logo">&#x2712;</span>
             <div class="modal-content">
-              <p>${card.title}</p>
+              <p data-modal-title>${card.title}</p>
             </div>
           </div>
 
@@ -60,7 +61,7 @@ function createModal(card) {
         <div class="modal-add">
           <p>Добавить на карточку</p>
           <div>
-            <button>Чек-лист</button>
+            <button data-modal-checklist>Чек-лист</button>
             <button>Обложка</button>
             <div class="modal-bg-popup hide">
               <p>Цвета</p>
@@ -84,7 +85,6 @@ function createModal(card) {
 
   if (card.desc) {
     const desc = modal.querySelector('[data-modal-desc]');
-    console.log(desc);
     desc.textContent = card.desc;
   }
 
@@ -106,7 +106,24 @@ function createModal(card) {
     bg.style.backgroundColor = card.background;
   }
 
-  modalListener(modal, card);
+  if (card.checkList.length > 0) {
+    card.checkList.forEach(list => {
+      const checkList = createCheckList(list.id);
+      modal.querySelector(".desc").after(checkList);
+      list.checkItems.forEach(item => {
+        const wrap = modal.querySelector('.checkList div');
+        const attr = item.status ? 'checked' : '';
+        const checkItem = document.createElement("label");
+        checkItem.innerHTML = `
+          <input type="checkbox" ${attr} data-check>
+          ${item.value}
+        `;
+        wrap.append(checkItem)
+      })
+    })
+  }
+
+  modalListener(modal, card, elem);
   return modal;
 }
 
