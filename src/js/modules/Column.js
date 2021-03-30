@@ -1,8 +1,8 @@
 class Column {
-  constructor(title="Введите название", id = Math.random(), card = {}, length = 0) {
+  constructor(title="Введите название", id = Math.random(), cards = {}, length = 0) {
     this.id = id;
     this.title = title;
-    this.cards = card;
+    this.cards = cards;
     this.length = length;
     this.elemDOM = null;
   }
@@ -14,6 +14,10 @@ class Column {
     this.length += 1;
     const wrapper = this.elemDOM.querySelector(".column-item-wrapper");
     wrapper.append(newCard.render(title, id));
+  }
+
+  removeCard(id) {
+    delete this.cards[id];
   }
 
   render(element) {
@@ -32,12 +36,6 @@ class Column {
         <p>Добавить еще одну карточку</p>
       </div>
     `;
-    if (this.length > 0) {
-      const wrap = column.querySelector('column-item-wrapper');
-      for (let [key, value] of Object.entries(this.cards)) {
-        wrap.append(value.render(value.title, key));
-      }
-    }
 
     element.before(column);
   }
@@ -65,7 +63,15 @@ class Card {
   }
 
   addChecklist(id) {
-    this.checkList.push({id, checkItems: []});
+    this.checkList.push({id, checkItems: [], title: 'Чек-лист'});
+  }
+
+  changeChecklistTitle(id, title) {
+    this.checkList.forEach( item => {
+      if (item.id == id ) {
+        item.title = title;
+      }
+    })
   }
 
   addChecklistItems(id, body) {
@@ -93,7 +99,12 @@ class Card {
     const card = document.createElement('div');
     card.setAttribute("data-card-id", `${id}`);
     card.classList.add("column-item");
-    card.innerHTML = `<div> ${title}</div> <span class="column-item__bg"></span>`;
+    card.innerHTML = `
+      <div class="column-item-content">
+        <div> ${title}</div>
+        <span class="column-item-menu">&equiv;</span>
+      </div>
+      <span data-column-bg></span>`;
     if (this.background) {
       card.style.background = this.background;
     }

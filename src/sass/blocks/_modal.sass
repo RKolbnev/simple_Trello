@@ -63,7 +63,8 @@
         font-size: 1.1em
         & span
           cursor: pointer
-          font-size: 1.2em
+          &:last-child
+            font-size: 1.2em
   &-add
     & div
       display: flex
@@ -96,8 +97,11 @@
 
 
   &__bg
-    border-radius: 0.25em
-    margin: -1.2em -1.2em 1em -1.2em
+    border-bottom-right-radius: 0
+    border-bottom-left-radius: 0
+    // border-top-left-radius: 0.25em
+    // border-top-right-radius: 0.25em
+    margin: -1.2em -1.18em 1em -1.18em
     padding: 0.5em 1em
     padding-bottom: 3em
   &-bg
@@ -111,6 +115,10 @@
       padding: 0 0.5em
       color: $a
       background-color: $f
+      & button
+        cursor: pointer
+        background-color: lighten($a, 15%)
+        color: $f
       & div
         display: flex
         flex-direction: row
@@ -140,10 +148,9 @@
           &[data-modal-bg="modal__bg-darkgrey"]
             background-color: #7c7171
 
-
-.hide
-  display: none
-
+.title
+  & p:first-child
+    cursor: pointer
 .title, .comments
   margin-top: 1em
 .comments
@@ -153,6 +160,7 @@
     justify-content: start
     max-height: 40vh
     overflow-x: auto
+    margin: 0.5em
     &::-webkit-scrollbar
       width: 0.35em
     &::-webkit-scrollbar-thumb

@@ -1,29 +1,11 @@
-import { store } from "../index";
-import modalListener from './modalListener';
-import {createCheckList} from './modalListener';
-
-
-const openCard = () => {
-  const main = document.querySelector(".main");
-
-  main.addEventListener("click", (e) => {
-    if (e.target.hasAttribute('data-card-id')) {
-
-      const parent = e.target.parentElement.parentElement;
-      const idCard = e.target.getAttribute("data-card-id");
-      const idColumn = parent.getAttribute('data-column-id')
-      const card = store[idColumn].cards[idCard];
-      const modal = createModal(card, e.target);
-
-      main.append(modal);
-    }
-  });
-};
+import modalListener from "./modalListener";
+import createCheckList from "./createCheckList";
+import progressBar from "./progressBar";
 
 function createModal(card, elem) {
-  const modal = document.createElement('div');
+  const modal = document.createElement("div");
 
-  modal.classList.add('modal');
+  modal.classList.add("modal");
   modal.innerHTML = `
     <div class="modal-popup">
       <div class="modal-close">
@@ -75,6 +57,7 @@ function createModal(card, elem) {
                 <span data-modal-bg="modal__bg-darkblue"></span>
                 <span data-modal-bg="modal__bg-darkgrey"></span>
               </div>
+              <button data-delete-bg>Удалить обложку</button>
             </div>
           </div>
         </div>
@@ -83,57 +66,63 @@ function createModal(card, elem) {
     </div>
   `;
 
-  if (card.desc) {
-    const desc = modal.querySelector('[data-modal-desc]');
-    desc.textContent = card.desc;
-  }
-
-  if (card.comments.length !== 0) {
-    const wrap = modal.querySelector(".comments-wrapper");
-    for (let i of card.comments) {
-      const div = document.createElement("div");
-      div.innerHTML = `
-        <p>${i.value}</p>
-        <span>${i.date}</span>
-      `;
-      wrap.prepend(div);
-    }
-  }
-
-  if (card.background) {
-    const bg = modal.querySelector('.modal-close');
-    bg.classList.add('modal__bg');
-    bg.style.backgroundColor = card.background;
-  }
-
-  if (card.checkList.length > 0) {
-    card.checkList.forEach(list => {
-      const checkList = createCheckList(list.id);
-      modal.querySelector(".desc").after(checkList);
-      list.checkItems.forEach(item => {
-        const wrap = modal.querySelector('.checkList div');
-        const attr = item.status ? 'checked' : '';
-        const checkItem = document.createElement("label");
-        checkItem.innerHTML = `
-          <input type="checkbox" ${attr} data-check>
-          ${item.value}
-        `;
-        wrap.append(checkItem)
-      })
-    })
-  }
+  addDesc(card, modal);
+  addComments(card, modal);
+  addBg(card, modal);
+  addChecklist(card, modal);
 
   modalListener(modal, card, elem);
   return modal;
 }
 
-export {openCard};
 
+function addDesc(card, modal) {
+  if (card.desc) {
+    const desc = modal.querySelector("[data-modal-desc]");
+    desc.textContent = card.desc;
+  }
+}
 
+function addComments(card, modal) {
+  if (card.comments.length !== 0) {
+    const wrap = modal.querySelector(".comments-wrapper");
+    for (let i of card.comments) {
+      const div = document.createElement("div");
+      div.innerHTML = `
+      <p>${i.value}</p>
+      <span>${i.date}</span>
+      `;
+      wrap.prepend(div);
+    }
+  }
+}
 
+function addBg(card, modal) {
+  if (card.background) {
+    const bg = modal.querySelector(".modal-close");
+    bg.classList.add("modal__bg");
+    bg.style.backgroundColor = card.background;
+  }
+}
 
+function addChecklist(card, modal) {
+  if (card.checkList.length !== 0) {
+    card.checkList.forEach((list) => {
+      const checkList = createCheckList(list.id);
+      modal.querySelector(".desc").after(checkList);
+      list.checkItems.forEach((item) => {
+        const wrap = modal.querySelector(".checkList div");
+        const attr = item.status ? "checked" : "";
+        const checkItem = document.createElement("label");
+        checkItem.innerHTML = `
+        <input type="checkbox" ${attr} data-check>
+        ${item.value}
+        `;
+        wrap.append(checkItem);
+      });
+    });
+    progressBar(modal);
+  }
+}
 
-
-
-
-
+export default createModal;

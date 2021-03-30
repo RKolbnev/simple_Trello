@@ -5,18 +5,13 @@ import {store} from '../index';
 const addColumn = () => {
   const elem = document.querySelector('.new__column');
   elem.addEventListener('click', () => {
-    if (document.querySelector('.input-add')) {
-      return;
-    }
     const callback = (value) => {
       const newColumn = new Column(value);
       store[newColumn.id] = newColumn;
       newColumn.render(elem);
     }
-
     addInput(elem, 'Введите заголовок списка', callback, 'input-add__column');
   })
 }
-
 
 export default addColumn;

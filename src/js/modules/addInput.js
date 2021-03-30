@@ -1,5 +1,11 @@
 
 const addInput = (element, placeholder, callback, className) => {
+  if (document.querySelector('.input-add')) {
+    const input = document.querySelector('.input-add');
+    const nextElement = input.nextElementSibling;
+    input.remove()
+    nextElement.style.display = ''
+  }
   const input = document.createElement('div');
   input.classList.add('input-add', className);
   input.innerHTML = `
@@ -32,10 +38,3 @@ const addInput = (element, placeholder, callback, className) => {
 }
 
 export default addInput;
-
-
-  // Удалаять ли элемент который вызывает функцию
-  // Что делать с данными которые получает инпут.
-  // Передавать стартовые данные для инпута
-
-  // ! Сделать функцию универсальной
