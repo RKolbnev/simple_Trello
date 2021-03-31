@@ -147,6 +147,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_addCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/addCard */ "./src/js/modules/addCard.js");
 /* harmony import */ var _modules_removeColumn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/removeColumn */ "./src/js/modules/removeColumn.js");
 /* harmony import */ var _modules_openModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/openModal */ "./src/js/modules/openModal.js");
+/* harmony import */ var _modules_openCardMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/openCardMenu */ "./src/js/modules/openCardMenu.js");
+
 
 
 
@@ -158,6 +160,7 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_removeColumn__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_modules_addCard__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_modules_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  Object(_modules_openCardMenu__WEBPACK_IMPORTED_MODULE_4__["default"])();
 });
 
 
@@ -633,7 +636,7 @@ function openPopupBg(target) {
 
 function changeBg(target, modal, card, columnElement) {
   if (target.hasAttribute("data-modal-bg")) {
-    var color = window.getComputedStyle(target).backgroundColor;
+    var color = getComputedStyle(target).backgroundColor;
     var bg = modal.querySelector(".modal-close");
 
     if (!bg.classList.contains("modal__bg")) {
@@ -782,6 +785,67 @@ function progressBar(modal) {
 
 /***/ }),
 
+/***/ "./src/js/modules/openCardMenu.js":
+/*!****************************************!*\
+  !*** ./src/js/modules/openCardMenu.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
+/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addInput */ "./src/js/modules/addInput.js");
+
+
+
+var openCardMenu = function openCardMenu() {
+  var main = document.querySelector(".main");
+  main.addEventListener("click", function (e) {
+    if (e.target.classList.contains("column-item-menu")) {
+      var column = e.target.closest("[data-column-id]");
+      var idColumn = column.getAttribute("data-column-id");
+      var cardElem = e.target.closest("[data-card-id]");
+      var idCard = cardElem.getAttribute("data-card-id");
+      var card = _index__WEBPACK_IMPORTED_MODULE_0__["store"][idColumn].cards[idCard];
+      var modal = document.createElement('div');
+      modal.classList.add('modal-menu');
+      modal.innerHTML = "\n      <div class=\"modal-menu-content\">\n        <div class=\"modal-menu-card\"></div>\n        <div class=\"modal-menu-wrap\">\n          <button>\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</button>\n          <button>\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435</button>\n          <button>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</button>\n          <button>\u0421\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0431\u043B\u043E\u0436\u043A\u0443</button>\n          <button>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</button>\n        </div>\n      </div>\n      ";
+      var elem = modal.querySelector('.modal-menu-card');
+      var height = cardElem.clientHeight;
+      var width = cardElem.clientWidth;
+      elem.style.width = width + 'px';
+      elem.style.height = height + 'px';
+      var coords = cardElem.getBoundingClientRect();
+      modal.children[0].style.marginTop = coords.top + 'px';
+      modal.children[0].style.marginLeft = coords.left + 'px';
+      elem.append(cardElem.cloneNode(true));
+      main.append(modal);
+    } // Закрытие меню
+
+
+    if (document.querySelector('.modal-menu') && e.target.classList.contains('modal-menu')) {
+      e.target.remove();
+    }
+
+    if (e.target.textContent === 'Открыть карточку') {
+      var menuCard = e.target.parentElement.previousElementSibling;
+
+      var callback = function callback(value) {
+        menuCard.children[0].children[0].children[0].textContent = value;
+        menuCard.style.display = '';
+      };
+
+      menuCard.style.display = 'none';
+      Object(_addInput__WEBPACK_IMPORTED_MODULE_1__["default"])(menuCard, '', callback, 'input-add__menu');
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (openCardMenu);
+
+/***/ }),
+
 /***/ "./src/js/modules/openModal.js":
 /*!*************************************!*\
   !*** ./src/js/modules/openModal.js ***!
@@ -799,10 +863,10 @@ __webpack_require__.r(__webpack_exports__);
 var openModal = function openModal() {
   var main = document.querySelector(".main");
   main.addEventListener("click", function (e) {
-    if (e.target.classList.contains('column-item-content') || e.target.parentElement.classList.contains('column-item-content')) {
-      var column = e.target.closest('[data-column-id]');
+    if (e.target.classList.contains("column-item-content") || e.target.parentElement.classList.contains("column-item-content") && !e.target.classList.contains("column-item-menu")) {
+      var column = e.target.closest("[data-column-id]");
       var idColumn = column.getAttribute("data-column-id");
-      var cardElem = e.target.closest('[data-card-id]');
+      var cardElem = e.target.closest("[data-card-id]");
       var idCard = cardElem.getAttribute("data-card-id");
       var card = _index__WEBPACK_IMPORTED_MODULE_0__["store"][idColumn].cards[idCard];
       var modal = Object(_modal_createModal__WEBPACK_IMPORTED_MODULE_1__["default"])(card, cardElem);

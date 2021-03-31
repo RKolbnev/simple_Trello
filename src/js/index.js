@@ -2,6 +2,7 @@ import addColumn from './modules/addColumn';
 import addCard from './modules/addCard';
 import removeColumn from './modules/removeColumn';
 import openModal from './modules/openModal';
+import openCardMenu from './modules/openCardMenu';
 
 const link = "http://simple-trello-a0138-default-rtdb.firebaseio.com/column.json";
 
@@ -12,7 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
   removeColumn();
   addCard();
   openModal();
-
+  openCardMenu();
 
 
 

@@ -62,7 +62,7 @@ function openPopupBg(target) {
 //? Изменение обложки
 function changeBg(target, modal, card, columnElement) {
   if (target.hasAttribute("data-modal-bg")) {
-    const color = window.getComputedStyle(target).backgroundColor;
+    const color = getComputedStyle(target).backgroundColor;
     const bg = modal.querySelector(".modal-close");
     if (!bg.classList.contains("modal__bg")) {
       bg.classList.add("modal__bg");
