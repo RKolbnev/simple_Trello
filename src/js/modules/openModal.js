@@ -1,24 +1,45 @@
 import { store } from "../index";
-import createModal from "./modal/createModal";
+// import createModal from "./modal/createModal";
 
-const openModal = () => {
+const openModal = (className, func, notContains) => {
   const main = document.querySelector(".main");
   main.addEventListener("click", (e) => {
     if (
-      e.target.classList.contains("column-item-content") ||
-      (e.target.parentElement.classList.contains("column-item-content") &&
-        !e.target.classList.contains("column-item-menu"))
+      e.target.classList.contains(className) ||
+      (e.target.parentElement.classList.contains(className) &&
+        !e.target.classList.contains(notContains))
     ) {
-      const column = e.target.closest("[data-column-id]");
-      const idColumn = column.getAttribute("data-column-id");
-      const cardElem = e.target.closest("[data-card-id]");
-      const idCard = cardElem.getAttribute("data-card-id");
-      const card = store[idColumn].cards[idCard];
-      const modal = createModal(card, cardElem);
-
-      main.append(modal);
+      try {
+        const column = e.target.closest("[data-column-id]");
+        const idColumn = column.getAttribute("data-column-id");
+        const cardElem = e.target.closest("[data-card-id]");
+        const idCard = cardElem.getAttribute("data-card-id");
+        const card = store[idColumn].cards[idCard];
+        const modal = func(card, cardElem, store[idColumn]);
+        main.append(modal);
+      } catch(error) {}
     }
   });
 };
+
+// const openModal = () => {
+//   const main = document.querySelector(".main");
+//   main.addEventListener("click", (e) => {
+//     if (
+//       e.target.classList.contains("column-item-content") ||
+//       (e.target.parentElement.classList.contains("column-item-content") &&
+//         !e.target.classList.contains("column-item-menu"))
+//     ) {
+//       const column = e.target.closest("[data-column-id]");
+//       const idColumn = column.getAttribute("data-column-id");
+//       const cardElem = e.target.closest("[data-card-id]");
+//       const idCard = cardElem.getAttribute("data-card-id");
+//       const card = store[idColumn].cards[idCard];
+//       const modal = createModal(card, cardElem);
+
+//       main.append(modal);
+//     }
+//   });
+// };
 
 export default openModal;

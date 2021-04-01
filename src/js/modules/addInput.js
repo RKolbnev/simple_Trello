@@ -17,7 +17,7 @@ const addInput = (element, placeholder, callback, className) => {
   `;
 
   element.before(input);
-  if (className == 'input-add__modal') {
+  if (className == 'input-add__modal' || className == 'input-add__menu') {
     input.children[0].value = placeholder;
   }
   input.children[1].addEventListener("click", add);
@@ -32,7 +32,9 @@ const addInput = (element, placeholder, callback, className) => {
       }
       callback(value);
     }
-    this.parentElement.nextElementSibling.style.display = '';
+    try {
+      this.parentElement.nextElementSibling.style.display = '';
+    } catch (error) {}
     this.parentElement.remove();
   }
 }

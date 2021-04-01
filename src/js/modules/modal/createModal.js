@@ -108,7 +108,7 @@ function addBg(card, modal) {
 function addChecklist(card, modal) {
   if (card.checkList.length !== 0) {
     card.checkList.forEach((list) => {
-      const checkList = createCheckList(list.id);
+      const checkList = createCheckList(list.id, list.title);
       modal.querySelector(".desc").after(checkList);
       list.checkItems.forEach((item) => {
         const wrap = modal.querySelector(".checkList div");

@@ -13,9 +13,11 @@ const modalListener = (modal, card, columnElement) => {
     addComment(e.target, card);
     // Чек-лист
     addChecklist(e.target, modal, card);
+    removeChecklist(e.target, card);
     toggleChecklistItemStatus(e.target, card, modal);
     changeChecklistTitle(e.target, card);
     addChecklistItem(e.target, card, modal);
+    removeChecklistItem(e, card);
 
 
 
@@ -34,7 +36,7 @@ function changeCardName(target, card, columnElement) {
   if (target.hasAttribute('data-modal-title')) {
     const callback = (value) => {
       target.textContent = value;
-      card.addDesc(value);
+      card.changeTitle(value);
       columnElement.children[0].children[0].textContent = value;
     };
     target.style.display = "none";
@@ -126,12 +128,21 @@ function addChecklist(target, modal, card) {
     card.addChecklist(id);
   }
 }
+//? Удаление Чек-листа
+function removeChecklist(target, card) {
+  if (target.hasAttribute('data-delete-checklist')) {
+    const checklist = target.closest('[data-check-id]');
+    const id = checklist.getAttribute('data-check-id');
+    checklist.remove();
+    card.removeChecklist(id);
+  }
+}
 //? Изменение названи Чек-листа
 function changeChecklistTitle(target, card) {
   if (target.hasAttribute("data-check-title")) {
     const callback = (value) => {
       target.textContent = value;
-      const id = target.parentElement.parentElement.getAttribute("data-check-id");
+      const id = target.closest('[data-check-id]').getAttribute("data-check-id");
       card.changeChecklistTitle(id, value);
       target.parentElement.style.display = '';
     };
@@ -143,10 +154,14 @@ function changeChecklistTitle(target, card) {
 function addChecklistItem(target, card, modal) {
   if (target.hasAttribute("data-modal-addcheck")) {
     const callback = (value) => {
-      const checkItem = document.createElement("label");
+      const checkItem = document.createElement("li");
+      checkItem.classList.add('checkList-item');
       checkItem.innerHTML = `
+        <label>
           <input type="checkbox" data-check>
           ${value}
+        </label>
+        <span data-delete-checkItem>&times;</span>
         `;
       target.parentElement.querySelector("div").append(checkItem);
       const id = target.closest("[data-check-id]").getAttribute("data-check-id");
@@ -156,12 +171,20 @@ function addChecklistItem(target, card, modal) {
     addInput(target, "", callback, "input-add__modal");
   }
 }
+//? Удаление задачи из Чек-листа
+function removeChecklistItem(e, card) {
+  if (e.target.hasAttribute('data-delete-checkItem')) {
+    const id = e.target.closest('[data-check-id]').getAttribute('data-check-id');
+    const value = e.target.previousElementSibling.textContent;
+    e.target.parentElement.remove();
+    card.removeChecklistItem(id, value.trim());
+  }
+}
 //? Изменение в экземпляре класса Card статуса задачи в чек-листе
 function toggleChecklistItemStatus(target, card, modal) {
   if (target.hasAttribute("data-check")) {
     const id = target.closest('[data-check-id]').getAttribute('data-check-id');
-    const parent = target.parentElement;
-    const value = parent.textContent;
+    const value = target.parentElement.textContent;
     card.changeChecklistItem(id, value.trim());
     if (target.hasAttribute('checked')) {
       target.removeAttribute('checked');

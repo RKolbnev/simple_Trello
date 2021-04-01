@@ -147,7 +147,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_addCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/addCard */ "./src/js/modules/addCard.js");
 /* harmony import */ var _modules_removeColumn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/removeColumn */ "./src/js/modules/removeColumn.js");
 /* harmony import */ var _modules_openModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/openModal */ "./src/js/modules/openModal.js");
-/* harmony import */ var _modules_openCardMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/openCardMenu */ "./src/js/modules/openCardMenu.js");
+/* harmony import */ var _modules_modal_createModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/modal/createModal */ "./src/js/modules/modal/createModal.js");
+/* harmony import */ var _modules_menu_createMenu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/menu/createMenu */ "./src/js/modules/menu/createMenu.js");
+
 
 
 
@@ -159,8 +161,8 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_addColumn__WEBPACK_IMPORTED_MODULE_0__["default"])();
   Object(_modules_removeColumn__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_modules_addCard__WEBPACK_IMPORTED_MODULE_1__["default"])();
-  Object(_modules_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])();
-  Object(_modules_openCardMenu__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  Object(_modules_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])("column-item-content", _modules_modal_createModal__WEBPACK_IMPORTED_MODULE_4__["default"], "column-item-menu");
+  Object(_modules_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])("column-item-menu", _modules_menu_createMenu__WEBPACK_IMPORTED_MODULE_5__["default"], "column-item-content");
 });
 
 
@@ -207,7 +209,7 @@ var Column = /*#__PURE__*/function () {
       var id = "id".concat(this.length);
       this.length += 1;
       var wrapper = this.elemDOM.querySelector(".column-item-wrapper");
-      wrapper.append(newCard.render(title, id));
+      wrapper.append(newCard.render(id));
     }
   }, {
     key: "removeCard",
@@ -246,6 +248,11 @@ var Card = /*#__PURE__*/function () {
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Card, [{
+    key: "changeTitle",
+    value: function changeTitle(value) {
+      this.title = value;
+    }
+  }, {
     key: "addDesc",
     value: function addDesc(desc) {
       this.desc = desc;
@@ -255,6 +262,9 @@ var Card = /*#__PURE__*/function () {
     value: function addComment(comment) {
       this.comments.push(comment);
     }
+  }, {
+    key: "remove",
+    value: function remove(comment) {}
   }, {
     key: "addBackground",
     value: function addBackground(color) {
@@ -266,15 +276,17 @@ var Card = /*#__PURE__*/function () {
       this.checkList.push({
         id: id,
         checkItems: [],
-        title: 'Чек-лист'
+        title: "Чек-лист"
       });
     }
   }, {
-    key: "changeChecklistTitle",
-    value: function changeChecklistTitle(id, title) {
-      this.checkList.forEach(function (item) {
+    key: "removeChecklist",
+    value: function removeChecklist(id) {
+      var _this = this;
+
+      this.checkList.forEach(function (item, i) {
         if (item.id == id) {
-          item.title = title;
+          _this.checkList.splice(i, 1);
         }
       });
     }
@@ -284,6 +296,28 @@ var Card = /*#__PURE__*/function () {
       this.checkList.forEach(function (item) {
         if (+item.id === +id) {
           item.checkItems.push(body);
+        }
+      });
+    }
+  }, {
+    key: "removeChecklistItem",
+    value: function removeChecklistItem(id, value) {
+      this.checkList.forEach(function (item) {
+        if (item.id == id) {
+          item.checkItems.forEach(function (task, i) {
+            if (task.value === value) {
+              item.checkItems.splice(i, 1);
+            }
+          });
+        }
+      });
+    }
+  }, {
+    key: "changeChecklistTitle",
+    value: function changeChecklistTitle(id, title) {
+      this.checkList.forEach(function (item) {
+        if (+item.id === +id) {
+          item.title = title;
         }
       });
     }
@@ -302,11 +336,11 @@ var Card = /*#__PURE__*/function () {
     }
   }, {
     key: "render",
-    value: function render(title, id) {
-      var card = document.createElement('div');
+    value: function render(id) {
+      var card = document.createElement("div");
       card.setAttribute("data-card-id", "".concat(id));
       card.classList.add("column-item");
-      card.innerHTML = "\n      <div class=\"column-item-content\">\n        <div> ".concat(title, "</div>\n        <span class=\"column-item-menu\">&equiv;</span>\n      </div>\n      <span data-column-bg></span>");
+      card.innerHTML = "\n      <div class=\"column-item-content\">\n        <div> ".concat(this.title, "</div>\n        <span class=\"column-item-menu\">&equiv;</span>\n      </div>\n      <span data-column-bg></span>");
 
       if (this.background) {
         card.style.background = this.background;
@@ -415,7 +449,7 @@ var addInput = function addInput(element, placeholder, callback, className) {
   input.innerHTML = "\n    <input type=\"text\" placeholder=\"".concat(placeholder, "\">\n    <div class=\"input-btn\">\n      <button class=\"btn\" type=\"button\">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n      <button class=\"btn\" type=\"button\">&times;</button>\n    </div>\n  ");
   element.before(input);
 
-  if (className == 'input-add__modal') {
+  if (className == 'input-add__modal' || className == 'input-add__menu') {
     input.children[0].value = placeholder;
   }
 
@@ -435,12 +469,128 @@ var addInput = function addInput(element, placeholder, callback, className) {
       callback(value);
     }
 
-    this.parentElement.nextElementSibling.style.display = '';
+    try {
+      this.parentElement.nextElementSibling.style.display = '';
+    } catch (error) {}
+
     this.parentElement.remove();
   }
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (addInput);
+
+/***/ }),
+
+/***/ "./src/js/modules/menu/createMenu.js":
+/*!*******************************************!*\
+  !*** ./src/js/modules/menu/createMenu.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _menuListener__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./menuListener */ "./src/js/modules/menu/menuListener.js");
+
+
+var createMenu = function createMenu(card, cardElem, column) {
+  var modal = document.createElement("div");
+  modal.classList.add("modal-menu");
+  modal.innerHTML = "\n    <div class=\"modal-menu-content\">\n      <div class=\"modal-menu-card\"></div>\n      <div class=\"modal-menu-wrap\">\n        <button>\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</button>\n        <button>\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435</button>\n        <button>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</button>\n        <button>\u0421\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0431\u043B\u043E\u0436\u043A\u0443</button>\n        <button>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</button>\n      </div>\n    </div>\n  ";
+  var currentCard = modal.querySelector(".modal-menu-card");
+  var coords = cardElem.getBoundingClientRect();
+  modal.children[0].style.marginTop = coords.top + "px";
+  modal.children[0].style.marginLeft = coords.left + "px";
+  currentCard.append(cardElem.cloneNode(true));
+  Object(_menuListener__WEBPACK_IMPORTED_MODULE_0__["default"])(modal, card, cardElem, column);
+  return modal;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (createMenu);
+
+/***/ }),
+
+/***/ "./src/js/modules/menu/menuListener.js":
+/*!*********************************************!*\
+  !*** ./src/js/modules/menu/menuListener.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
+
+
+var menuListener = function menuListener(modal, card, cardElem, column) {
+  modal.addEventListener('click', function (e) {
+    closeMenu(e, modal);
+    removeCard(e.target, modal, cardElem, column);
+    openCard(e.target, modal, cardElem);
+    changeCardTitle(e.target, cardElem, card);
+    changeDesc(e.target, card);
+  });
+}; //? Удаление карточки
+
+
+function removeCard(target, modal, cardElem, column) {
+  if (target.textContent === 'Удалить карточку') {
+    cardElem.remove();
+    modal.remove();
+    column.removeCard(cardElem.getAttribute('data-card-id'));
+  }
+} //? Закрытие меню
+
+
+function closeMenu(event, modal) {
+  if (event.target.classList.contains('modal-menu')) {
+    event.stopPropagation();
+    modal.remove();
+  }
+} //? Октрыть карточку
+
+
+function openCard(target, modal, cardElem) {
+  if (target.textContent === 'Открыть карточку') {
+    modal.remove();
+    cardElem.children[0].click();
+  }
+} //? Изменить название карточки
+
+
+function changeCardTitle(target, cardElem, card) {
+  if (target.textContent === 'Изменить название') {
+    var textElem = cardElem.querySelector('.column-item-content').children[0];
+    var inputPlace = target.parentElement.previousElementSibling.children[0];
+    inputPlace.style.display = 'none';
+
+    var callback = function callback(value) {
+      textElem.textContent = value;
+      card.changeTitle(value);
+      var parent = inputPlace.parentElement;
+      parent.textContent = '';
+      parent.append(cardElem.cloneNode(true));
+    };
+
+    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(inputPlace, textElem.textContent, callback, "input-add__menu");
+  }
+} //? Изменить описание карточки
+
+
+function changeDesc(target, card) {
+  if (target.textContent === 'Добавить описание') {
+    var inputPlace = target.parentElement.previousElementSibling.children[0];
+    inputPlace.style.display = 'none';
+
+    var callback = function callback(value) {
+      card.addDesc(value);
+    };
+
+    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(inputPlace, card.desc, callback, "input-add__menu");
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (menuListener);
 
 /***/ }),
 
@@ -458,7 +608,7 @@ function createCheckList(id) {
   var checkList = document.createElement("div");
   checkList.setAttribute("data-check-id", id);
   checkList.classList.add("modal__item");
-  checkList.innerHTML = "\n    <span class=\"modal-logo\">\t&#9745;</span>\n    <div class=\"modal-content\">\n      <p> <span data-check-title> ".concat(title, "</span> <span>&times;</span></p>\n      <div class=\"checkList\">\n        <progress value=\"\" max=\"100\"></progress>\n        <div></div>\n        <p data-modal-addcheck>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u044D\u043B\u0435\u043C\u0435\u043D\u0442</p>\n      </div>\n    </div>\n  ");
+  checkList.innerHTML = "\n    <span class=\"modal-logo\">\t&#9745;</span>\n    <div class=\"modal-content\">\n      <p> <span data-check-title> ".concat(title, "</span> <span data-delete-checklist>\u0423\u0434\u0430\u043B\u0438\u0442\u044C</span></p>\n      <div class=\"checkList\">\n        <progress value=\"\" max=\"100\"></progress>\n        <div></div>\n        <p data-modal-addcheck>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u044D\u043B\u0435\u043C\u0435\u043D\u0442</p>\n      </div>\n    </div>\n  ");
   return checkList;
 }
 
@@ -540,7 +690,7 @@ function addBg(card, modal) {
 function addChecklist(card, modal) {
   if (card.checkList.length !== 0) {
     card.checkList.forEach(function (list) {
-      var checkList = Object(_createCheckList__WEBPACK_IMPORTED_MODULE_1__["default"])(list.id);
+      var checkList = Object(_createCheckList__WEBPACK_IMPORTED_MODULE_1__["default"])(list.id, list.title);
       modal.querySelector(".desc").after(checkList);
       list.checkItems.forEach(function (item) {
         var wrap = modal.querySelector(".checkList div");
@@ -585,9 +735,11 @@ var modalListener = function modalListener(modal, card, columnElement) {
     addComment(e.target, card); // Чек-лист
 
     addChecklist(e.target, modal, card);
+    removeChecklist(e.target, card);
     toggleChecklistItemStatus(e.target, card, modal);
     changeChecklistTitle(e.target, card);
     addChecklistItem(e.target, card, modal);
+    removeChecklistItem(e, card);
   });
 }; //? Закрытие модального окна
 
@@ -604,7 +756,7 @@ function changeCardName(target, card, columnElement) {
   if (target.hasAttribute('data-modal-title')) {
     var callback = function callback(value) {
       target.textContent = value;
-      card.addDesc(value);
+      card.changeTitle(value);
       columnElement.children[0].children[0].textContent = value;
     };
 
@@ -702,6 +854,16 @@ function addChecklist(target, modal, card) {
     modal.querySelector(".desc").after(checklist);
     card.addChecklist(id);
   }
+} //? Удаление Чек-листа
+
+
+function removeChecklist(target, card) {
+  if (target.hasAttribute('data-delete-checklist')) {
+    var checklist = target.closest('[data-check-id]');
+    var id = checklist.getAttribute('data-check-id');
+    checklist.remove();
+    card.removeChecklist(id);
+  }
 } //? Изменение названи Чек-листа
 
 
@@ -709,7 +871,7 @@ function changeChecklistTitle(target, card) {
   if (target.hasAttribute("data-check-title")) {
     var callback = function callback(value) {
       target.textContent = value;
-      var id = target.parentElement.parentElement.getAttribute("data-check-id");
+      var id = target.closest('[data-check-id]').getAttribute("data-check-id");
       card.changeChecklistTitle(id, value);
       target.parentElement.style.display = '';
     };
@@ -723,8 +885,9 @@ function changeChecklistTitle(target, card) {
 function addChecklistItem(target, card, modal) {
   if (target.hasAttribute("data-modal-addcheck")) {
     var callback = function callback(value) {
-      var checkItem = document.createElement("label");
-      checkItem.innerHTML = "\n          <input type=\"checkbox\" data-check>\n          ".concat(value, "\n        ");
+      var checkItem = document.createElement("li");
+      checkItem.classList.add('checkList-item');
+      checkItem.innerHTML = "\n        <label>\n          <input type=\"checkbox\" data-check>\n          ".concat(value, "\n        </label>\n        <span data-delete-checkItem>&times;</span>\n        ");
       target.parentElement.querySelector("div").append(checkItem);
       var id = target.closest("[data-check-id]").getAttribute("data-check-id");
       card.addChecklistItems(id, {
@@ -736,14 +899,23 @@ function addChecklistItem(target, card, modal) {
 
     Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(target, "", callback, "input-add__modal");
   }
+} //? Удаление задачи из Чек-листа
+
+
+function removeChecklistItem(e, card) {
+  if (e.target.hasAttribute('data-delete-checkItem')) {
+    var id = e.target.closest('[data-check-id]').getAttribute('data-check-id');
+    var value = e.target.previousElementSibling.textContent;
+    e.target.parentElement.remove();
+    card.removeChecklistItem(id, value.trim());
+  }
 } //? Изменение в экземпляре класса Card статуса задачи в чек-листе
 
 
 function toggleChecklistItemStatus(target, card, modal) {
   if (target.hasAttribute("data-check")) {
     var id = target.closest('[data-check-id]').getAttribute('data-check-id');
-    var parent = target.parentElement;
-    var value = parent.textContent;
+    var value = target.parentElement.textContent;
     card.changeChecklistItem(id, value.trim());
 
     if (target.hasAttribute('checked')) {
@@ -775,74 +947,15 @@ function progressBar(modal) {
   var checkItems = Array.from(progress.nextElementSibling.children);
   var step = Math.ceil(100 / checkItems.length);
   checkItems.forEach(function (item) {
-    if (item.children[0].hasAttribute("checked")) {
+    var input = item.querySelector('INPUT');
+
+    if (input.hasAttribute("checked")) {
       progress.value += step;
     }
   });
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (progressBar);
-
-/***/ }),
-
-/***/ "./src/js/modules/openCardMenu.js":
-/*!****************************************!*\
-  !*** ./src/js/modules/openCardMenu.js ***!
-  \****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
-/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addInput */ "./src/js/modules/addInput.js");
-
-
-
-var openCardMenu = function openCardMenu() {
-  var main = document.querySelector(".main");
-  main.addEventListener("click", function (e) {
-    if (e.target.classList.contains("column-item-menu")) {
-      var column = e.target.closest("[data-column-id]");
-      var idColumn = column.getAttribute("data-column-id");
-      var cardElem = e.target.closest("[data-card-id]");
-      var idCard = cardElem.getAttribute("data-card-id");
-      var card = _index__WEBPACK_IMPORTED_MODULE_0__["store"][idColumn].cards[idCard];
-      var modal = document.createElement('div');
-      modal.classList.add('modal-menu');
-      modal.innerHTML = "\n      <div class=\"modal-menu-content\">\n        <div class=\"modal-menu-card\"></div>\n        <div class=\"modal-menu-wrap\">\n          <button>\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</button>\n          <button>\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435</button>\n          <button>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</button>\n          <button>\u0421\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0431\u043B\u043E\u0436\u043A\u0443</button>\n          <button>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</button>\n        </div>\n      </div>\n      ";
-      var elem = modal.querySelector('.modal-menu-card');
-      var height = cardElem.clientHeight;
-      var width = cardElem.clientWidth;
-      elem.style.width = width + 'px';
-      elem.style.height = height + 'px';
-      var coords = cardElem.getBoundingClientRect();
-      modal.children[0].style.marginTop = coords.top + 'px';
-      modal.children[0].style.marginLeft = coords.left + 'px';
-      elem.append(cardElem.cloneNode(true));
-      main.append(modal);
-    } // Закрытие меню
-
-
-    if (document.querySelector('.modal-menu') && e.target.classList.contains('modal-menu')) {
-      e.target.remove();
-    }
-
-    if (e.target.textContent === 'Открыть карточку') {
-      var menuCard = e.target.parentElement.previousElementSibling;
-
-      var callback = function callback(value) {
-        menuCard.children[0].children[0].children[0].textContent = value;
-        menuCard.style.display = '';
-      };
-
-      menuCard.style.display = 'none';
-      Object(_addInput__WEBPACK_IMPORTED_MODULE_1__["default"])(menuCard, '', callback, 'input-add__menu');
-    }
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (openCardMenu);
 
 /***/ }),
 
@@ -856,24 +969,42 @@ var openCardMenu = function openCardMenu() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
-/* harmony import */ var _modal_createModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal/createModal */ "./src/js/modules/modal/createModal.js");
+ // import createModal from "./modal/createModal";
 
-
-
-var openModal = function openModal() {
+var openModal = function openModal(className, func, notContains) {
   var main = document.querySelector(".main");
   main.addEventListener("click", function (e) {
-    if (e.target.classList.contains("column-item-content") || e.target.parentElement.classList.contains("column-item-content") && !e.target.classList.contains("column-item-menu")) {
-      var column = e.target.closest("[data-column-id]");
-      var idColumn = column.getAttribute("data-column-id");
-      var cardElem = e.target.closest("[data-card-id]");
-      var idCard = cardElem.getAttribute("data-card-id");
-      var card = _index__WEBPACK_IMPORTED_MODULE_0__["store"][idColumn].cards[idCard];
-      var modal = Object(_modal_createModal__WEBPACK_IMPORTED_MODULE_1__["default"])(card, cardElem);
-      main.append(modal);
+    if (e.target.classList.contains(className) || e.target.parentElement.classList.contains(className) && !e.target.classList.contains(notContains)) {
+      try {
+        var column = e.target.closest("[data-column-id]");
+        var idColumn = column.getAttribute("data-column-id");
+        var cardElem = e.target.closest("[data-card-id]");
+        var idCard = cardElem.getAttribute("data-card-id");
+        var card = _index__WEBPACK_IMPORTED_MODULE_0__["store"][idColumn].cards[idCard];
+        var modal = func(card, cardElem, _index__WEBPACK_IMPORTED_MODULE_0__["store"][idColumn]);
+        main.append(modal);
+      } catch (error) {}
     }
   });
-};
+}; // const openModal = () => {
+//   const main = document.querySelector(".main");
+//   main.addEventListener("click", (e) => {
+//     if (
+//       e.target.classList.contains("column-item-content") ||
+//       (e.target.parentElement.classList.contains("column-item-content") &&
+//         !e.target.classList.contains("column-item-menu"))
+//     ) {
+//       const column = e.target.closest("[data-column-id]");
+//       const idColumn = column.getAttribute("data-column-id");
+//       const cardElem = e.target.closest("[data-card-id]");
+//       const idCard = cardElem.getAttribute("data-card-id");
+//       const card = store[idColumn].cards[idCard];
+//       const modal = createModal(card, cardElem);
+//       main.append(modal);
+//     }
+//   });
+// };
+
 
 /* harmony default export */ __webpack_exports__["default"] = (openModal);
 

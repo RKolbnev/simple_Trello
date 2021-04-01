@@ -13,7 +13,7 @@ class Column {
     const id = `id${this.length}`;
     this.length += 1;
     const wrapper = this.elemDOM.querySelector(".column-item-wrapper");
-    wrapper.append(newCard.render(title, id));
+    wrapper.append(newCard.render(id));
   }
 
   removeCard(id) {
@@ -42,12 +42,22 @@ class Column {
 }
 
 class Card {
-  constructor(title, desc = null, comments = [], checkList = [], background = null) {
+  constructor(
+    title,
+    desc = null,
+    comments = [],
+    checkList = [],
+    background = null
+  ) {
     this.title = title;
     this.desc = desc;
     this.comments = comments;
     this.checkList = checkList;
     this.background = background;
+  }
+
+  changeTitle(value) {
+    this.title = value;
   }
 
   addDesc(desc) {
@@ -58,50 +68,71 @@ class Card {
     this.comments.push(comment);
   }
 
+  remove(comment) {}
+
   addBackground(color) {
     this.background = color;
   }
 
   addChecklist(id) {
-    this.checkList.push({id, checkItems: [], title: 'Чек-лист'});
+    this.checkList.push({ id, checkItems: [], title: "Чек-лист" });
   }
 
-  changeChecklistTitle(id, title) {
-    this.checkList.forEach( item => {
-      if (item.id == id ) {
-        item.title = title;
+  removeChecklist(id) {
+    this.checkList.forEach((item, i) => {
+      if (item.id == id) {
+        this.checkList.splice(i,1);
       }
-    })
+    });
   }
 
   addChecklistItems(id, body) {
-    this.checkList.forEach(item => {
+    this.checkList.forEach((item) => {
       if (+item.id === +id) {
         item.checkItems.push(body);
       }
-    })
+    });
   }
 
-  changeChecklistItem(id, value) {
+  removeChecklistItem(id, value) {
     this.checkList.forEach(item => {
-      if (+item.id == +id) {
-        item.checkItems.forEach(task => {
-          if (task.value == value) {
-            task.status = !task.status
+      if (item.id == id) {
+        item.checkItems.forEach((task, i) => {
+          if (task.value === value) {
+            item.checkItems.splice(i, 1);
           }
-        })
+        });
       }
     })
   }
 
+  changeChecklistTitle(id, title) {
+    this.checkList.forEach((item) => {
+      if (+item.id === +id) {
+        item.title = title;
+      }
+    });
+  }
 
-  render(title,id) {
-    const card = document.createElement('div');
+  changeChecklistItem(id, value) {
+    this.checkList.forEach((item) => {
+      if (+item.id == +id) {
+        item.checkItems.forEach((task) => {
+          if (task.value == value) {
+            task.status = !task.status;
+          }
+        });
+      }
+    });
+  }
+
+  render(id) {
+    const card = document.createElement("div");
     card.setAttribute("data-card-id", `${id}`);
     card.classList.add("column-item");
     card.innerHTML = `
       <div class="column-item-content">
-        <div> ${title}</div>
+        <div> ${this.title}</div>
         <span class="column-item-menu">&equiv;</span>
       </div>
       <span data-column-bg></span>`;
