@@ -15,12 +15,11 @@ window.addEventListener("DOMContentLoaded", () => {
   addCard();
   openModal("column-item-content", createModal, "column-item-menu");
   openModal("column-item-menu", createMenu, "column-item-content");
-
-
-
-
-
-
 });
+
+
+window.addEventListener('beforeunload', () => {
+  alert();
+})
 
 export { link, store };

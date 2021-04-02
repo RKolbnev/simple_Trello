@@ -18,9 +18,6 @@ const modalListener = (modal, card, columnElement) => {
     changeChecklistTitle(e.target, card);
     addChecklistItem(e.target, card, modal);
     removeChecklistItem(e, card);
-
-
-
   })
 }
 

@@ -164,6 +164,9 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])("column-item-content", _modules_modal_createModal__WEBPACK_IMPORTED_MODULE_4__["default"], "column-item-menu");
   Object(_modules_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])("column-item-menu", _modules_menu_createMenu__WEBPACK_IMPORTED_MODULE_5__["default"], "column-item-content");
 });
+window.addEventListener('beforeunload', function () {
+  alert();
+});
 
 
 /***/ }),
@@ -529,6 +532,7 @@ var menuListener = function menuListener(modal, card, cardElem, column) {
     openCard(e.target, modal, cardElem);
     changeCardTitle(e.target, cardElem, card);
     changeDesc(e.target, card);
+    changeBg(e.target, cardElem, card);
   });
 }; //? Удаление карточки
 
@@ -587,6 +591,39 @@ function changeDesc(target, card) {
     };
 
     Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(inputPlace, card.desc, callback, "input-add__menu");
+  }
+} //? Изменить фон карточки
+
+
+function changeBg(target, cardElem, card) {
+  if (target.textContent === "Сменить обложку") {
+    var place = target.parentElement.previousElementSibling;
+    var bg = cardElem.querySelector("[data-column-bg]");
+    var bgComponent = document.createElement("div");
+    bgComponent.classList.add('modal-bg-popup');
+    bgComponent.style.marginTop = '10px';
+    bgComponent.innerHTML = "\n      <p>\u0426\u0432\u0435\u0442\u0430</p>\n      <div class=\"modal-bg-color\">\n        <span data-modal-bg=\"modal__bg-red\"></span>\n        <span data-modal-bg=\"modal__bg-blue\"></span>\n        <span data-modal-bg=\"modal__bg-green\"></span>\n        <span data-modal-bg=\"modal__bg-yellow\"></span>\n        <span data-modal-bg=\"modal__bg-darkred\"></span>\n        <span data-modal-bg=\"modal__bg-darkgreen\"></span>\n        <span data-modal-bg=\"modal__bg-darkblue\"></span>\n        <span data-modal-bg=\"modal__bg-darkgrey\"></span>\n      </div>\n      <button data-delete-bg>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043E\u0431\u043B\u043E\u0436\u043A\u0443</button>\n    ";
+    bgComponent.addEventListener('click', function (e) {
+      if (e.target.hasAttribute('data-modal-bg')) {
+        var color = getComputedStyle(e.target).backgroundColor;
+        bg.classList.add('column-item__bg');
+        bg.style.backgroundColor = color;
+        place.children[0].remove();
+        place.prepend(cardElem.cloneNode(true));
+        card.addBackground(color);
+        bgComponent.remove();
+      }
+
+      if (e.target.hasAttribute('data-delete-bg')) {
+        bg.classList.remove('column-item__bg');
+        bg.style.backgroundColor = 'transparent';
+        card.addBackground(null);
+        place.children[0].remove();
+        place.prepend(cardElem.cloneNode(true));
+        bgComponent.remove();
+      }
+    });
+    place.append(bgComponent);
   }
 }
 
