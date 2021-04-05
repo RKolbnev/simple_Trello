@@ -132,10 +132,10 @@ class Card {
     card.classList.add("column-item");
     card.innerHTML = `
       <div class="column-item-content">
-        <div> ${this.title}</div>
+        <div data-column-card-title> ${this.title}</div>
         <span class="column-item-menu">&equiv;</span>
       </div>
-      <span data-column-bg></span>`;
+      <span data-column-card-bg></span>`;
     if (this.background) {
       card.style.background = this.background;
     }

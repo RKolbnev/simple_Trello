@@ -1,5 +1,6 @@
 
-const addInput = (element, placeholder, callback, className) => {
+const addInput = (element, placeholder, callback, className, inputText) => {
+  // Если Input уже есть на странице
   if (document.querySelector('.input-add')) {
     const input = document.querySelector('.input-add');
     const nextElement = input.nextElementSibling;
@@ -17,9 +18,7 @@ const addInput = (element, placeholder, callback, className) => {
   `;
 
   element.before(input);
-  if (className == 'input-add__modal' || className == 'input-add__menu') {
-    input.children[0].value = placeholder;
-  }
+  inputText ? input.children[0].value = inputText : '';
   input.children[1].addEventListener("click", add);
   input.children[0].addEventListener("keypress", add);
 

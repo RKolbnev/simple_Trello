@@ -1,15 +1,19 @@
 import addInput from '../addInput';
+import closeModal from './closeModal';
+import changeTitle from './changeTitle';
+import changeDesc from './changeDesc';
+import changeBg from './changeBg';
+
 import progressBar from './progressBar';
 import createCheckList from './createCheckList';
 
-const modalListener = (modal, card, columnElement) => {
+const modalListener = (modal, card, cardElem) => {
   modal.addEventListener('click', (e) => {
+
     closeModal(e, modal);
-    changeCardName(e.target, card, columnElement);
-    changeCardDesc(e.target, card);
-    openPopupBg(e.target);
-    changeBg(e.target, modal, card, columnElement);
-    deleteBg(e.target, modal, card, columnElement);
+    changeTitle(e.target, card, cardElem, e.target);
+    changeDesc(e.target, card, e.target);
+    changeBg(e.target, card, cardElem, e.target);
     addComment(e.target, card);
     // Чек-лист
     addChecklist(e.target, modal, card);
@@ -21,71 +25,6 @@ const modalListener = (modal, card, columnElement) => {
   })
 }
 
-//? Закрытие модального окна
-function closeModal(e, modal) {
-  if (e.target.hasAttribute("data-delete-modal") || e.target === modal) {
-    e.stopPropagation();
-    modal.remove();
-  }
-}
-//? Изменение названия задачи
-function changeCardName(target, card, columnElement) {
-  if (target.hasAttribute('data-modal-title')) {
-    const callback = (value) => {
-      target.textContent = value;
-      card.changeTitle(value);
-      columnElement.children[0].children[0].textContent = value;
-    };
-    target.style.display = "none";
-    addInput(target, target.textContent, callback, "input-add__modal");
-  }
-}
-//? Добавление/изменение описания задачи
-function changeCardDesc(target, card) {
-  if (target.hasAttribute("data-modal-desc")) {
-    const callback = (value) => {
-      target.textContent = value;
-      card.addDesc(value);
-    };
-
-    target.style.display = "none";
-    addInput(target, target.textContent, callback, "input-add__modal");
-  }
-}
-//? Открытие popup-окна для выбора обложки
-function openPopupBg(target) {
-  if (target.textContent === "Обложка") {
-    target.nextElementSibling.classList.toggle("hide");
-  }
-}
-//? Изменение обложки
-function changeBg(target, modal, card, columnElement) {
-  if (target.hasAttribute("data-modal-bg")) {
-    const color = getComputedStyle(target).backgroundColor;
-    const bg = modal.querySelector(".modal-close");
-    if (!bg.classList.contains("modal__bg")) {
-      bg.classList.add("modal__bg");
-    }
-    bg.style.backgroundColor = color;
-    const columnBg = columnElement.querySelector('[data-column-bg]');
-    columnBg.classList.add('column-item__bg');
-    columnBg.style.backgroundColor = color;
-
-    card.addBackground(color);
-  }
-}
-//? Удаление обложки
-function deleteBg(target, modal, card, columnElement) {
-  if (target.hasAttribute('data-delete-bg')) {
-    const bg = modal.querySelector('.modal-close');
-    bg.classList.remove('modal__bg');
-    bg.style.backgroundColor = 'transparent';
-    card.addBackground(null);
-    const columnBg = columnElement.querySelector('[data-column-bg]');
-    columnBg.classList.remove('column-item__bg');
-    columnBg.style.backgroundColor = 'transparent';
-  }
-}
 //? Добавление комментария
 function addComment(target, card) {
   if (target.hasAttribute("data-modal-comments")) {

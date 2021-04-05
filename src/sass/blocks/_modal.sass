@@ -118,7 +118,6 @@
       display: flex
       flex-direction: column
       position: absolute
-      margin-top: 5em
       max-width: 14.5vw
       border-radius: 0.5em
       padding: 0 0.5em
@@ -143,21 +142,21 @@
           margin: 0.5em
           border-radius: 0.25em
           background-color: black
-          &[data-modal-bg="modal__bg-red"]
+          &[data-bg="red"]
             background-color: red
-          &[data-modal-bg="modal__bg-blue"]
+          &[data-bg="blue"]
             background-color: blue
-          &[data-modal-bg="modal__bg-green"]
+          &[data-bg="green"]
             background-color: green
-          &[data-modal-bg="modal__bg-yellow"]
+          &[data-bg="yellow"]
             background-color: yellow
-          &[data-modal-bg="modal__bg-darkblue"]
+          &[data-bg="darkblue"]
             background-color: #454a5e
-          &[data-modal-bg="modal__bg-darkred"]
+          &[data-bg="darkred"]
             background-color: #811717
-          &[data-modal-bg="modal__bg-darkgreen"]
+          &[data-bg="darkgreen"]
             background-color: #317728
-          &[data-modal-bg="modal__bg-darkgrey"]
+          &[data-bg="darkgrey"]
             background-color: #7c7171
 
 .title
@@ -251,6 +250,10 @@
       &:hover
         opacity: 1
 
-
-
+.bg
+  &__modal
+    margin-top: 5em
+  &__menu
+    margin-left: 2em
+    text-align: center
 

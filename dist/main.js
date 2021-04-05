@@ -146,7 +146,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_addColumn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/addColumn */ "./src/js/modules/addColumn.js");
 /* harmony import */ var _modules_addCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/addCard */ "./src/js/modules/addCard.js");
 /* harmony import */ var _modules_removeColumn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/removeColumn */ "./src/js/modules/removeColumn.js");
-/* harmony import */ var _modules_openModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/openModal */ "./src/js/modules/openModal.js");
+/* harmony import */ var _modules_modal_openModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/modal/openModal */ "./src/js/modules/modal/openModal.js");
 /* harmony import */ var _modules_modal_createModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/modal/createModal */ "./src/js/modules/modal/createModal.js");
 /* harmony import */ var _modules_menu_createMenu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/menu/createMenu */ "./src/js/modules/menu/createMenu.js");
 
@@ -161,11 +161,8 @@ window.addEventListener("DOMContentLoaded", function () {
   Object(_modules_addColumn__WEBPACK_IMPORTED_MODULE_0__["default"])();
   Object(_modules_removeColumn__WEBPACK_IMPORTED_MODULE_2__["default"])();
   Object(_modules_addCard__WEBPACK_IMPORTED_MODULE_1__["default"])();
-  Object(_modules_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])("column-item-content", _modules_modal_createModal__WEBPACK_IMPORTED_MODULE_4__["default"], "column-item-menu");
-  Object(_modules_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])("column-item-menu", _modules_menu_createMenu__WEBPACK_IMPORTED_MODULE_5__["default"], "column-item-content");
-});
-window.addEventListener('beforeunload', function () {
-  alert();
+  Object(_modules_modal_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])("column-item-content", _modules_modal_createModal__WEBPACK_IMPORTED_MODULE_4__["default"], "column-item-menu");
+  Object(_modules_modal_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])("column-item-menu", _modules_menu_createMenu__WEBPACK_IMPORTED_MODULE_5__["default"], "column-item-content");
 });
 
 
@@ -343,7 +340,7 @@ var Card = /*#__PURE__*/function () {
       var card = document.createElement("div");
       card.setAttribute("data-card-id", "".concat(id));
       card.classList.add("column-item");
-      card.innerHTML = "\n      <div class=\"column-item-content\">\n        <div> ".concat(this.title, "</div>\n        <span class=\"column-item-menu\">&equiv;</span>\n      </div>\n      <span data-column-bg></span>");
+      card.innerHTML = "\n      <div class=\"column-item-content\">\n        <div data-column-card-title> ".concat(this.title, "</div>\n        <span class=\"column-item-menu\">&equiv;</span>\n      </div>\n      <span data-column-card-bg></span>");
 
       if (this.background) {
         card.style.background = this.background;
@@ -436,7 +433,8 @@ var addColumn = function addColumn() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var addInput = function addInput(element, placeholder, callback, className) {
+var addInput = function addInput(element, placeholder, callback, className, inputText) {
+  // Если Input уже есть на странице
   if (document.querySelector('.input-add')) {
     var _input = document.querySelector('.input-add');
 
@@ -451,11 +449,7 @@ var addInput = function addInput(element, placeholder, callback, className) {
   input.classList.add('input-add', className);
   input.innerHTML = "\n    <input type=\"text\" placeholder=\"".concat(placeholder, "\">\n    <div class=\"input-btn\">\n      <button class=\"btn\" type=\"button\">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n      <button class=\"btn\" type=\"button\">&times;</button>\n    </div>\n  ");
   element.before(input);
-
-  if (className == 'input-add__modal' || className == 'input-add__menu') {
-    input.children[0].value = placeholder;
-  }
-
+  inputText ? input.children[0].value = inputText : '';
   input.children[1].addEventListener("click", add);
   input.children[0].addEventListener("keypress", add);
 
@@ -499,7 +493,8 @@ __webpack_require__.r(__webpack_exports__);
 var createMenu = function createMenu(card, cardElem, column) {
   var modal = document.createElement("div");
   modal.classList.add("modal-menu");
-  modal.innerHTML = "\n    <div class=\"modal-menu-content\">\n      <div class=\"modal-menu-card\"></div>\n      <div class=\"modal-menu-wrap\">\n        <button>\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</button>\n        <button>\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435</button>\n        <button>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</button>\n        <button>\u0421\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0431\u043B\u043E\u0436\u043A\u0443</button>\n        <button>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</button>\n      </div>\n    </div>\n  ";
+  modal.setAttribute('data-modal-close', true);
+  modal.innerHTML = "\n    <div class=\"modal-menu-content\">\n      <div class=\"modal-menu-card\"></div>\n      <div class=\"modal-menu-wrap\">\n        <button>\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</button>\n        <button data-card-title>\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435</button>\n        <button data-card-desc>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</button>\n        <button data-card-bg>\u0421\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0431\u043B\u043E\u0436\u043A\u0443</button>\n        <button>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</button>\n      </div>\n    </div>\n  ";
   var currentCard = modal.querySelector(".modal-menu-card");
   var coords = cardElem.getBoundingClientRect();
   modal.children[0].style.marginTop = coords.top + "px";
@@ -522,17 +517,24 @@ var createMenu = function createMenu(card, cardElem, column) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
+/* harmony import */ var _modal_closeModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modal/closeModal */ "./src/js/modules/modal/closeModal.js");
+/* harmony import */ var _modal_changeDesc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modal/changeDesc */ "./src/js/modules/modal/changeDesc.js");
+/* harmony import */ var _modal_changeTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modal/changeTitle */ "./src/js/modules/modal/changeTitle.js");
+/* harmony import */ var _modal_changeBg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modal/changeBg */ "./src/js/modules/modal/changeBg.js");
+
+
+
 
 
 var menuListener = function menuListener(modal, card, cardElem, column) {
   modal.addEventListener('click', function (e) {
-    closeMenu(e, modal);
+    var place = modal.querySelector('.modal-menu-card').children[0];
+    Object(_modal_closeModal__WEBPACK_IMPORTED_MODULE_0__["default"])(e, modal);
+    Object(_modal_changeTitle__WEBPACK_IMPORTED_MODULE_2__["default"])(e.target, card, cardElem, place);
+    Object(_modal_changeDesc__WEBPACK_IMPORTED_MODULE_1__["default"])(e.target, card, place);
+    Object(_modal_changeBg__WEBPACK_IMPORTED_MODULE_3__["default"])(e.target, card, cardElem, place);
     removeCard(e.target, modal, cardElem, column);
     openCard(e.target, modal, cardElem);
-    changeCardTitle(e.target, cardElem, card);
-    changeDesc(e.target, card);
-    changeBg(e.target, cardElem, card);
   });
 }; //? Удаление карточки
 
@@ -543,14 +545,6 @@ function removeCard(target, modal, cardElem, column) {
     modal.remove();
     column.removeCard(cardElem.getAttribute('data-card-id'));
   }
-} //? Закрытие меню
-
-
-function closeMenu(event, modal) {
-  if (event.target.classList.contains('modal-menu')) {
-    event.stopPropagation();
-    modal.remove();
-  }
 } //? Октрыть карточку
 
 
@@ -559,75 +553,165 @@ function openCard(target, modal, cardElem) {
     modal.remove();
     cardElem.children[0].click();
   }
-} //? Изменить название карточки
-
-
-function changeCardTitle(target, cardElem, card) {
-  if (target.textContent === 'Изменить название') {
-    var textElem = cardElem.querySelector('.column-item-content').children[0];
-    var inputPlace = target.parentElement.previousElementSibling.children[0];
-    inputPlace.style.display = 'none';
-
-    var callback = function callback(value) {
-      textElem.textContent = value;
-      card.changeTitle(value);
-      var parent = inputPlace.parentElement;
-      parent.textContent = '';
-      parent.append(cardElem.cloneNode(true));
-    };
-
-    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(inputPlace, textElem.textContent, callback, "input-add__menu");
-  }
-} //? Изменить описание карточки
-
-
-function changeDesc(target, card) {
-  if (target.textContent === 'Добавить описание') {
-    var inputPlace = target.parentElement.previousElementSibling.children[0];
-    inputPlace.style.display = 'none';
-
-    var callback = function callback(value) {
-      card.addDesc(value);
-    };
-
-    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(inputPlace, card.desc, callback, "input-add__menu");
-  }
-} //? Изменить фон карточки
-
-
-function changeBg(target, cardElem, card) {
-  if (target.textContent === "Сменить обложку") {
-    var place = target.parentElement.previousElementSibling;
-    var bg = cardElem.querySelector("[data-column-bg]");
-    var bgComponent = document.createElement("div");
-    bgComponent.classList.add('modal-bg-popup');
-    bgComponent.style.marginTop = '10px';
-    bgComponent.innerHTML = "\n      <p>\u0426\u0432\u0435\u0442\u0430</p>\n      <div class=\"modal-bg-color\">\n        <span data-modal-bg=\"modal__bg-red\"></span>\n        <span data-modal-bg=\"modal__bg-blue\"></span>\n        <span data-modal-bg=\"modal__bg-green\"></span>\n        <span data-modal-bg=\"modal__bg-yellow\"></span>\n        <span data-modal-bg=\"modal__bg-darkred\"></span>\n        <span data-modal-bg=\"modal__bg-darkgreen\"></span>\n        <span data-modal-bg=\"modal__bg-darkblue\"></span>\n        <span data-modal-bg=\"modal__bg-darkgrey\"></span>\n      </div>\n      <button data-delete-bg>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043E\u0431\u043B\u043E\u0436\u043A\u0443</button>\n    ";
-    bgComponent.addEventListener('click', function (e) {
-      if (e.target.hasAttribute('data-modal-bg')) {
-        var color = getComputedStyle(e.target).backgroundColor;
-        bg.classList.add('column-item__bg');
-        bg.style.backgroundColor = color;
-        place.children[0].remove();
-        place.prepend(cardElem.cloneNode(true));
-        card.addBackground(color);
-        bgComponent.remove();
-      }
-
-      if (e.target.hasAttribute('data-delete-bg')) {
-        bg.classList.remove('column-item__bg');
-        bg.style.backgroundColor = 'transparent';
-        card.addBackground(null);
-        place.children[0].remove();
-        place.prepend(cardElem.cloneNode(true));
-        bgComponent.remove();
-      }
-    });
-    place.append(bgComponent);
-  }
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (menuListener);
+
+/***/ }),
+
+/***/ "./src/js/modules/modal/changeBg.js":
+/*!******************************************!*\
+  !*** ./src/js/modules/modal/changeBg.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var changeBg = function changeBg(target, card, cardElem, place) {
+  if (target.hasAttribute('data-card-bg')) {
+    if (place.parentElement.querySelector('.modal-bg-popup')) {
+      return;
+    }
+
+    var columnBg = cardElem.querySelector("[data-column-card-bg]");
+    var modalBg = target === place ? target.closest(".modal").querySelector(".modal-close") : null;
+    var modifyClass = target === place ? 'bg__modal' : 'bg__menu';
+    place = place.parentElement;
+    var bgComponent = document.createElement("div");
+    bgComponent.classList.add("modal-bg-popup", modifyClass);
+    bgComponent.innerHTML = "\n      <p>\u0426\u0432\u0435\u0442\u0430</p>\n      <div class=\"modal-bg-color\">\n        <span data-bg=\"red\"></span>\n        <span data-bg=\"blue\"></span>\n        <span data-bg=\"green\"></span>\n        <span data-bg=\"yellow\"></span>\n        <span data-bg=\"darkred\"></span>\n        <span data-bg=\"darkgreen\"></span>\n        <span data-bg=\"darkblue\"></span>\n        <span data-bg=\"darkgrey\"></span>\n      </div>\n      <button data-delete-bg>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043E\u0431\u043B\u043E\u0436\u043A\u0443</button>\n    ";
+    bgComponent.addEventListener('click', function (e) {
+      if (e.target.hasAttribute('data-bg')) {
+        var color = getComputedStyle(e.target).backgroundColor;
+        columnBg.classList.add("column-item__bg");
+        columnBg.style.backgroundColor = color;
+        card.addBackground(color);
+
+        if (modalBg) {
+          if (!modalBg.classList.contains("modal__bg")) {
+            modalBg.classList.add("modal__bg");
+          }
+
+          modalBg.style.backgroundColor = color;
+        }
+      }
+
+      if (e.target.hasAttribute('data-delete-bg')) {
+        columnBg.classList.remove("column-item__bg");
+        columnBg.style.backgroundColor = 'transparent';
+        card.addBackground(null);
+
+        if (modalBg) {
+          modalBg.classList.remove("modal__bg");
+          modalBg.style.backgroundColor = "transparent";
+        }
+      }
+
+      if (!modalBg) {
+        place.children[0].remove();
+        place.prepend(cardElem.cloneNode(true));
+      }
+
+      bgComponent.remove();
+    });
+    place.append(bgComponent);
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (changeBg);
+
+/***/ }),
+
+/***/ "./src/js/modules/modal/changeDesc.js":
+/*!********************************************!*\
+  !*** ./src/js/modules/modal/changeDesc.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
+
+
+function changeDesc(target, card, place) {
+  if (target.hasAttribute('data-card-desc')) {
+    place.style.display = 'none';
+
+    var callback = function callback(value) {
+      if (place === target) {
+        target.textContent = value;
+      }
+
+      card.addDesc(value);
+    };
+
+    var placeholder = card.desc ? card.desc : 'Добавить описание';
+    var className = "input-add__" + (place === target ? "modal" : "menu");
+    var text = card.desc ? card.desc : '';
+    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(place, placeholder, callback, className, text);
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (changeDesc);
+
+/***/ }),
+
+/***/ "./src/js/modules/modal/changeTitle.js":
+/*!*********************************************!*\
+  !*** ./src/js/modules/modal/changeTitle.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
+
+
+var changeTitle = function changeTitle(target, card, cardElem, place) {
+  if (target.hasAttribute('data-card-title')) {
+    var callback = function callback(value) {
+      cardElem.querySelector('[data-column-card-title]').textContent = value;
+      card.changeTitle(value);
+
+      if (target === place) {
+        target.textContent = value;
+      } else {
+        var parent = place.parentElement;
+        parent.textContent = '';
+        parent.append(cardElem.cloneNode(true));
+      }
+    };
+
+    place.style.display = 'none';
+    var className = "input-add__" + (target.closest('.modal') ? "modal" : "menu");
+    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(place, card.title, callback, className, card.title);
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (changeTitle);
+
+/***/ }),
+
+/***/ "./src/js/modules/modal/closeModal.js":
+/*!********************************************!*\
+  !*** ./src/js/modules/modal/closeModal.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var closeModal = function closeModal(event, modalWindow) {
+  if (event.target.hasAttribute("data-modal-close") || event.target === modalWindow) {
+    event.stopPropagation();
+    modalWindow.remove();
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (closeModal);
 
 /***/ }),
 
@@ -678,20 +762,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function createModal(card, elem) {
   var modal = document.createElement("div");
   modal.classList.add("modal");
-  modal.innerHTML = "\n    <div class=\"modal-popup\">\n      <div class=\"modal-close\">\n        <span data-delete-modal>&times;</span>\n      </div>\n      <div class=\"wrapper\">\n        <div class=\"modal-main\">\n\n          <div class=\"title modal__item\">\n            <span class=\"modal-logo\">&#x2712;</span>\n            <div class=\"modal-content\">\n              <p data-modal-title>".concat(card.title, "</p>\n            </div>\n          </div>\n\n          <div class=\"desc modal__item\">\n            <span class=\"modal-logo\"> &equiv;</span>\n            <div class=\"modal-content\">\n              <p>\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</p>\n              <p data-modal-desc>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0431\u043E\u043B\u0435\u0435 \u043F\u043E\u0434\u0440\u043E\u0431\u043D\u043E\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435..</p>\n            </div>\n          </div>\n\n          <div class=\"comments modal__item\">\n            <span class=\"modal-logo\"> &#x270E;</span>\n            <div class=\"modal-content\">\n              <p>\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0438</p>\n              <p data-modal-comments>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439</p>\n              <div class=\"comments-wrapper\"></div>\n            </div>\n          </div>\n\n        </div>\n\n        <div class=\"modal-add\">\n          <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0430 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n          <div>\n            <button data-modal-checklist>\u0427\u0435\u043A-\u043B\u0438\u0441\u0442</button>\n            <button>\u041E\u0431\u043B\u043E\u0436\u043A\u0430</button>\n            <div class=\"modal-bg-popup hide\">\n              <p>\u0426\u0432\u0435\u0442\u0430</p>\n              <div class=\"modal-bg-color\">\n                <span data-modal-bg=\"modal__bg-red\"></span>\n                <span data-modal-bg=\"modal__bg-blue\"></span>\n                <span data-modal-bg=\"modal__bg-green\"></span>\n                <span data-modal-bg=\"modal__bg-yellow\"></span>\n                <span data-modal-bg=\"modal__bg-darkred\"></span>\n                <span data-modal-bg=\"modal__bg-darkgreen\"></span>\n                <span data-modal-bg=\"modal__bg-darkblue\"></span>\n                <span data-modal-bg=\"modal__bg-darkgrey\"></span>\n              </div>\n              <button data-delete-bg>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043E\u0431\u043B\u043E\u0436\u043A\u0443</button>\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  ");
-  addDesc(card, modal);
+  modal.innerHTML = "\n    <div class=\"modal-popup\">\n      <div class=\"modal-close ".concat(card.background ? "modal__bg" : "", "\"\n      style=\"background-color: ").concat(card.background ? card.background : '', ";\">\n        <span data-modal-close>&times;</span>\n      </div>\n      <div class=\"wrapper\">\n        <div class=\"modal-main\">\n\n          <div class=\"title modal__item\">\n            <span class=\"modal-logo\">&#x2712;</span>\n            <div class=\"modal-content\">\n              <p data-card-title>").concat(card.title, "</p>\n            </div>\n          </div>\n\n          <div class=\"desc modal__item\">\n            <span class=\"modal-logo\"> &equiv;</span>\n            <div class=\"modal-content\">\n              <p>\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</p>\n              <p data-card-desc>").concat(card.desc ? card.desc : "Добавить более подробное описание...", "</p>\n            </div>\n          </div>\n\n          <div class=\"comments modal__item\">\n            <span class=\"modal-logo\"> &#x270E;</span>\n            <div class=\"modal-content\">\n              <p>\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0438</p>\n              <p data-modal-comments>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439</p>\n              <div class=\"comments-wrapper\"></div>\n            </div>\n          </div>\n\n        </div>\n\n        <div class=\"modal-add\">\n          <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0430 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n          <div>\n            <button data-modal-checklist>\u0427\u0435\u043A-\u043B\u0438\u0441\u0442</button>\n            <button data-card-bg>\u041E\u0431\u043B\u043E\u0436\u043A\u0430</button>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  ");
   addComments(card, modal);
-  addBg(card, modal);
   addChecklist(card, modal);
   Object(_modalListener__WEBPACK_IMPORTED_MODULE_0__["default"])(modal, card, elem);
   return modal;
-}
-
-function addDesc(card, modal) {
-  if (card.desc) {
-    var desc = modal.querySelector("[data-modal-desc]");
-    desc.textContent = card.desc;
-  }
 }
 
 function addComments(card, modal) {
@@ -713,14 +788,6 @@ function addComments(card, modal) {
     } finally {
       _iterator.f();
     }
-  }
-}
-
-function addBg(card, modal) {
-  if (card.background) {
-    var bg = modal.querySelector(".modal-close");
-    bg.classList.add("modal__bg");
-    bg.style.backgroundColor = card.background;
   }
 }
 
@@ -755,20 +822,26 @@ function addChecklist(card, modal) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
-/* harmony import */ var _progressBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./progressBar */ "./src/js/modules/modal/progressBar.js");
-/* harmony import */ var _createCheckList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createCheckList */ "./src/js/modules/modal/createCheckList.js");
+/* harmony import */ var _closeModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./closeModal */ "./src/js/modules/modal/closeModal.js");
+/* harmony import */ var _changeTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./changeTitle */ "./src/js/modules/modal/changeTitle.js");
+/* harmony import */ var _changeDesc__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./changeDesc */ "./src/js/modules/modal/changeDesc.js");
+/* harmony import */ var _changeBg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./changeBg */ "./src/js/modules/modal/changeBg.js");
+/* harmony import */ var _progressBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./progressBar */ "./src/js/modules/modal/progressBar.js");
+/* harmony import */ var _createCheckList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./createCheckList */ "./src/js/modules/modal/createCheckList.js");
 
 
 
 
-var modalListener = function modalListener(modal, card, columnElement) {
+
+
+
+
+var modalListener = function modalListener(modal, card, cardElem) {
   modal.addEventListener('click', function (e) {
-    closeModal(e, modal);
-    changeCardName(e.target, card, columnElement);
-    changeCardDesc(e.target, card);
-    openPopupBg(e.target);
-    changeBg(e.target, modal, card, columnElement);
-    deleteBg(e.target, modal, card, columnElement);
+    Object(_closeModal__WEBPACK_IMPORTED_MODULE_1__["default"])(e, modal);
+    Object(_changeTitle__WEBPACK_IMPORTED_MODULE_2__["default"])(e.target, card, cardElem, e.target);
+    Object(_changeDesc__WEBPACK_IMPORTED_MODULE_3__["default"])(e.target, card, e.target);
+    Object(_changeBg__WEBPACK_IMPORTED_MODULE_4__["default"])(e.target, card, cardElem, e.target);
     addComment(e.target, card); // Чек-лист
 
     addChecklist(e.target, modal, card);
@@ -778,80 +851,7 @@ var modalListener = function modalListener(modal, card, columnElement) {
     addChecklistItem(e.target, card, modal);
     removeChecklistItem(e, card);
   });
-}; //? Закрытие модального окна
-
-
-function closeModal(e, modal) {
-  if (e.target.hasAttribute("data-delete-modal") || e.target === modal) {
-    e.stopPropagation();
-    modal.remove();
-  }
-} //? Изменение названия задачи
-
-
-function changeCardName(target, card, columnElement) {
-  if (target.hasAttribute('data-modal-title')) {
-    var callback = function callback(value) {
-      target.textContent = value;
-      card.changeTitle(value);
-      columnElement.children[0].children[0].textContent = value;
-    };
-
-    target.style.display = "none";
-    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(target, target.textContent, callback, "input-add__modal");
-  }
-} //? Добавление/изменение описания задачи
-
-
-function changeCardDesc(target, card) {
-  if (target.hasAttribute("data-modal-desc")) {
-    var callback = function callback(value) {
-      target.textContent = value;
-      card.addDesc(value);
-    };
-
-    target.style.display = "none";
-    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(target, target.textContent, callback, "input-add__modal");
-  }
-} //? Открытие popup-окна для выбора обложки
-
-
-function openPopupBg(target) {
-  if (target.textContent === "Обложка") {
-    target.nextElementSibling.classList.toggle("hide");
-  }
-} //? Изменение обложки
-
-
-function changeBg(target, modal, card, columnElement) {
-  if (target.hasAttribute("data-modal-bg")) {
-    var color = getComputedStyle(target).backgroundColor;
-    var bg = modal.querySelector(".modal-close");
-
-    if (!bg.classList.contains("modal__bg")) {
-      bg.classList.add("modal__bg");
-    }
-
-    bg.style.backgroundColor = color;
-    var columnBg = columnElement.querySelector('[data-column-bg]');
-    columnBg.classList.add('column-item__bg');
-    columnBg.style.backgroundColor = color;
-    card.addBackground(color);
-  }
-} //? Удаление обложки
-
-
-function deleteBg(target, modal, card, columnElement) {
-  if (target.hasAttribute('data-delete-bg')) {
-    var bg = modal.querySelector('.modal-close');
-    bg.classList.remove('modal__bg');
-    bg.style.backgroundColor = 'transparent';
-    card.addBackground(null);
-    var columnBg = columnElement.querySelector('[data-column-bg]');
-    columnBg.classList.remove('column-item__bg');
-    columnBg.style.backgroundColor = 'transparent';
-  }
-} //? Добавление комментария
+}; //? Добавление комментария
 
 
 function addComment(target, card) {
@@ -887,7 +887,7 @@ function addComment(target, card) {
 function addChecklist(target, modal, card) {
   if (target.hasAttribute("data-modal-checklist")) {
     var id = Math.random();
-    var checklist = Object(_createCheckList__WEBPACK_IMPORTED_MODULE_2__["default"])(id);
+    var checklist = Object(_createCheckList__WEBPACK_IMPORTED_MODULE_6__["default"])(id);
     modal.querySelector(".desc").after(checklist);
     card.addChecklist(id);
   }
@@ -931,7 +931,7 @@ function addChecklistItem(target, card, modal) {
         value: value,
         status: false
       });
-      Object(_progressBar__WEBPACK_IMPORTED_MODULE_1__["default"])(modal);
+      Object(_progressBar__WEBPACK_IMPORTED_MODULE_5__["default"])(modal);
     };
 
     Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(target, "", callback, "input-add__modal");
@@ -961,11 +961,44 @@ function toggleChecklistItemStatus(target, card, modal) {
       target.setAttribute('checked', 'true');
     }
 
-    Object(_progressBar__WEBPACK_IMPORTED_MODULE_1__["default"])(modal);
+    Object(_progressBar__WEBPACK_IMPORTED_MODULE_5__["default"])(modal);
   }
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (modalListener);
+
+/***/ }),
+
+/***/ "./src/js/modules/modal/openModal.js":
+/*!*******************************************!*\
+  !*** ./src/js/modules/modal/openModal.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
+
+
+var openModal = function openModal(className, func, notContains) {
+  var main = document.querySelector(".main");
+  main.addEventListener("click", function (e) {
+    if (e.target.classList.contains(className) || e.target.parentElement.classList.contains(className) && !e.target.classList.contains(notContains)) {
+      try {
+        var column = e.target.closest("[data-column-id]");
+        var idColumn = column.getAttribute("data-column-id");
+        var cardElem = e.target.closest("[data-card-id]");
+        var idCard = cardElem.getAttribute("data-card-id");
+        var card = _index__WEBPACK_IMPORTED_MODULE_0__["store"][idColumn].cards[idCard];
+        var modal = func(card, cardElem, _index__WEBPACK_IMPORTED_MODULE_0__["store"][idColumn]);
+        main.append(modal);
+      } catch (error) {}
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (openModal);
 
 /***/ }),
 
@@ -993,57 +1026,6 @@ function progressBar(modal) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (progressBar);
-
-/***/ }),
-
-/***/ "./src/js/modules/openModal.js":
-/*!*************************************!*\
-  !*** ./src/js/modules/openModal.js ***!
-  \*************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
- // import createModal from "./modal/createModal";
-
-var openModal = function openModal(className, func, notContains) {
-  var main = document.querySelector(".main");
-  main.addEventListener("click", function (e) {
-    if (e.target.classList.contains(className) || e.target.parentElement.classList.contains(className) && !e.target.classList.contains(notContains)) {
-      try {
-        var column = e.target.closest("[data-column-id]");
-        var idColumn = column.getAttribute("data-column-id");
-        var cardElem = e.target.closest("[data-card-id]");
-        var idCard = cardElem.getAttribute("data-card-id");
-        var card = _index__WEBPACK_IMPORTED_MODULE_0__["store"][idColumn].cards[idCard];
-        var modal = func(card, cardElem, _index__WEBPACK_IMPORTED_MODULE_0__["store"][idColumn]);
-        main.append(modal);
-      } catch (error) {}
-    }
-  });
-}; // const openModal = () => {
-//   const main = document.querySelector(".main");
-//   main.addEventListener("click", (e) => {
-//     if (
-//       e.target.classList.contains("column-item-content") ||
-//       (e.target.parentElement.classList.contains("column-item-content") &&
-//         !e.target.classList.contains("column-item-menu"))
-//     ) {
-//       const column = e.target.closest("[data-column-id]");
-//       const idColumn = column.getAttribute("data-column-id");
-//       const cardElem = e.target.closest("[data-card-id]");
-//       const idCard = cardElem.getAttribute("data-card-id");
-//       const card = store[idColumn].cards[idCard];
-//       const modal = createModal(card, cardElem);
-//       main.append(modal);
-//     }
-//   });
-// };
-
-
-/* harmony default export */ __webpack_exports__["default"] = (openModal);
 
 /***/ }),
 

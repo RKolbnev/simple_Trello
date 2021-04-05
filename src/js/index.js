@@ -1,7 +1,8 @@
 import addColumn from './modules/addColumn';
 import addCard from './modules/addCard';
 import removeColumn from './modules/removeColumn';
-import openModal from './modules/openModal';
+import openModal from './modules/modal/openModal';
+
 import createModal from './modules/modal/createModal';
 import createMenu from './modules/menu/createMenu';
 
@@ -16,10 +17,5 @@ window.addEventListener("DOMContentLoaded", () => {
   openModal("column-item-content", createModal, "column-item-menu");
   openModal("column-item-menu", createMenu, "column-item-content");
 });
-
-
-window.addEventListener('beforeunload', () => {
-  alert();
-})
 
 export { link, store };
