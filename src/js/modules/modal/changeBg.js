@@ -1,9 +1,9 @@
-const changeBg = (target, card, cardElem, place) => {
+const changeBg = (target, card, place) => {
   if (target.hasAttribute('data-card-bg')) {
     if (place.parentElement.querySelector('.modal-bg-popup')) {
       return;
     }
-    const columnBg = cardElem.querySelector("[data-column-card-bg]");
+    const columnBg = card.domElement.querySelector("[data-column-card-bg]");
     const modalBg = target === place ? target.closest(".modal").querySelector(".modal-close") : null;
     const modifyClass = target === place ? 'bg__modal' : 'bg__menu';
     place = place.parentElement;
@@ -30,7 +30,7 @@ const changeBg = (target, card, cardElem, place) => {
         const color = getComputedStyle(e.target).backgroundColor;
         columnBg.classList.add("column-item__bg");
         columnBg.style.backgroundColor = color;
-        card.addBackground(color);
+        card.setBackground(color);
         if (modalBg) {
           if (!modalBg.classList.contains("modal__bg")) {
             modalBg.classList.add("modal__bg");
@@ -42,7 +42,7 @@ const changeBg = (target, card, cardElem, place) => {
       if (e.target.hasAttribute('data-delete-bg')) {
         columnBg.classList.remove("column-item__bg");
         columnBg.style.backgroundColor = 'transparent';
-        card.addBackground(null);
+        card.setBackground(null);
         if (modalBg) {
           modalBg.classList.remove("modal__bg");
           modalBg.style.backgroundColor = "transparent";
@@ -50,7 +50,7 @@ const changeBg = (target, card, cardElem, place) => {
       }
       if (!modalBg) {
         place.children[0].remove();
-        place.prepend(cardElem.cloneNode(true));
+        place.prepend(card.domElement.cloneNode(true));
       }
       bgComponent.remove();
     })

@@ -1,8 +1,7 @@
 import menuListener from './menuListener';
 
-const createMenu = (card, cardElem, column) => {
+const createMenu = (card) => {
   const modal = document.createElement("div");
-
   modal.classList.add("modal-menu");
   modal.setAttribute('data-modal-close', true);
   modal.innerHTML = `
@@ -17,14 +16,13 @@ const createMenu = (card, cardElem, column) => {
       </div>
     </div>
   `;
-
-  const currentCard = modal.querySelector(".modal-menu-card");
-  const coords = cardElem.getBoundingClientRect();
+  const coords = card.domElement.getBoundingClientRect();
   modal.children[0].style.marginTop = coords.top + "px";
   modal.children[0].style.marginLeft = coords.left + "px";
-  currentCard.append(cardElem.cloneNode(true));
-
-  menuListener(modal, card, cardElem, column);
+  modal
+    .querySelector(".modal-menu-card")
+    .append(card.domElement.cloneNode(true));
+  menuListener(modal, card);
   return modal;
 };
 

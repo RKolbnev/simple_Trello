@@ -4,15 +4,18 @@ import {store} from '../index';
 const addCard = () => {
   const main = document.querySelector('.main');
   main.addEventListener('click', (e) => {
-    if (e.target.parentElement.classList.contains('new__card')) {
+    const parent = e.target.parentElement;
+    if (parent.classList.contains('new__card')) {
       const callback = (value) => {
-        const id = e.target.parentElement.parentElement.getAttribute("data-column-id");
+        const id = parent
+          .closest("[data-column-id]")
+          .getAttribute("data-column-id");
         const column = store[id];
         column.addCard(value);
       }
 
-      e.target.parentElement.style.display = 'none';
-      addInput(e.target.parentElement, 'Введите заголовок карточки', callback, 'card');
+      parent.style.display = 'none';
+      addInput(parent, 'Введите заголовок карточки', callback, 'card');
     }
   })
 }

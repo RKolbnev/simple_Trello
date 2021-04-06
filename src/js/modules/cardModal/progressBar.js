@@ -6,6 +6,7 @@ function progressBar(modal) {
 
   checkItems.forEach((item) => {
     const input = item.querySelector('INPUT');
+    let start = progress.value;
     if (input.hasAttribute("checked")) {
       progress.value += step;
     }

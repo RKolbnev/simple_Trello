@@ -1,8 +1,8 @@
 import modalListener from "./modalListener";
-import createCheckList from "./createCheckList";
+import createChecklist from "./createChecklist";
 import progressBar from "./progressBar";
 
-function createModal(card, elem) {
+function createModal(card) {
   const modal = document.createElement("div");
 
   modal.classList.add("modal");
@@ -57,18 +57,20 @@ function createModal(card, elem) {
 
   addComments(card, modal);
   addChecklist(card, modal);
-
-  modalListener(modal, card, elem);
+  modalListener(modal, card);
   return modal;
 }
 
 function addComments(card, modal) {
-  if (card.comments.length !== 0) {
+  if (card.comments.length > 0) {
     const wrap = modal.querySelector(".comments-wrapper");
     for (let i of card.comments) {
       const div = document.createElement("div");
       div.innerHTML = `
-      <p>${i.value}</p>
+      <div>
+        <p>${i.value}</p>
+        <span data-delete-comment>&times;</span>
+      </div>
       <span>${i.date}</span>
       `;
       wrap.prepend(div);
@@ -77,19 +79,23 @@ function addComments(card, modal) {
 }
 
 function addChecklist(card, modal) {
-  if (card.checkList.length !== 0) {
-    card.checkList.forEach((list) => {
-      const checkList = createCheckList(list.id, list.title);
-      modal.querySelector(".desc").after(checkList);
-      list.checkItems.forEach((item) => {
-        const wrap = modal.querySelector(".checkList div");
+  if (card.checklists.length > 0) {
+    card.checklists.forEach((list) => {
+      const checklist = createChecklist(list.id, list.title);
+      modal.querySelector(".desc").after(checklist);
+      list.tasks.forEach((item) => {
+        const wrap = modal.querySelector(".checklist div");
         const attr = item.status ? "checked" : "";
-        const checkItem = document.createElement("label");
-        checkItem.innerHTML = `
-        <input type="checkbox" ${attr} data-check>
-        ${item.value}
+        const task = document.createElement("li");
+        task.classList.add("checklist-item");
+        task.innerHTML = `
+          <label>
+            <input type="checkbox" ${attr} data-check>
+            ${item.value}
+          </label>
+          <span data-delete-task>&times;</span>
         `;
-        wrap.append(checkItem);
+        wrap.append(task);
       });
     });
     progressBar(modal);

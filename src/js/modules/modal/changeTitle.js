@@ -1,16 +1,16 @@
 import addInput from '../addInput';
 
-const changeTitle = (target, card, cardElem, place) => {
+const changeTitle = (target, card, place) => {
   if (target.hasAttribute('data-card-title')) {
     const callback = (value) => {
-      cardElem.querySelector('[data-column-card-title]').textContent = value;
-      card.changeTitle(value);
+      card.domElement.querySelector('[data-column-card-title]').textContent = value;
+      card.setTitle(value);
       if (target === place) {
         target.textContent = value;
       } else {
         const parent = place.parentElement;
         parent.textContent = '';
-        parent.append(cardElem.cloneNode(true));
+        parent.append(card.domElement.cloneNode(true));
       }
     };
     place.style.display = 'none';
