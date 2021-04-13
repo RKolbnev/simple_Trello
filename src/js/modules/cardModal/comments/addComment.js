@@ -1,10 +1,17 @@
-import addInput from '../addInput';
+import addInput from '../../addInput';
+import {link} from '../..//../index';
+import {patchReq} from '../../../services/services';
+import idGenerate from '../../idGenerate';
 
 function addComment(target, card) {
   if (target.hasAttribute("data-modal-comments")) {
-    const callback = (value) => {
+    target.style.display = "none";
+    addInput(target, "Добавте комментарий", "input-add__modal", false, (value) => {
+      value = value.trim();
       const wrap = target.nextElementSibling;
       const div = document.createElement("div");
+      const id = idGenerate();
+      div.setAttribute('data-comment-id', id);
       const options = {
         year: "numeric",
         month: "long",
@@ -23,11 +30,10 @@ function addComment(target, card) {
         <span>${date}</span>
       `;
       wrap.prepend(div);
-      card.addComment({ value, date });
-    };
-
-    target.style.display = "none";
-    addInput(target, "", callback, "input-add__modal");
+      const body = { id, value, date };
+      card.addComment(body);
+      patchReq(link, body, card.column.boardId, 'columns', card.column.id, 'cards', card.id, 'comments', body.id);
+    });
   }
 }
 

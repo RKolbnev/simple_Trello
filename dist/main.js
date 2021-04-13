@@ -86,46 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/arrayLikeToArray.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-
-module.exports = _arrayLikeToArray;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return arrayLikeToArray(arr);
-}
-
-module.exports = _arrayWithoutHoles;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
@@ -216,85 +176,6 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 module.exports = _createClass;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
-}
-
-module.exports = _iterableToArray;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-module.exports = _nonIterableSpread;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/toConsumableArray.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
-
-var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
-
-var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
-
-var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
-
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
-}
-
-module.exports = _toConsumableArray;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
-}
-
-module.exports = _unsupportedIterableToArray;
 module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
@@ -1074,23 +955,19 @@ try {
 /*!*************************!*\
   !*** ./src/js/index.js ***!
   \*************************/
-/*! exports provided: link, store */
+/*! exports provided: link, activeBoard */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "link", function() { return link; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
-/* harmony import */ var _modules_addColumn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/addColumn */ "./src/js/modules/addColumn.js");
-/* harmony import */ var _modules_addCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/addCard */ "./src/js/modules/addCard.js");
-/* harmony import */ var _modules_removeColumn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/removeColumn */ "./src/js/modules/removeColumn.js");
-/* harmony import */ var _modules_modal_openModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/modal/openModal */ "./src/js/modules/modal/openModal.js");
-/* harmony import */ var _modules_cardModal_createModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/cardModal/createModal */ "./src/js/modules/cardModal/createModal.js");
-/* harmony import */ var _modules_cardMenu_createMenu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/cardMenu/createMenu */ "./src/js/modules/cardMenu/createMenu.js");
-/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./services/services */ "./src/js/services/services.js");
-// import startLoad from './modules/stardLoad';
-// import board from './modules/board';
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "activeBoard", function() { return activeBoard; });
+/* harmony import */ var _modules_cardModal_createModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/cardModal/createModal */ "./src/js/modules/cardModal/createModal.js");
+/* harmony import */ var _modules_cardMenu_createMenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/cardMenu/createMenu */ "./src/js/modules/cardMenu/createMenu.js");
+/* harmony import */ var _modules_loadResourses__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/loadResourses */ "./src/js/modules/loadResourses.js");
+/* harmony import */ var _modules_board_boardListener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/board/boardListener */ "./src/js/modules/board/boardListener.js");
+/* harmony import */ var _modules_column_columnListener__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/column/columnListener */ "./src/js/modules/column/columnListener.js");
+/* harmony import */ var _modules_modal_openModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/modal/openModal */ "./src/js/modules/modal/openModal.js");
 
 
 
@@ -1098,65 +975,119 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var link = "http://simple-trello-a0138-default-rtdb.firebaseio.com/trello.json";
+var activeBoard = [];
+Object(_modules_loadResourses__WEBPACK_IMPORTED_MODULE_2__["default"])(link);
 window.addEventListener("DOMContentLoaded", function () {
-  // startLoad(link);
-  // board(link);
-  Object(_modules_addColumn__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  Object(_modules_removeColumn__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  Object(_modules_addCard__WEBPACK_IMPORTED_MODULE_1__["default"])();
-  Object(_modules_modal_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])("column-item-content", _modules_cardModal_createModal__WEBPACK_IMPORTED_MODULE_4__["default"], "column-item-menu");
-  Object(_modules_modal_openModal__WEBPACK_IMPORTED_MODULE_3__["default"])("column-item-menu", _modules_cardMenu_createMenu__WEBPACK_IMPORTED_MODULE_5__["default"], "column-item-content");
+  Object(_modules_board_boardListener__WEBPACK_IMPORTED_MODULE_3__["default"])(link);
+  Object(_modules_column_columnListener__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  Object(_modules_modal_openModal__WEBPACK_IMPORTED_MODULE_5__["default"])("column-item-content", _modules_cardModal_createModal__WEBPACK_IMPORTED_MODULE_0__["default"], "column-item-menu");
+  Object(_modules_modal_openModal__WEBPACK_IMPORTED_MODULE_5__["default"])("column-item-menu", _modules_cardMenu_createMenu__WEBPACK_IMPORTED_MODULE_1__["default"], "column-item-content");
 });
-var store = {
-  board: {
-    title: "Стратовая страница",
-    columns: {
-      id0: {
-        title: "Колонка карточек",
-        cards: [{
-          title: "Первая карточка",
-          desc: "Сюда можно добавить описание",
-          comments: [{
-            value: "Карточки, можно комментировать",
-            date: new Date()
-          }],
-          checkList: [{
-            id: "testId",
-            title: "Знакомство с приложением",
-            checkItems: [{
-              value: "Открыть первую карточку",
-              status: true
-            }, {
-              value: "Удалить первую задачу в чек-листе",
-              status: false
-            }]
-          }],
-          background: "red"
-        }, {
-          title: "Карточка №2",
-          desc: "Кликни меня что бы изменить описание задачи. Кстати, таким способом вы так же можете менять названия карточек и чек-листов",
-          comments: [],
-          checkList: [],
-          background: "blue"
-        }]
-      }
-    }
-  }
-};
 
 
 /***/ }),
 
-/***/ "./src/js/modules/Classes.js":
-/*!***********************************!*\
-  !*** ./src/js/modules/Classes.js ***!
-  \***********************************/
-/*! exports provided: Column */
+/***/ "./src/js/modules/Classes/Board.js":
+/*!*****************************************!*\
+  !*** ./src/js/modules/Classes/Board.js ***!
+  \*****************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Column", function() { return Column; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Column__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Column */ "./src/js/modules/Classes/Column.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
+
+
+
+
+
+var Board = /*#__PURE__*/function () {
+  function Board(id, title) {
+    var columns = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Board);
+
+    this.id = id;
+    this.title = title;
+    this.columns = columns;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Board, [{
+    key: "init",
+    value: function init() {
+      var obj = {};
+
+      for (var key in this.columns) {
+        var _this$columns$key = this.columns[key],
+            id = _this$columns$key.id,
+            title = _this$columns$key.title,
+            cards = _this$columns$key.cards;
+        var column = new _Column__WEBPACK_IMPORTED_MODULE_2__["default"](id, title, cards, this.id);
+        column.init();
+        obj[id] = column;
+      }
+
+      this.columns = obj;
+    }
+  }, {
+    key: "addColumn",
+    value: function addColumn(id, title) {
+      var column = new _Column__WEBPACK_IMPORTED_MODULE_2__["default"](id, title, null, this.id);
+      this.columns[id] = column;
+      column.render();
+    }
+  }, {
+    key: "removeColumn",
+    value: function removeColumn(id) {
+      delete this.columns[id];
+    }
+  }, {
+    key: "getPath",
+    value: function getPath(id) {
+      return "".concat(this.id, "/columns/").concat(id);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      try {
+        document.querySelectorAll('[data-column-id]').forEach(function (item) {
+          return item.remove();
+        });
+      } catch (e) {}
+
+      var currentBoard = document.querySelector('.board-current');
+      currentBoard.textContent = this.title;
+      currentBoard.setAttribute('data-board-id', this.id);
+
+      for (var key in this.columns) {
+        this.columns[key].render();
+      }
+    }
+  }]);
+
+  return Board;
+}();
+
+;
+/* harmony default export */ __webpack_exports__["default"] = (Board);
+
+/***/ }),
+
+/***/ "./src/js/modules/Classes/Card.js":
+/*!****************************************!*\
+  !*** ./src/js/modules/Classes/Card.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
@@ -1164,74 +1095,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Column = /*#__PURE__*/function () {
-  function Column(title) {
-    var id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Math.random();
-    var cards = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Column);
-
-    this.id = id;
-    this.title = title;
-    this.cards = cards;
-    this.domElement = null;
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Column, [{
-    key: "addCard",
-    value: function addCard(title) {
-      var desc = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var comments = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-      var checklists = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
-      var background = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
-      var id = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : Math.random();
-      var card = new Card(id, title, desc, comments, checklists, background, this);
-      this.cards.push(card);
-      card.render(id);
-    }
-  }, {
-    key: "removeCard",
-    value: function removeCard(id) {
-      var _this = this;
-
-      this.cards.forEach(function (card, i) {
-        card.id == id ? _this.cards.splice(i, 1) : card;
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var element = document.querySelector(".new__column");
-      var column = document.createElement("div");
-      this.domElement = column;
-      column.classList.add("column");
-      column.setAttribute("data-column-id", this.id);
-      column.innerHTML = "\n      <div class=\"column-header\">\n        <p>".concat(this.title, "</p>\n        <span data-delete-column>&times;</span>\n      </div>\n      <div class=\"column-item-wrapper\"></div>\n      <div class=\"add-item new__card\" data-add-card>\n        <span>&plus;</span>\n        <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0435\u0449\u0435 \u043E\u0434\u043D\u0443 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n      </div>\n    ");
-
-      if (this.cards.length > 0) {
-        this.cards.forEach(function (card) {
-          return card.render();
-        });
-      }
-
-      element.before(column);
-    }
-  }]);
-
-  return Column;
-}();
-
 var Card = /*#__PURE__*/function () {
-  function Card(id, title, desc, comments, checklists, background, column) {
+  function Card(id, title, column) {
+    var desc = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+    var comments = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
+    var checklists = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : null;
+    var background = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : null;
+
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Card);
 
     this.id = id;
     this.title = title;
+    this.column = column;
     this.desc = desc;
+    this.background = background;
     this.comments = comments;
     this.checklists = checklists;
-    this.background = background;
-    this.column = column;
     this.domElement;
   }
 
@@ -1248,18 +1127,20 @@ var Card = /*#__PURE__*/function () {
   }, {
     key: "addComment",
     value: function addComment(comment) {
-      this.comments.push(comment);
+      if (!this.comments) {
+        this.comments = {};
+      }
+
+      this.comments[comment.id] = comment;
     }
   }, {
     key: "removeComment",
-    value: function removeComment(value, date) {
-      var _this2 = this;
+    value: function removeComment(id) {
+      delete this.comments[id];
 
-      this.comments.forEach(function (comment, i) {
-        if (comment.value == value && comment.date == date) {
-          _this2.comments.splice(i, 1);
-        }
-      });
+      if (Object.keys(this.comments).length === 0) {
+        this.comments = null;
+      }
     }
   }, {
     key: "setBackground",
@@ -1269,66 +1150,53 @@ var Card = /*#__PURE__*/function () {
   }, {
     key: "addChecklist",
     value: function addChecklist(id) {
-      this.checklists.push({
+      if (!this.checklists) {
+        this.checklists = {};
+      }
+
+      this.checklists[id] = {
         id: id,
         title: "Чек-лист",
-        tasks: []
-      });
+        tasks: {}
+      };
     }
   }, {
     key: "removeChecklist",
     value: function removeChecklist(id) {
-      var _this3 = this;
+      delete this.checklists[id];
 
-      this.checklists.forEach(function (item, i) {
-        if (item.id == id) {
-          _this3.checklists.splice(i, 1);
-        }
-      });
+      if (Object.keys(this.checklists).length === 0) {
+        this.checklists = null;
+      }
     }
   }, {
     key: "addChecklistTask",
     value: function addChecklistTask(id, body) {
-      this.checklists.forEach(function (item) {
-        if (+item.id === +id) {
-          item.tasks.push(body);
-        }
-      });
+      if (!this.checklists[id].tasks) {
+        this.checklists[id].tasks = {};
+      }
+
+      this.checklists[id].tasks[body.id] = body;
     }
   }, {
     key: "removeChecklistTask",
-    value: function removeChecklistTask(id, value) {
-      this.checklists.forEach(function (item) {
-        if (item.id == id) {
-          item.tasks.forEach(function (task, i) {
-            if (task.value === value) {
-              item.tasks.splice(i, 1);
-            }
-          });
-        }
-      });
+    value: function removeChecklistTask(idChecklist, idTask) {
+      delete this.checklists[idChecklist].tasks[idTask];
     }
   }, {
     key: "changeChecklistTitle",
     value: function changeChecklistTitle(id, title) {
-      this.checklists.forEach(function (item) {
-        if (item.id == id) {
-          item.title = title;
-        }
-      });
+      this.checklists[id].title = title;
     }
   }, {
     key: "changeChecklistTask",
-    value: function changeChecklistTask(id, value) {
-      this.checklists.forEach(function (item) {
-        if (+item.id == +id) {
-          item.tasks.forEach(function (task) {
-            if (task.value.trim() == value) {
-              task.status = !task.status;
-            }
-          });
-        }
-      });
+    value: function changeChecklistTask(id, idTask) {
+      this.checklists[id].tasks[idTask].status = !this.checklists[id].tasks[idTask].status;
+    }
+  }, {
+    key: "getPath",
+    value: function getPath() {
+      return "".concat(this.column.boardId, "/columns/").concat(this.column.id, "/cards/").concat(this.id);
     }
   }, {
     key: "render",
@@ -1339,7 +1207,7 @@ var Card = /*#__PURE__*/function () {
       card.innerHTML = "\n      <div class=\"column-item-content\">\n        <div data-column-card-title> ".concat(this.title, "</div>\n        <span class=\"column-item-menu\">&equiv;</span>\n      </div>\n      <span data-column-card-bg></span>");
 
       if (this.background) {
-        card.children[1].classList.add('column-item__bg');
+        card.children[1].classList.add("column-item__bg");
         card.children[1].style.backgroundColor = this.background;
       }
 
@@ -1351,76 +1219,105 @@ var Card = /*#__PURE__*/function () {
   return Card;
 }();
 
-
+/* harmony default export */ __webpack_exports__["default"] = (Card);
 
 /***/ }),
 
-/***/ "./src/js/modules/addCard.js":
-/*!***********************************!*\
-  !*** ./src/js/modules/addCard.js ***!
-  \***********************************/
+/***/ "./src/js/modules/Classes/Column.js":
+/*!******************************************!*\
+  !*** ./src/js/modules/Classes/Column.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addInput */ "./src/js/modules/addInput.js");
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Card */ "./src/js/modules/Classes/Card.js");
 
 
 
-var addCard = function addCard() {
-  var main = document.querySelector('.main');
-  main.addEventListener('click', function (e) {
-    var parent = e.target.parentElement;
 
-    if (parent.classList.contains('new__card')) {
-      var callback = function callback(value) {
-        var id = parent.closest("[data-column-id]").getAttribute("data-column-id");
-        var column = _index__WEBPACK_IMPORTED_MODULE_1__["store"][id];
-        column.addCard(value);
-      };
+var Column = /*#__PURE__*/function () {
+  function Column(id, title) {
+    var cards = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    var boardId = arguments.length > 3 ? arguments[3] : undefined;
 
-      parent.style.display = 'none';
-      Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(parent, 'Введите заголовок карточки', callback, 'card');
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Column);
+
+    this.id = id;
+    this.title = title;
+    this.cards = cards;
+    this.boardId = boardId;
+    this.domElement = null;
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Column, [{
+    key: "init",
+    value: function init() {
+      var obj = {};
+
+      for (var key in this.cards) {
+        var _this$cards$key = this.cards[key],
+            id = _this$cards$key.id,
+            title = _this$cards$key.title,
+            desc = _this$cards$key.desc,
+            background = _this$cards$key.background,
+            comments = _this$cards$key.comments,
+            checklists = _this$cards$key.checklists;
+        obj[id] = new _Card__WEBPACK_IMPORTED_MODULE_2__["default"](id, title, this, desc, comments, checklists, background);
+      }
+
+      this.cards = obj;
     }
-  });
-};
+  }, {
+    key: "addCard",
+    value: function addCard(id, title) {
+      var card = new _Card__WEBPACK_IMPORTED_MODULE_2__["default"](id, title, this);
 
-/* harmony default export */ __webpack_exports__["default"] = (addCard);
+      if (!this.cards) {
+        this.cards = {};
+      }
 
-/***/ }),
+      this.cards[id] = card;
+      card.render();
+    }
+  }, {
+    key: "removeCard",
+    value: function removeCard(id) {
+      delete this.cards[id];
+    }
+  }, {
+    key: "getPath",
+    value: function getPath(id) {
+      console.log(this.boardId);
+      return "".concat(this.boardId, "/columns/").concat(this.id, "/cards/").concat(id);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var element = document.querySelector(".new__column");
+      var column = document.createElement("div");
+      this.domElement = column;
+      column.classList.add("column");
+      column.setAttribute("data-column-id", this.id);
+      column.innerHTML = "\n      <div class=\"column-header\">\n        <p>".concat(this.title, "</p>\n        <span data-delete-column>&times;</span>\n      </div>\n      <div class=\"column-item-wrapper\"></div>\n      <div class=\"add-item new__card\" data-add-card>\n        <span>&plus;</span>\n        <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0435\u0449\u0435 \u043E\u0434\u043D\u0443 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n      </div>\n    ");
 
-/***/ "./src/js/modules/addColumn.js":
-/*!*************************************!*\
-  !*** ./src/js/modules/addColumn.js ***!
-  \*************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+      for (var key in this.cards) {
+        this.cards[key].render();
+      }
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addInput */ "./src/js/modules/addInput.js");
-/* harmony import */ var _Classes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Classes */ "./src/js/modules/Classes.js");
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
+      element.before(column);
+    }
+  }]);
 
+  return Column;
+}();
 
-
-
-var addColumn = function addColumn() {
-  var elem = document.querySelector('.new__column');
-  elem.addEventListener('click', function () {
-    var callback = function callback(value) {
-      var column = new _Classes__WEBPACK_IMPORTED_MODULE_1__["Column"](value);
-      _index__WEBPACK_IMPORTED_MODULE_2__["store"][column.id] = column;
-      column.render();
-    };
-
-    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(elem, 'Введите заголовок списка', callback, 'input-add__column');
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (addColumn);
+/* harmony default export */ __webpack_exports__["default"] = (Column);
 
 /***/ }),
 
@@ -1433,23 +1330,23 @@ var addColumn = function addColumn() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var addInput = function addInput(element, placeholder, callback, className, inputText) {
+var addInput = function addInput(element, placeholder, className, inputText, callback) {
   // Если Input уже есть на странице
-  if (document.querySelector('.input-add')) {
-    var _input = document.querySelector('.input-add');
+  if (document.querySelector(".input-add")) {
+    var _input = document.querySelector(".input-add");
 
     var nextElement = _input.nextElementSibling;
 
     _input.remove();
 
-    nextElement.style.display = '';
+    nextElement.style.display = "";
   }
 
-  var input = document.createElement('div');
-  input.classList.add('input-add', className);
+  var input = document.createElement("div");
+  input.classList.add("input-add", className);
   input.innerHTML = "\n    <input type=\"text\" placeholder=\"".concat(placeholder, "\">\n    <div class=\"input-btn\">\n      <button class=\"btn\" type=\"button\">\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button>\n      <button class=\"btn\" type=\"button\">&times;</button>\n    </div>\n  ");
   element.before(input);
-  inputText ? input.children[0].value = inputText : '';
+  inputText ? input.children[0].value = inputText : "";
   input.children[1].addEventListener("click", add);
   input.children[0].addEventListener("keypress", add);
 
@@ -1457,7 +1354,7 @@ var addInput = function addInput(element, placeholder, callback, className, inpu
     if (e.key && e.key !== "Enter") return;
 
     if (e.target.textContent === "Добавить" || e.key === "Enter") {
-      var value = this.parentElement.children[0].value;
+      var value = this.parentElement.children[0].value.trim();
 
       if (value.length == 0) {
         return;
@@ -1467,7 +1364,7 @@ var addInput = function addInput(element, placeholder, callback, className, inpu
     }
 
     try {
-      this.parentElement.nextElementSibling.style.display = '';
+      this.parentElement.nextElementSibling.style.display = "";
     } catch (error) {}
 
     this.parentElement.remove();
@@ -1475,6 +1372,199 @@ var addInput = function addInput(element, placeholder, callback, className, inpu
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (addInput);
+
+/***/ }),
+
+/***/ "./src/js/modules/board/addBoard.js":
+/*!******************************************!*\
+  !*** ./src/js/modules/board/addBoard.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
+/* harmony import */ var _idGenerate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../idGenerate */ "./src/js/modules/idGenerate.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
+/* harmony import */ var _Classes_Board__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Classes/Board */ "./src/js/modules/Classes/Board.js");
+
+
+
+
+
+
+var addBoard = function addBoard() {
+  var btn = document.querySelector('.board-add');
+  btn.addEventListener('click', function () {
+    btn.style.display = 'none';
+    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(btn, 'Введите название доски', 'input-add__board', false, function (value) {
+      value = value.trim();
+      var board = document.createElement('div');
+      board.classList.add("board-item");
+      var id = Object(_idGenerate__WEBPACK_IMPORTED_MODULE_1__["default"])();
+      board.setAttribute("data-board-id", id);
+      board.innerHTML = "\n        <p data-board-title>".concat(value, "</p>\n        <button data-delete-board>\u0423\u0434\u0430\u043B\u0438\u0442\u044C</button>\n      ");
+      btn.before(board);
+      btn.style.display = "";
+      var currentBoard = document.querySelector('.board-current');
+      currentBoard.textContent = value;
+      currentBoard.setAttribute("data-board-id", id);
+      localStorage.setItem("activeBoardID", id);
+      var data = {
+        id: id,
+        title: value,
+        columns: {}
+      };
+      var boardObj = new _Classes_Board__WEBPACK_IMPORTED_MODULE_4__["default"](data.id, data.title);
+      boardObj.render();
+      _index__WEBPACK_IMPORTED_MODULE_3__["activeBoard"].splice(0, 1, boardObj);
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_2__["patchReq"])(_index__WEBPACK_IMPORTED_MODULE_3__["link"], data, id);
+      btn.closest('.board-list-items').classList.add('hide');
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (addBoard);
+
+/***/ }),
+
+/***/ "./src/js/modules/board/boardListener.js":
+/*!***********************************************!*\
+  !*** ./src/js/modules/board/boardListener.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _addBoard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addBoard */ "./src/js/modules/board/addBoard.js");
+/* harmony import */ var _chooseBoard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chooseBoard */ "./src/js/modules/board/chooseBoard.js");
+/* harmony import */ var _removeBoard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./removeBoard */ "./src/js/modules/board/removeBoard.js");
+
+
+
+
+var boardListener = function boardListener() {
+  var boardsList = document.querySelector('.board-list-items');
+  var btn = document.querySelector('.board-list');
+  btn.addEventListener('click', function () {
+    boardsList.classList.toggle('hide');
+  });
+  Object(_addBoard__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  Object(_removeBoard__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  Object(_chooseBoard__WEBPACK_IMPORTED_MODULE_1__["default"])();
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (boardListener);
+
+/***/ }),
+
+/***/ "./src/js/modules/board/chooseBoard.js":
+/*!*********************************************!*\
+  !*** ./src/js/modules/board/chooseBoard.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _Classes_Board__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Classes/Board */ "./src/js/modules/Classes/Board.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
+
+
+
+
+var chooseBoard = function chooseBoard() {
+  var header = document.querySelector('.header');
+  header.addEventListener('click', function (e) {
+    if (e.target.hasAttribute("data-board-title") || e.target.hasAttribute("data-board-id") && e.target.closest('.board-list-items')) {
+      var newCurrentBoard = e.target.closest("[data-board-id]");
+      var currentBoard = header.querySelector(".board-current");
+      currentBoard.textContent = newCurrentBoard.children[0].textContent;
+      var id = newCurrentBoard.getAttribute("data-board-id");
+      currentBoard.setAttribute("data-board-id", id);
+      localStorage.setItem("activeBoardID", id);
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_0__["getData"])(_index__WEBPACK_IMPORTED_MODULE_2__["link"], id).then(function (_ref) {
+        var id = _ref.id,
+            title = _ref.title,
+            columns = _ref.columns;
+        var board = new _Classes_Board__WEBPACK_IMPORTED_MODULE_1__["default"](id, title, columns);
+        board.init();
+        board.render();
+        _index__WEBPACK_IMPORTED_MODULE_2__["activeBoard"].splice(0, 1, board);
+      });
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (chooseBoard);
+
+/***/ }),
+
+/***/ "./src/js/modules/board/removeBoard.js":
+/*!*********************************************!*\
+  !*** ./src/js/modules/board/removeBoard.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _Classes_Board__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Classes/Board */ "./src/js/modules/Classes/Board.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
+
+
+
+
+var removeBoard = function removeBoard() {
+  var header = document.querySelector('.header');
+  header.addEventListener('click', function (e) {
+    if (e.target.hasAttribute('data-delete-board')) {
+      var board = e.target.closest('[data-board-id]');
+      var id = board.getAttribute('data-board-id');
+      var currentBoard = document.querySelector(".board-current");
+      var idCurrent = currentBoard.getAttribute('data-board-id');
+      board.remove();
+
+      if (id === idCurrent) {
+        try {
+          var boardsList = document.querySelector('.board-list-items').children[0];
+          var newCurrentBoard = boardsList.querySelector('[data-board-title]');
+          var title = newCurrentBoard.textContent;
+
+          var _id = newCurrentBoard.closest('[data-board-id]').getAttribute('data-board-id');
+
+          currentBoard.textContent = title;
+          currentBoard.setAttribute('data-board-id', _id);
+          localStorage.setItem("activeBoardID", _id);
+          Object(_services_services__WEBPACK_IMPORTED_MODULE_0__["getData"])(_index__WEBPACK_IMPORTED_MODULE_2__["link"], _id).then(function (_ref) {
+            var id = _ref.id,
+                title = _ref.title,
+                columns = _ref.columns;
+            var board = new _Classes_Board__WEBPACK_IMPORTED_MODULE_1__["default"](id, title, columns);
+            board.init();
+            board.render();
+            _index__WEBPACK_IMPORTED_MODULE_2__["activeBoard"].splice(0, 1, board);
+          });
+        } catch (e) {
+          currentBoard.textContent = 'Создайте первую доску';
+          localStorage.removeItem("activeBoardID");
+          document.querySelectorAll('[data-column-id]').forEach(function (column) {
+            return column.remove();
+          });
+        }
+      }
+
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_0__["deleteData"])(_index__WEBPACK_IMPORTED_MODULE_2__["link"], id);
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (removeBoard);
 
 /***/ }),
 
@@ -1586,24 +1676,35 @@ function removeCard(target, modal, card) {
 
 /***/ }),
 
-/***/ "./src/js/modules/cardModal/addChecklist.js":
-/*!**************************************************!*\
-  !*** ./src/js/modules/cardModal/addChecklist.js ***!
-  \**************************************************/
+/***/ "./src/js/modules/cardModal/checklist/addChecklist.js":
+/*!************************************************************!*\
+  !*** ./src/js/modules/cardModal/checklist/addChecklist.js ***!
+  \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _createChecklist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createChecklist */ "./src/js/modules/cardModal/createChecklist.js");
+/* harmony import */ var _createChecklist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createChecklist */ "./src/js/modules/cardModal/checklist/createChecklist.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../index */ "./src/js/index.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _idGenerate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../idGenerate */ "./src/js/modules/idGenerate.js");
+
+
+
 
 
 function addChecklist(target, modal, card) {
   if (target.hasAttribute("data-modal-checklist")) {
-    var id = Math.random();
+    var id = Object(_idGenerate__WEBPACK_IMPORTED_MODULE_3__["default"])();
     var checklist = Object(_createChecklist__WEBPACK_IMPORTED_MODULE_0__["default"])(id);
     modal.querySelector(".desc").after(checklist);
     card.addChecklist(id);
+    var body = {
+      id: id,
+      title: 'Чек-лист'
+    };
+    Object(_services_services__WEBPACK_IMPORTED_MODULE_2__["patchReq"])(_index__WEBPACK_IMPORTED_MODULE_1__["link"], body, card.getPath(), 'checklists', id);
   }
 }
 
@@ -1611,36 +1712,46 @@ function addChecklist(target, modal, card) {
 
 /***/ }),
 
-/***/ "./src/js/modules/cardModal/addChecklistTask.js":
-/*!******************************************************!*\
-  !*** ./src/js/modules/cardModal/addChecklistTask.js ***!
-  \******************************************************/
+/***/ "./src/js/modules/cardModal/checklist/addChecklistTask.js":
+/*!****************************************************************!*\
+  !*** ./src/js/modules/cardModal/checklist/addChecklistTask.js ***!
+  \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
-/* harmony import */ var _progressBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./progressBar */ "./src/js/modules/cardModal/progressBar.js");
+/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../addInput */ "./src/js/modules/addInput.js");
+/* harmony import */ var _progressBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../progressBar */ "./src/js/modules/cardModal/progressBar.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../index */ "./src/js/index.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _idGenerate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../idGenerate */ "./src/js/modules/idGenerate.js");
+
+
+
 
 
 
 function addChecklistTask(target, card, modal) {
   if (target.hasAttribute("data-modal-addcheck")) {
-    var callback = function callback(value) {
-      var checkItem = document.createElement("li");
-      checkItem.classList.add("checklist-item");
-      checkItem.innerHTML = "\n        <label>\n          <input type=\"checkbox\" data-check>\n          ".concat(value, "\n        </label>\n        <span data-delete-task>&times;</span>\n        ");
-      target.parentElement.querySelector("div").append(checkItem);
-      var id = target.closest("[data-check-id]").getAttribute("data-check-id");
-      card.addChecklistTask(id, {
+    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(target, "Введите название задачи", "input-add__modal", false, function (value) {
+      var task = document.createElement("li");
+      task.classList.add("checklist-item");
+      var id = Object(_idGenerate__WEBPACK_IMPORTED_MODULE_4__["default"])();
+      task.setAttribute('data-task-id', id);
+      task.innerHTML = "\n        <label>\n          <input type=\"checkbox\" data-check>\n          ".concat(value, "\n        </label>\n        <span data-delete-task>&times;</span>\n      ");
+      target.parentElement.querySelector("div").append(task);
+      var idChecklist = target.closest("[data-check-id]").getAttribute("data-check-id");
+      console.log(idChecklist);
+      var body = {
+        id: id,
         value: value,
         status: false
-      });
+      };
+      card.addChecklistTask(idChecklist, body);
       Object(_progressBar__WEBPACK_IMPORTED_MODULE_1__["default"])(modal);
-    };
-
-    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(target, "", callback, "input-add__modal");
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_3__["patchReq"])(_index__WEBPACK_IMPORTED_MODULE_2__["link"], body, card.getPath(), 'checklists', idChecklist, 'tasks', body.id);
+    });
   }
 }
 
@@ -1648,74 +1759,35 @@ function addChecklistTask(target, card, modal) {
 
 /***/ }),
 
-/***/ "./src/js/modules/cardModal/addComment.js":
-/*!************************************************!*\
-  !*** ./src/js/modules/cardModal/addComment.js ***!
-  \************************************************/
+/***/ "./src/js/modules/cardModal/checklist/changeChecklistTitle.js":
+/*!********************************************************************!*\
+  !*** ./src/js/modules/cardModal/checklist/changeChecklistTitle.js ***!
+  \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
+/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../addInput */ "./src/js/modules/addInput.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../index */ "./src/js/index.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/services */ "./src/js/services/services.js");
 
 
-function addComment(target, card) {
-  if (target.hasAttribute("data-modal-comments")) {
-    var callback = function callback(value) {
-      var wrap = target.nextElementSibling;
-      var div = document.createElement("div");
-      var options = {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        weekday: "long",
-        hour: "numeric",
-        minute: "numeric",
-        second: "numeric"
-      };
-      var date = new Date().toLocaleString("ru", options);
-      div.innerHTML = "\n        <div>\n          <p>".concat(value, "</p>\n          <span data-delete-comment>&times;</span>\n        </div>\n        <span>").concat(date, "</span>\n      ");
-      wrap.prepend(div);
-      card.addComment({
-        value: value,
-        date: date
-      });
-    };
-
-    target.style.display = "none";
-    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(target, "", callback, "input-add__modal");
-  }
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (addComment);
-
-/***/ }),
-
-/***/ "./src/js/modules/cardModal/changeChecklistTitle.js":
-/*!**********************************************************!*\
-  !*** ./src/js/modules/cardModal/changeChecklistTitle.js ***!
-  \**********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
 
 
 function changeChecklistTitle(target, card) {
   if (target.hasAttribute("data-check-title")) {
-    var callback = function callback(value) {
+    target.parentElement.style.display = "none";
+    var text = target.textContent.trim() === "Чек-лист" ? '' : target.textContent;
+    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(target.parentElement, target.textContent, "input-add__modal", text, function (value) {
       target.textContent = value;
       var id = target.closest("[data-check-id]").getAttribute("data-check-id");
       card.changeChecklistTitle(id, value);
       target.parentElement.style.display = "";
-    };
-
-    target.parentElement.style.display = "none";
-    var text = target.textContent.trim() === "Чек-лист" ? '' : target.textContent;
-    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(target.parentElement, target.textContent, callback, "input-add__modal", text);
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_2__["patchReq"])(_index__WEBPACK_IMPORTED_MODULE_1__["link"], {
+        title: value
+      }, card.getPath(), 'checklists', id);
+    });
   }
 }
 
@@ -1723,10 +1795,10 @@ function changeChecklistTitle(target, card) {
 
 /***/ }),
 
-/***/ "./src/js/modules/cardModal/createChecklist.js":
-/*!*****************************************************!*\
-  !*** ./src/js/modules/cardModal/createChecklist.js ***!
-  \*****************************************************/
+/***/ "./src/js/modules/cardModal/checklist/createChecklist.js":
+/*!***************************************************************!*\
+  !*** ./src/js/modules/cardModal/checklist/createChecklist.js ***!
+  \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1745,6 +1817,187 @@ function createChecklist(id) {
 
 /***/ }),
 
+/***/ "./src/js/modules/cardModal/checklist/removeChecklist.js":
+/*!***************************************************************!*\
+  !*** ./src/js/modules/cardModal/checklist/removeChecklist.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../index */ "./src/js/index.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/services */ "./src/js/services/services.js");
+
+
+
+function removeChecklist(target, card) {
+  if (target.hasAttribute("data-delete-checklist")) {
+    var checklist = target.closest("[data-check-id]");
+    var id = checklist.getAttribute("data-check-id");
+    checklist.remove();
+    card.removeChecklist(id);
+    Object(_services_services__WEBPACK_IMPORTED_MODULE_1__["deleteData"])(_index__WEBPACK_IMPORTED_MODULE_0__["link"], card.getPath(), 'checklists', id);
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (removeChecklist);
+
+/***/ }),
+
+/***/ "./src/js/modules/cardModal/checklist/removeChecklistTask.js":
+/*!*******************************************************************!*\
+  !*** ./src/js/modules/cardModal/checklist/removeChecklistTask.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../index */ "./src/js/index.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../services/services */ "./src/js/services/services.js");
+
+
+
+function removeChecklistTask(target, card) {
+  if (target.hasAttribute("data-delete-task")) {
+    var idChecklist = target.closest("[data-check-id]").getAttribute("data-check-id");
+    var idTask = target.closest('[data-task-id]').getAttribute('data-task-id');
+    target.parentElement.remove();
+    card.removeChecklistTask(idChecklist, idTask);
+    Object(_services_services__WEBPACK_IMPORTED_MODULE_1__["deleteData"])(_index__WEBPACK_IMPORTED_MODULE_0__["link"], card.getPath(), 'checklists', idChecklist, 'tasks', idTask);
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (removeChecklistTask);
+
+/***/ }),
+
+/***/ "./src/js/modules/cardModal/checklist/toggleChecklistTask.js":
+/*!*******************************************************************!*\
+  !*** ./src/js/modules/cardModal/checklist/toggleChecklistTask.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _progressBar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../progressBar */ "./src/js/modules/cardModal/progressBar.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../index */ "./src/js/index.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/services */ "./src/js/services/services.js");
+
+
+
+
+function toggleChecklistTask(target, card, modal) {
+  if (target.hasAttribute("data-check")) {
+    var idChecklist = target.closest("[data-check-id]").getAttribute("data-check-id");
+    var idTask = target.closest("[data-task-id]").getAttribute("data-task-id");
+    card.changeChecklistTask(idChecklist, idTask);
+    var body;
+
+    if (target.hasAttribute("checked")) {
+      target.removeAttribute("checked");
+      body = {
+        status: false
+      };
+    } else {
+      target.setAttribute("checked", "true");
+      body = {
+        status: true
+      };
+    }
+
+    Object(_services_services__WEBPACK_IMPORTED_MODULE_2__["patchReq"])(_index__WEBPACK_IMPORTED_MODULE_1__["link"], body, card.getPath(), "checklists", idChecklist, "tasks", idTask);
+    Object(_progressBar__WEBPACK_IMPORTED_MODULE_0__["default"])(modal);
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (toggleChecklistTask);
+
+/***/ }),
+
+/***/ "./src/js/modules/cardModal/comments/addComment.js":
+/*!*********************************************************!*\
+  !*** ./src/js/modules/cardModal/comments/addComment.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../addInput */ "./src/js/modules/addInput.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../..//../index */ "./src/js/index.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _idGenerate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../idGenerate */ "./src/js/modules/idGenerate.js");
+
+
+
+
+
+function addComment(target, card) {
+  if (target.hasAttribute("data-modal-comments")) {
+    target.style.display = "none";
+    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(target, "Добавте комментарий", "input-add__modal", false, function (value) {
+      value = value.trim();
+      var wrap = target.nextElementSibling;
+      var div = document.createElement("div");
+      var id = Object(_idGenerate__WEBPACK_IMPORTED_MODULE_3__["default"])();
+      div.setAttribute('data-comment-id', id);
+      var options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        weekday: "long",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric"
+      };
+      var date = new Date().toLocaleString("ru", options);
+      div.innerHTML = "\n        <div>\n          <p>".concat(value, "</p>\n          <span data-delete-comment>&times;</span>\n        </div>\n        <span>").concat(date, "</span>\n      ");
+      wrap.prepend(div);
+      var body = {
+        id: id,
+        value: value,
+        date: date
+      };
+      card.addComment(body);
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_2__["patchReq"])(_index__WEBPACK_IMPORTED_MODULE_1__["link"], body, card.column.boardId, 'columns', card.column.id, 'cards', card.id, 'comments', body.id);
+    });
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (addComment);
+
+/***/ }),
+
+/***/ "./src/js/modules/cardModal/comments/removeComment.js":
+/*!************************************************************!*\
+  !*** ./src/js/modules/cardModal/comments/removeComment.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../index */ "./src/js/index.js");
+
+
+
+function removeComment(target, card) {
+  if (target.hasAttribute('data-delete-comment')) {
+    var id = target.closest('[data-comment-id]').getAttribute('data-comment-id');
+    target.parentElement.parentElement.remove();
+    card.removeComment(id);
+    Object(_services_services__WEBPACK_IMPORTED_MODULE_0__["deleteData"])(_index__WEBPACK_IMPORTED_MODULE_1__["link"], card.column.boardId, 'columns', card.column.id, 'cards', card.id, 'comments', id);
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (removeComment);
+
+/***/ }),
+
 /***/ "./src/js/modules/cardModal/createModal.js":
 /*!*************************************************!*\
   !*** ./src/js/modules/cardModal/createModal.js ***!
@@ -1755,14 +2008,8 @@ function createChecklist(id) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modalListener__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modalListener */ "./src/js/modules/cardModal/modalListener.js");
-/* harmony import */ var _createChecklist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createChecklist */ "./src/js/modules/cardModal/createChecklist.js");
+/* harmony import */ var _checklist_createChecklist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./checklist/createChecklist */ "./src/js/modules/cardModal/checklist/createChecklist.js");
 /* harmony import */ var _progressBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./progressBar */ "./src/js/modules/cardModal/progressBar.js");
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 
 
 
@@ -1778,41 +2025,38 @@ function createModal(card) {
 }
 
 function addComments(card, modal) {
-  if (card.comments.length > 0) {
+  if (card.comments) {
     var wrap = modal.querySelector(".comments-wrapper");
 
-    var _iterator = _createForOfIteratorHelper(card.comments),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var i = _step.value;
-        var div = document.createElement("div");
-        div.innerHTML = "\n      <div>\n        <p>".concat(i.value, "</p>\n        <span data-delete-comment>&times;</span>\n      </div>\n      <span>").concat(i.date, "</span>\n      ");
-        wrap.prepend(div);
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
+    for (var i in card.comments) {
+      var comment = card.comments[i];
+      var div = document.createElement("div");
+      div.setAttribute('data-comment-id', comment.id);
+      div.innerHTML = "\n      <div>\n        <p>".concat(comment.value, "</p>\n        <span data-delete-comment>&times;</span>\n      </div>\n      <span>").concat(comment.date, "</span>\n      ");
+      wrap.prepend(div);
     }
   }
 }
 
 function addChecklist(card, modal) {
-  if (card.checklists.length > 0) {
-    card.checklists.forEach(function (list) {
-      var checklist = Object(_createChecklist__WEBPACK_IMPORTED_MODULE_1__["default"])(list.id, list.title);
+  if (card.checklists) {
+    for (var key in card.checklists) {
+      var item = card.checklists[key];
+      var checklist = Object(_checklist_createChecklist__WEBPACK_IMPORTED_MODULE_1__["default"])(item.id, item.title);
       modal.querySelector(".desc").after(checklist);
-      list.tasks.forEach(function (item) {
+
+      for (var _key in item.tasks) {
+        var tasksItem = item.tasks[_key];
         var wrap = modal.querySelector(".checklist div");
-        var attr = item.status ? "checked" : "";
+        var attr = tasksItem.status ? "checked" : "";
         var task = document.createElement("li");
         task.classList.add("checklist-item");
-        task.innerHTML = "\n          <label>\n            <input type=\"checkbox\" ".concat(attr, " data-check>\n            ").concat(item.value, "\n          </label>\n          <span data-delete-task>&times;</span>\n        ");
+        task.setAttribute('data-task-id', tasksItem.id);
+        task.innerHTML = "\n          <label>\n            <input type=\"checkbox\" ".concat(attr, " data-check>\n            ").concat(tasksItem.value, "\n          </label>\n          <span data-delete-task>&times;</span>\n        ");
         wrap.append(task);
-      });
-    });
+      }
+    }
+
     Object(_progressBar__WEBPACK_IMPORTED_MODULE_2__["default"])(modal);
   }
 }
@@ -1834,14 +2078,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal_changeTitle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modal/changeTitle */ "./src/js/modules/modal/changeTitle.js");
 /* harmony import */ var _modal_changeDesc__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modal/changeDesc */ "./src/js/modules/modal/changeDesc.js");
 /* harmony import */ var _modal_changeBg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modal/changeBg */ "./src/js/modules/modal/changeBg.js");
-/* harmony import */ var _addComment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./addComment */ "./src/js/modules/cardModal/addComment.js");
-/* harmony import */ var _removeComment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./removeComment */ "./src/js/modules/cardModal/removeComment.js");
-/* harmony import */ var _addChecklist__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./addChecklist */ "./src/js/modules/cardModal/addChecklist.js");
-/* harmony import */ var _removeChecklist__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./removeChecklist */ "./src/js/modules/cardModal/removeChecklist.js");
-/* harmony import */ var _changeChecklistTitle__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./changeChecklistTitle */ "./src/js/modules/cardModal/changeChecklistTitle.js");
-/* harmony import */ var _addChecklistTask__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./addChecklistTask */ "./src/js/modules/cardModal/addChecklistTask.js");
-/* harmony import */ var _removeChecklistTask__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./removeChecklistTask */ "./src/js/modules/cardModal/removeChecklistTask.js");
-/* harmony import */ var _toggleChecklistTask__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./toggleChecklistTask */ "./src/js/modules/cardModal/toggleChecklistTask.js");
+/* harmony import */ var _comments_addComment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./comments/addComment */ "./src/js/modules/cardModal/comments/addComment.js");
+/* harmony import */ var _comments_removeComment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./comments/removeComment */ "./src/js/modules/cardModal/comments/removeComment.js");
+/* harmony import */ var _checklist_addChecklist__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./checklist/addChecklist */ "./src/js/modules/cardModal/checklist/addChecklist.js");
+/* harmony import */ var _checklist_removeChecklist__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./checklist/removeChecklist */ "./src/js/modules/cardModal/checklist/removeChecklist.js");
+/* harmony import */ var _checklist_changeChecklistTitle__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./checklist/changeChecklistTitle */ "./src/js/modules/cardModal/checklist/changeChecklistTitle.js");
+/* harmony import */ var _checklist_addChecklistTask__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./checklist/addChecklistTask */ "./src/js/modules/cardModal/checklist/addChecklistTask.js");
+/* harmony import */ var _checklist_removeChecklistTask__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./checklist/removeChecklistTask */ "./src/js/modules/cardModal/checklist/removeChecklistTask.js");
+/* harmony import */ var _checklist_toggleChecklistTask__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./checklist/toggleChecklistTask */ "./src/js/modules/cardModal/checklist/toggleChecklistTask.js");
 
 
 
@@ -1861,15 +2105,15 @@ var modalListener = function modalListener(modal, card) {
     Object(_modal_changeTitle__WEBPACK_IMPORTED_MODULE_1__["default"])(e.target, card, e.target);
     Object(_modal_changeDesc__WEBPACK_IMPORTED_MODULE_2__["default"])(e.target, card, e.target);
     Object(_modal_changeBg__WEBPACK_IMPORTED_MODULE_3__["default"])(e.target, card, e.target);
-    Object(_addComment__WEBPACK_IMPORTED_MODULE_4__["default"])(e.target, card);
-    Object(_removeComment__WEBPACK_IMPORTED_MODULE_5__["default"])(e.target, card); // Чек-лист
+    Object(_comments_addComment__WEBPACK_IMPORTED_MODULE_4__["default"])(e.target, card);
+    Object(_comments_removeComment__WEBPACK_IMPORTED_MODULE_5__["default"])(e.target, card); // Чек-лист
 
-    Object(_addChecklist__WEBPACK_IMPORTED_MODULE_6__["default"])(e.target, modal, card);
-    Object(_removeChecklist__WEBPACK_IMPORTED_MODULE_7__["default"])(e.target, card);
-    Object(_changeChecklistTitle__WEBPACK_IMPORTED_MODULE_8__["default"])(e.target, card);
-    Object(_addChecklistTask__WEBPACK_IMPORTED_MODULE_9__["default"])(e.target, card, modal);
-    Object(_toggleChecklistTask__WEBPACK_IMPORTED_MODULE_11__["default"])(e.target, card, modal);
-    Object(_removeChecklistTask__WEBPACK_IMPORTED_MODULE_10__["default"])(e.target, card);
+    Object(_checklist_addChecklist__WEBPACK_IMPORTED_MODULE_6__["default"])(e.target, modal, card);
+    Object(_checklist_removeChecklist__WEBPACK_IMPORTED_MODULE_7__["default"])(e.target, card);
+    Object(_checklist_changeChecklistTitle__WEBPACK_IMPORTED_MODULE_8__["default"])(e.target, card);
+    Object(_checklist_addChecklistTask__WEBPACK_IMPORTED_MODULE_9__["default"])(e.target, card, modal);
+    Object(_checklist_toggleChecklistTask__WEBPACK_IMPORTED_MODULE_11__["default"])(e.target, card, modal);
+    Object(_checklist_removeChecklistTask__WEBPACK_IMPORTED_MODULE_10__["default"])(e.target, card);
   });
 };
 
@@ -1905,101 +2149,222 @@ function progressBar(modal) {
 
 /***/ }),
 
-/***/ "./src/js/modules/cardModal/removeChecklist.js":
-/*!*****************************************************!*\
-  !*** ./src/js/modules/cardModal/removeChecklist.js ***!
-  \*****************************************************/
+/***/ "./src/js/modules/column/addCard.js":
+/*!******************************************!*\
+  !*** ./src/js/modules/column/addCard.js ***!
+  \******************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function removeChecklist(target, card) {
-  if (target.hasAttribute("data-delete-checklist")) {
-    var checklist = target.closest("[data-check-id]");
-    var id = checklist.getAttribute("data-check-id");
-    checklist.remove();
-    card.removeChecklist(id);
-  }
-}
+/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
+/* harmony import */ var _idGenerate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../idGenerate */ "./src/js/modules/idGenerate.js");
 
-/* harmony default export */ __webpack_exports__["default"] = (removeChecklist);
+
+
+
+
+var addCard = function addCard() {
+  var main = document.querySelector('.main');
+  main.addEventListener('click', function (e) {
+    var parent = e.target.parentElement;
+
+    if (parent.classList.contains('new__card')) {
+      parent.style.display = 'none';
+      Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(parent, 'Введите заголовок карточки', 'card', false, function (value) {
+        var idColumn = e.target.closest('[data-column-id]').getAttribute('data-column-id');
+        var column = _index__WEBPACK_IMPORTED_MODULE_2__["activeBoard"][0].columns[idColumn];
+        var id = Object(_idGenerate__WEBPACK_IMPORTED_MODULE_3__["default"])();
+        var body = {
+          id: id,
+          title: value,
+          desc: null,
+          comments: null,
+          checklists: null,
+          background: null
+        };
+        column.addCard(body.id, body.title);
+        Object(_services_services__WEBPACK_IMPORTED_MODULE_1__["patchReq"])(_index__WEBPACK_IMPORTED_MODULE_2__["link"], body, column.getPath(id));
+      });
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (addCard);
 
 /***/ }),
 
-/***/ "./src/js/modules/cardModal/removeChecklistTask.js":
-/*!*********************************************************!*\
-  !*** ./src/js/modules/cardModal/removeChecklistTask.js ***!
-  \*********************************************************/
+/***/ "./src/js/modules/column/addColumn.js":
+/*!********************************************!*\
+  !*** ./src/js/modules/column/addColumn.js ***!
+  \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function removeChecklistTask(target, card) {
-  if (target.hasAttribute("data-delete-task")) {
-    var id = target.closest("[data-check-id]").getAttribute("data-check-id");
-    var value = target.previousElementSibling.textContent;
-    target.parentElement.remove();
-    card.removeChecklistTask(id, value.trim());
-  }
-}
+/* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _idGenerate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../idGenerate */ "./src/js/modules/idGenerate.js");
 
-/* harmony default export */ __webpack_exports__["default"] = (removeChecklistTask);
+
+
+
+
+var addColumn = function addColumn() {
+  var elem = document.querySelector('.new__column');
+  elem.addEventListener('click', function () {
+    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(elem, 'Введите заголовок списка', 'input-add__column', false, function (value) {
+      var body = {
+        id: Object(_idGenerate__WEBPACK_IMPORTED_MODULE_3__["default"])(),
+        title: value
+      };
+      var board = _index__WEBPACK_IMPORTED_MODULE_1__["activeBoard"][0];
+      board.addColumn(body.id, body.title);
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_2__["patchReq"])(_index__WEBPACK_IMPORTED_MODULE_1__["link"], body, board.getPath(body.id));
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (addColumn);
 
 /***/ }),
 
-/***/ "./src/js/modules/cardModal/removeComment.js":
-/*!***************************************************!*\
-  !*** ./src/js/modules/cardModal/removeComment.js ***!
-  \***************************************************/
+/***/ "./src/js/modules/column/columnListener.js":
+/*!*************************************************!*\
+  !*** ./src/js/modules/column/columnListener.js ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function removeComment(target, card) {
-  if (target.hasAttribute('data-delete-comment')) {
-    var value = target.previousElementSibling.textContent;
-    var date = target.parentElement.nextElementSibling.textContent;
-    target.parentElement.parentElement.remove();
-    card.removeComment(value, date);
-  }
-}
+/* harmony import */ var _addColumn__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addColumn */ "./src/js/modules/column/addColumn.js");
+/* harmony import */ var _removeColumn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./removeColumn */ "./src/js/modules/column/removeColumn.js");
+/* harmony import */ var _addCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./addCard */ "./src/js/modules/column/addCard.js");
 
-/* harmony default export */ __webpack_exports__["default"] = (removeComment);
+
+
+
+var columnListener = function columnListener() {
+  Object(_addColumn__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  Object(_removeColumn__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  Object(_addCard__WEBPACK_IMPORTED_MODULE_2__["default"])();
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (columnListener);
 
 /***/ }),
 
-/***/ "./src/js/modules/cardModal/toggleChecklistTask.js":
-/*!*********************************************************!*\
-  !*** ./src/js/modules/cardModal/toggleChecklistTask.js ***!
-  \*********************************************************/
+/***/ "./src/js/modules/column/removeColumn.js":
+/*!***********************************************!*\
+  !*** ./src/js/modules/column/removeColumn.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _progressBar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./progressBar */ "./src/js/modules/cardModal/progressBar.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
 
 
-function toggleChecklistTask(target, card, modal) {
-  if (target.hasAttribute("data-check")) {
-    var id = target.closest("[data-check-id]").getAttribute("data-check-id");
-    var value = target.parentElement.textContent;
-    card.changeChecklistTask(id, value.trim());
 
-    if (target.hasAttribute("checked")) {
-      target.removeAttribute("checked");
+var removeColumn = function removeColumn() {
+  var main = document.querySelector('.main');
+  main.addEventListener('click', function (e) {
+    if (e.target.hasAttribute('data-delete-column')) {
+      var idColumn = e.target.closest("[data-column-id]").getAttribute("data-column-id");
+      var idBoard = document.querySelector('.board-current').getAttribute('data-board-id');
+      e.target.parentElement.parentElement.remove();
+      _index__WEBPACK_IMPORTED_MODULE_1__["activeBoard"][0].removeColumn(idColumn);
+      var path = _index__WEBPACK_IMPORTED_MODULE_1__["activeBoard"][0].getPath(idColumn);
+      console.log(path);
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_0__["deleteData"])(_index__WEBPACK_IMPORTED_MODULE_1__["link"], path);
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (removeColumn);
+
+/***/ }),
+
+/***/ "./src/js/modules/idGenerate.js":
+/*!**************************************!*\
+  !*** ./src/js/modules/idGenerate.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var idGenerate = function idGenerate() {
+  var id = String(Math.random()).split('').map(function (i) {
+    if (i == '.') {
+      return '_';
     } else {
-      target.setAttribute("checked", "true");
+      return String.fromCharCode(+i + 66);
+    }
+  }).join('');
+  return id;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (idGenerate);
+
+/***/ }),
+
+/***/ "./src/js/modules/loadResourses.js":
+/*!*****************************************!*\
+  !*** ./src/js/modules/loadResourses.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
+/* harmony import */ var _Classes_Board__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Classes/Board */ "./src/js/modules/Classes/Board.js");
+/* harmony import */ var _welcomeModal_welcomeModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./welcomeModal/welcomeModal */ "./src/js/modules/welcomeModal/welcomeModal.js");
+
+
+
+
+
+var loadResourses = function loadResourses(link) {
+  var idLastActive = localStorage.getItem('activeBoardID');
+  Object(_services_services__WEBPACK_IMPORTED_MODULE_0__["getData"])(link).then(function (data) {
+    if (!data) {
+      return Object(_welcomeModal_welcomeModal__WEBPACK_IMPORTED_MODULE_3__["default"])();
     }
 
-    Object(_progressBar__WEBPACK_IMPORTED_MODULE_0__["default"])(modal);
-  }
-}
+    for (var key in data) {
+      var _data$key = data[key],
+          id = _data$key.id,
+          title = _data$key.title,
+          columns = _data$key.columns;
+      var boardList = document.querySelector('.board-list-items');
+      var boardElem = document.createElement('div');
+      boardElem.classList.add("board-item");
+      boardElem.setAttribute("data-board-id", id);
+      boardElem.innerHTML = "\n          <p data-board-title>".concat(title, "</p>\n            <button data-delete-board>\u0423\u0434\u0430\u043B\u0438\u0442\u044C</button>\n          ");
+      boardList.prepend(boardElem);
+      var board = new _Classes_Board__WEBPACK_IMPORTED_MODULE_2__["default"](id, title, columns);
+      board.init();
 
-/* harmony default export */ __webpack_exports__["default"] = (toggleChecklistTask);
+      if (id === idLastActive) {
+        board.render();
+        _index__WEBPACK_IMPORTED_MODULE_1__["activeBoard"].push(board);
+      }
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (loadResourses);
 
 /***/ }),
 
@@ -2012,6 +2377,11 @@ function toggleChecklistTask(target, card, modal) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
+
+
+
 var changeBg = function changeBg(target, card, place) {
   if (target.hasAttribute('data-card-bg')) {
     if (place.parentElement.querySelector('.modal-bg-popup')) {
@@ -2026,8 +2396,10 @@ var changeBg = function changeBg(target, card, place) {
     bgComponent.classList.add("modal-bg-popup", modifyClass);
     bgComponent.innerHTML = "\n      <p>\u0426\u0432\u0435\u0442\u0430</p>\n      <div class=\"modal-bg-color\">\n        <span data-bg=\"red\"></span>\n        <span data-bg=\"blue\"></span>\n        <span data-bg=\"green\"></span>\n        <span data-bg=\"yellow\"></span>\n        <span data-bg=\"darkred\"></span>\n        <span data-bg=\"darkgreen\"></span>\n        <span data-bg=\"darkblue\"></span>\n        <span data-bg=\"darkgrey\"></span>\n      </div>\n      <button data-delete-bg>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043E\u0431\u043B\u043E\u0436\u043A\u0443</button>\n    ";
     bgComponent.addEventListener('click', function (e) {
+      var color;
+
       if (e.target.hasAttribute('data-bg')) {
-        var color = getComputedStyle(e.target).backgroundColor;
+        color = getComputedStyle(e.target).backgroundColor;
         columnBg.classList.add("column-item__bg");
         columnBg.style.backgroundColor = color;
         card.setBackground(color);
@@ -2044,6 +2416,7 @@ var changeBg = function changeBg(target, card, place) {
       if (e.target.hasAttribute('data-delete-bg')) {
         columnBg.classList.remove("column-item__bg");
         columnBg.style.backgroundColor = 'transparent';
+        color = null;
         card.setBackground(null);
 
         if (modalBg) {
@@ -2058,6 +2431,9 @@ var changeBg = function changeBg(target, card, place) {
       }
 
       bgComponent.remove();
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_0__["patchReq"])(_index__WEBPACK_IMPORTED_MODULE_1__["link"], {
+        background: color
+      }, card.getPath());
     });
     place.append(bgComponent);
   }
@@ -2077,24 +2453,30 @@ var changeBg = function changeBg(target, card, place) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
+
+
 
 
 function changeDesc(target, card, place) {
   if (target.hasAttribute('data-card-desc')) {
     place.style.display = 'none';
+    var placeholder = card.desc ? card.desc : 'Добавить описание';
+    var className = "input-add__" + (place === target ? "modal" : "menu");
+    var text = card.desc ? card.desc : '';
+    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(place, placeholder, className, text, function (value) {
+      value = value.trim();
 
-    var callback = function callback(value) {
       if (place === target) {
         target.textContent = value;
       }
 
       card.addDesc(value);
-    };
-
-    var placeholder = card.desc ? card.desc : 'Добавить описание';
-    var className = "input-add__" + (place === target ? "modal" : "menu");
-    var text = card.desc ? card.desc : '';
-    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(place, placeholder, callback, className, text);
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_2__["patchReq"])(_index__WEBPACK_IMPORTED_MODULE_1__["link"], {
+        desc: value
+      }, card.getPath());
+    });
   }
 }
 
@@ -2112,26 +2494,34 @@ function changeDesc(target, card, place) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _addInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../addInput */ "./src/js/modules/addInput.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
+
+
 
 
 var changeTitle = function changeTitle(target, card, place) {
   if (target.hasAttribute('data-card-title')) {
-    var callback = function callback(value) {
-      card.domElement.querySelector('[data-column-card-title]').textContent = value;
+    place.style.display = 'none';
+    var className = "input-add__" + (target.closest('.modal') ? "modal" : "menu");
+    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(place, card.title, className, card.title, function (value) {
+      value = value.trim();
+      card.domElement.querySelector("[data-column-card-title]").textContent = value;
       card.setTitle(value);
 
       if (target === place) {
         target.textContent = value;
       } else {
         var parent = place.parentElement;
-        parent.textContent = '';
+        parent.textContent = "";
         parent.append(card.domElement.cloneNode(true));
       }
-    };
 
-    place.style.display = 'none';
-    var className = "input-add__" + (target.closest('.modal') ? "modal" : "menu");
-    Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(place, card.title, callback, className, card.title);
+      var body = {
+        title: value
+      };
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_1__["patchReq"])(_index__WEBPACK_IMPORTED_MODULE_2__["link"], body, card.getPath());
+    });
   }
 };
 
@@ -2168,24 +2558,18 @@ var closeModal = function closeModal(event, modalWindow) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
-/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
-
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
 
 
 var openModal = function openModal(className, func, notContains) {
   var main = document.querySelector(".main");
   main.addEventListener("click", function (e) {
-    if (e.target.classList.contains(className) || e.target.parentElement.classList.contains(className) && !e.target.classList.contains(notContains)) {
-      // try{
+    if (!document.querySelector('.modal-menu') && (e.target.classList.contains(className) || e.target.parentElement.classList.contains(className) && !e.target.classList.contains(notContains))) {
       var idColumn = e.target.closest("[data-column-id]").getAttribute("data-column-id");
       var idCard = e.target.closest("[data-card-id]").getAttribute("data-card-id");
-      var card = _index__WEBPACK_IMPORTED_MODULE_1__["store"][idColumn].cards.filter(function (card) {
-        return card.id == idCard;
-      });
-      var modal = func.apply(void 0, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(card));
-      main.append(modal); // } catch(e){}
+      var card = _index__WEBPACK_IMPORTED_MODULE_0__["activeBoard"][0].columns[idColumn].cards[idCard];
+      var modal = func(card);
+      main.append(modal);
     }
   });
 };
@@ -2194,25 +2578,36 @@ var openModal = function openModal(className, func, notContains) {
 
 /***/ }),
 
-/***/ "./src/js/modules/removeColumn.js":
-/*!****************************************!*\
-  !*** ./src/js/modules/removeColumn.js ***!
-  \****************************************/
+/***/ "./src/js/modules/welcomeModal/welcomeModal.js":
+/*!*****************************************************!*\
+  !*** ./src/js/modules/welcomeModal/welcomeModal.js ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var removeColumn = function removeColumn() {
-  var main = document.querySelector('.main');
-  main.addEventListener('click', function (e) {
-    if (e.target.hasAttribute('data-delete')) {
-      e.target.parentElement.parentElement.remove();
+var welcomeModal = function welcomeModal() {
+  var modal = document.createElement('div');
+  modal.classList.add('modal');
+  modal.innerHTML = "\n    <div class=\"modal-welcome\">\n      <img\n      src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trello-logo-blue.svg/1200px-Trello-logo-blue.svg.png\"\n      alt=\"Trello\"/>\n      <p>\u0414\u043E\u0431\u0440\u043E \u043F\u043E\u0436\u0430\u043B\u043E\u0432\u0430\u0442\u044C \u0432 \u0443\u043F\u0440\u043E\u0449\u0435\u043D\u043D\u0443\u044E \u0432\u0435\u0440\u0441\u0438\u044E \u043F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u044F Trello!</p>\n      <p>\u0416\u0435\u043B\u0430\u0435\u0442\u0435 \u0441\u043E\u0437\u0434\u0430\u0442\u044C \u043D\u043E\u0432\u0443\u044E \u0434\u043E\u0441\u043A\u0443, \u0438\u043B\u0438 \u043D\u0430\u0447\u043D\u0435\u0442\u0435 \u043F\u0440\u0438\u043C\u0435\u0440\u0430 ?</p>\n      <div class=\"btn-group\"\">\n        <button>\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u043D\u043E\u0432\u0443\u044E \u0434\u043E\u0441\u043A\u0443</button>\n        <button>\u041D\u0430\u0447\u0430\u0442\u044C \u0441 \u043F\u0440\u0438\u043C\u0435\u0440\u0430</button>\n      </div>\n    </div>\n  ";
+  modal.addEventListener('click', function (e) {
+    if (e.target.textContent === 'Создать новую доску') {
+      modal.remove();
+      document.querySelector('.board-list').click();
+      var add = document.querySelector('.board-add');
+      add.click();
+    }
+
+    if (e.target.textContent === "Начать с примера") {
+      document.querySelector(".new__column").style.display = "";
+      modal.remove();
     }
   });
+  document.querySelector('.main').append(modal);
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (removeColumn);
+/* harmony default export */ __webpack_exports__["default"] = (welcomeModal);
 
 /***/ }),
 
@@ -2220,15 +2615,14 @@ var removeColumn = function removeColumn() {
 /*!*************************************!*\
   !*** ./src/js/services/services.js ***!
   \*************************************/
-/*! exports provided: postData, getData, deletData, putData */
+/*! exports provided: getData, patchReq, deleteData */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postData", function() { return postData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getData", function() { return getData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletData", function() { return deletData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "putData", function() { return putData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchReq", function() { return patchReq; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteData", function() { return deleteData; });
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -2238,32 +2632,45 @@ __webpack_require__.r(__webpack_exports__);
 
 var getData = /*#__PURE__*/function () {
   var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee(link) {
-    var data;
+    var _len,
+        path,
+        _key,
+        data,
+        _args = arguments;
+
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            for (_len = _args.length, path = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+              path[_key - 1] = _args[_key];
+            }
+
+            path = path.map(function (id) {
+              return "/".concat(id);
+            }).join("");
+            link = link.replace(/\.json/, "".concat(path, ".json"));
+            _context.next = 5;
             return fetch(link);
 
-          case 2:
+          case 5:
             data = _context.sent;
 
             if (data.ok) {
-              _context.next = 5;
+              _context.next = 8;
               break;
             }
 
             throw new Error("Could not fetch ".concat(link, ", status: ").concat(data.status));
 
-          case 5:
-            _context.next = 7;
+          case 8:
+            _context.next = 10;
             return data.json();
 
-          case 7:
+          case 10:
             return _context.abrupt("return", _context.sent);
 
-          case 8:
+          case 11:
           case "end":
             return _context.stop();
         }
@@ -2276,22 +2683,36 @@ var getData = /*#__PURE__*/function () {
   };
 }();
 
-var postData = /*#__PURE__*/function () {
-  var _ref2 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2(link, data) {
+var patchReq = /*#__PURE__*/function () {
+  var _ref2 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee2(link, body) {
+    var _len2,
+        path,
+        _key2,
+        _args2 = arguments;
+
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
+            for (_len2 = _args2.length, path = new Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+              path[_key2 - 2] = _args2[_key2];
+            }
+
+            path = path.map(function (id) {
+              return "/".concat(id);
+            }).join('');
+            link = link.replace(/\.json/, "".concat(path, ".json"));
+            console.log(link);
+            _context2.next = 6;
             return fetch(link, {
-              method: "POST",
+              method: "PATCH",
               headers: {
                 "Content-type": "application/json"
               },
-              body: JSON.stringify(data)
+              body: JSON.stringify(body)
             });
 
-          case 2:
+          case 6:
           case "end":
             return _context2.stop();
         }
@@ -2299,32 +2720,44 @@ var postData = /*#__PURE__*/function () {
     }, _callee2);
   }));
 
-  return function postData(_x2, _x3) {
+  return function patchReq(_x2, _x3) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-var deletData = /*#__PURE__*/function () {
-  var _ref3 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee3(link, id) {
-    var res;
+var deleteData = /*#__PURE__*/function () {
+  var _ref3 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee3(link) {
+    var _len3,
+        path,
+        _key3,
+        res,
+        _args3 = arguments;
+
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            link = link.replace(/\.json/, "/".concat(id, ".json"));
-            _context3.next = 3;
+            for (_len3 = _args3.length, path = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+              path[_key3 - 1] = _args3[_key3];
+            }
+
+            path = path.map(function (id) {
+              return "/".concat(id);
+            }).join("");
+            link = link.replace(/\.json/, "/".concat(path, ".json"));
+            _context3.next = 5;
             return fetch(link, {
               method: "DELETE"
             });
 
-          case 3:
+          case 5:
             res = _context3.sent;
 
             if (res.ok) {
               console.log("Task is delete");
             }
 
-          case 5:
+          case 7:
           case "end":
             return _context3.stop();
         }
@@ -2332,48 +2765,10 @@ var deletData = /*#__PURE__*/function () {
     }, _callee3);
   }));
 
-  return function deletData(_x4, _x5) {
+  return function deleteData(_x4) {
     return _ref3.apply(this, arguments);
   };
 }();
-
-var putData = /*#__PURE__*/function () {
-  var _ref4 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee4(link, id, data) {
-    var res;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee4$(_context4) {
-      while (1) {
-        switch (_context4.prev = _context4.next) {
-          case 0:
-            link = link.replace(/\.json/, "/".concat(id, ".json"));
-            _context4.next = 3;
-            return fetch(link, {
-              method: "PATCH",
-              headers: {
-                "Content-type": "application/json"
-              },
-              body: JSON.stringify(data)
-            });
-
-          case 3:
-            res = _context4.sent;
-
-            if (res.ok) {
-              console.log("Task is change");
-            }
-
-          case 5:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, _callee4);
-  }));
-
-  return function putData(_x6, _x7, _x8) {
-    return _ref4.apply(this, arguments);
-  };
-}();
-
 
 
 

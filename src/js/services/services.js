@@ -1,4 +1,7 @@
-const getData = async (link) => {
+const getData = async (link, ...path) => {
+  path = path.map((id) => `/${id}`).join("");
+  link = link.replace(/\.json/, `${path}.json`);
+
   let data = await fetch(link);
   if (!data.ok) {
     throw new Error(`Could not fetch ${link}, status: ${data.status}`);
@@ -7,35 +10,27 @@ const getData = async (link) => {
   return await data.json();
 };
 
-const postData = async (link, data) => {
+const patchReq = async (link, body, ...path) => {
+  path = path.map(id => `/${id}`).join('')
+  link = link.replace(/\.json/, `${path}.json`);
+  console.log(link);
   await fetch(link, {
-    method: "POST",
+    method: "PATCH",
     headers: { "Content-type": "application/json" },
-    body: JSON.stringify(data),
+    body: JSON.stringify(body),
   });
-};
+}
 
-const deletData = async (link, id) => {
-  link = link.replace(/\.json/, `/${id}.json`);
+const deleteData = async (link, ...path) => {
+  path = path.map((id) => `/${id}`).join("");
+  link = link.replace(/\.json/, `/${path}.json`);
+
   const res = await fetch(link, { method: "DELETE" });
   if (res.ok) {
     console.log("Task is delete");
   }
 };
 
-const putData = async (link, id, data) => {
-  link = link.replace(/\.json/, `/${id}.json`);
-  const res = await fetch(link, {
-    method: "PATCH",
-    headers: { "Content-type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (res.ok) {
-    console.log("Task is change");
-  }
-};
-
-export { postData };
 export { getData };
-export { deletData };
-export { putData };
+export { patchReq };
+export { deleteData };

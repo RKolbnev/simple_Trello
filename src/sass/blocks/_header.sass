@@ -22,6 +22,8 @@
     font-size: 1.7em
     color: $b
     background-color: $f
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 .board
   &-list
     cursor: pointer
@@ -34,26 +36,41 @@
       position: absolute
       right: 1%
       top: 8%
-      width: 15vw
-      padding: 0.2em 1em
+      width: 20vw
+      padding: 0.2em 0.5em
       color: $f
       border-radius: 0.5em
       background-color: $a
+  &-item
+    cursor: pointer
+    display: flex
+    justify-content: space-between
+    padding: 0.5em
+    margin: 0.5em 0
+    background: rgba(255, 255, 255, 0.05)
+    border-radius: 0.5em
+    transition: 0.3s
+    &:hover
+      background: rgba(255, 255, 255, 0.2)
       & p
-        cursor: pointer
-        padding: 0.5em
-        margin: 0.5em 0
-        background: rgba(255, 255, 255, 0.05)
-        border-radius: 0.5em
-        transition: 0.3s
-        &:hover
-          background: rgba(255, 255, 255, 0.2)
+        text-decoration: underline
+    & p
+      margin: 0
+    & button
+      padding: 0.2em 0.5em
+      color: $a
+      background-color: $c
+      transition: 0.3s
+      &:hover
+        color: darken($a, 10%)
+        background-color: $d
   &-add
     width: -webkit-fill-available
     padding: 0.5em
-    margin: 0.5em
+    margin: 0.25em
     opacity: 0.5
     background-color: transparent
+    font-size: 1em
     color: $f
     transition: 0.3s
     &:hover

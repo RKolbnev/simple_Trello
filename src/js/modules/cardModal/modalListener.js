@@ -2,14 +2,14 @@ import closeModal from '../modal/closeModal';
 import changeTitle from '../modal/changeTitle';
 import changeDesc from '../modal/changeDesc';
 import changeBg from '../modal/changeBg';
-import addComment from './addComment';
-import removeComment from './removeComment';
-import addChecklist from './addChecklist';
-import removeChecklist from './removeChecklist';
-import changeChecklistTitle from './changeChecklistTitle';
-import addChecklistTask from './addChecklistTask';
-import removeChecklistTask from './removeChecklistTask';
-import toggleChecklistTask from './toggleChecklistTask';
+import addComment from './comments/addComment';
+import removeComment from './comments/removeComment';
+import addChecklist from './checklist/addChecklist';
+import removeChecklist from './checklist/removeChecklist';
+import changeChecklistTitle from './checklist/changeChecklistTitle';
+import addChecklistTask from './checklist/addChecklistTask';
+import removeChecklistTask from './checklist/removeChecklistTask';
+import toggleChecklistTask from './checklist/toggleChecklistTask';
 
 const modalListener = (modal, card) => {
   modal.addEventListener('click', (e) => {

@@ -1,3 +1,6 @@
+import {patchReq} from '../../services/services';
+import {link} from '../../index';
+
 const changeBg = (target, card, place) => {
   if (target.hasAttribute('data-card-bg')) {
     if (place.parentElement.querySelector('.modal-bg-popup')) {
@@ -26,8 +29,10 @@ const changeBg = (target, card, place) => {
     `;
 
     bgComponent.addEventListener('click', (e) => {
+      let color;
+
       if (e.target.hasAttribute('data-bg')) {
-        const color = getComputedStyle(e.target).backgroundColor;
+        color = getComputedStyle(e.target).backgroundColor;
         columnBg.classList.add("column-item__bg");
         columnBg.style.backgroundColor = color;
         card.setBackground(color);
@@ -37,11 +42,13 @@ const changeBg = (target, card, place) => {
           }
           modalBg.style.backgroundColor = color;
         }
+
       }
 
       if (e.target.hasAttribute('data-delete-bg')) {
         columnBg.classList.remove("column-item__bg");
         columnBg.style.backgroundColor = 'transparent';
+        color = null;
         card.setBackground(null);
         if (modalBg) {
           modalBg.classList.remove("modal__bg");
@@ -53,6 +60,7 @@ const changeBg = (target, card, place) => {
         place.prepend(card.domElement.cloneNode(true));
       }
       bgComponent.remove();
+      patchReq(link, {background: color}, card.getPath());
     })
     place.append(bgComponent);
   }

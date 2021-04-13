@@ -1,18 +1,23 @@
 import addInput from "../addInput";
+import {link} from '../../index';
+import {patchReq} from '../../services/services';
 
 function changeDesc(target, card, place) {
   if (target.hasAttribute('data-card-desc')) {
     place.style.display = 'none';
-    const callback = (value) => {
+
+    let placeholder = card.desc ? card.desc : 'Добавить описание';
+    let className = "input-add__" + (place === target ? "modal" : "menu");
+    let text = card.desc ? card.desc : '';
+
+    addInput(place, placeholder, className, text, (value) => {
+      value = value.trim();
       if (place === target) {
         target.textContent = value;
       }
       card.addDesc(value);
-    }
-    let placeholder = card.desc ? card.desc : 'Добавить описание';
-    let className = "input-add__" + (place === target ? "modal" : "menu");
-    let text = card.desc ? card.desc : '';
-    addInput(place, placeholder, callback, className, text);
+      patchReq(link, {desc: value}, card.getPath())
+    });
   }
 }
 

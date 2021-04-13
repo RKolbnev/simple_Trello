@@ -1,5 +1,5 @@
 import modalListener from "./modalListener";
-import createChecklist from "./createChecklist";
+import createChecklist from "./checklist/createChecklist";
 import progressBar from "./progressBar";
 
 function createModal(card) {
@@ -62,16 +62,18 @@ function createModal(card) {
 }
 
 function addComments(card, modal) {
-  if (card.comments.length > 0) {
+  if (card.comments) {
     const wrap = modal.querySelector(".comments-wrapper");
-    for (let i of card.comments) {
+    for (let i in card.comments) {
+      const comment = card.comments[i];
       const div = document.createElement("div");
+      div.setAttribute('data-comment-id', comment.id);
       div.innerHTML = `
       <div>
-        <p>${i.value}</p>
+        <p>${comment.value}</p>
         <span data-delete-comment>&times;</span>
       </div>
-      <span>${i.date}</span>
+      <span>${comment.date}</span>
       `;
       wrap.prepend(div);
     }
@@ -79,25 +81,28 @@ function addComments(card, modal) {
 }
 
 function addChecklist(card, modal) {
-  if (card.checklists.length > 0) {
-    card.checklists.forEach((list) => {
-      const checklist = createChecklist(list.id, list.title);
+  if (card.checklists) {
+    for (let key in card.checklists) {
+      const item = card.checklists[key];
+      const checklist = createChecklist(item.id, item.title);
       modal.querySelector(".desc").after(checklist);
-      list.tasks.forEach((item) => {
+      for (let key in item.tasks) {
+        const tasksItem = item.tasks[key];
         const wrap = modal.querySelector(".checklist div");
-        const attr = item.status ? "checked" : "";
+        const attr = tasksItem.status ? "checked" : "";
         const task = document.createElement("li");
         task.classList.add("checklist-item");
+        task.setAttribute('data-task-id', tasksItem.id)
         task.innerHTML = `
           <label>
             <input type="checkbox" ${attr} data-check>
-            ${item.value}
+            ${tasksItem.value}
           </label>
           <span data-delete-task>&times;</span>
         `;
         wrap.append(task);
-      });
-    });
+      }
+    }
     progressBar(modal);
   }
 }
