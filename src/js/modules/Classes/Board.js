@@ -37,7 +37,11 @@ class Board {
       document.querySelectorAll('[data-column-id]').forEach(item => item.remove())
     } catch(e) {}
     const currentBoard = document.querySelector('.board-current');
-    currentBoard.textContent = this.title;
+    let text = this.title;
+    if (text.length > 15) {
+      text = text.substring(0, 16) + '...';
+    }
+    currentBoard.textContent = text;
     currentBoard.setAttribute('data-board-id', this.id);
     for (let key in this.columns) {
       this.columns[key].render();

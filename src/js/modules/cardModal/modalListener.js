@@ -2,6 +2,7 @@ import closeModal from '../modal/closeModal';
 import changeTitle from '../modal/changeTitle';
 import changeDesc from '../modal/changeDesc';
 import changeBg from '../modal/changeBg';
+import removeCard from '../modal/removeCard';
 import addComment from './comments/addComment';
 import removeComment from './comments/removeComment';
 import addChecklist from './checklist/addChecklist';
@@ -14,6 +15,7 @@ import toggleChecklistTask from './checklist/toggleChecklistTask';
 const modalListener = (modal, card) => {
   modal.addEventListener('click', (e) => {
 
+    removeCard(e.target, modal, card);
     closeModal(e, modal);
     changeTitle(e.target, card, e.target);
     changeDesc(e.target, card, e.target);

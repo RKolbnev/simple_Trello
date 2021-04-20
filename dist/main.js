@@ -86,6 +86,46 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayLikeToArray.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+
+module.exports = _arrayWithoutHoles;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
@@ -176,6 +216,117 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 module.exports = _createClass;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableSpread;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
 module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
@@ -965,23 +1116,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_cardModal_createModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/cardModal/createModal */ "./src/js/modules/cardModal/createModal.js");
 /* harmony import */ var _modules_cardMenu_createMenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/cardMenu/createMenu */ "./src/js/modules/cardMenu/createMenu.js");
 /* harmony import */ var _modules_loadResourses__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/loadResourses */ "./src/js/modules/loadResourses.js");
-/* harmony import */ var _modules_board_boardListener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/board/boardListener */ "./src/js/modules/board/boardListener.js");
-/* harmony import */ var _modules_column_columnListener__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/column/columnListener */ "./src/js/modules/column/columnListener.js");
-/* harmony import */ var _modules_modal_openModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/modal/openModal */ "./src/js/modules/modal/openModal.js");
+/* harmony import */ var _modules_allClose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/allClose */ "./src/js/modules/allClose.js");
+/* harmony import */ var _modules_board_boardListener__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/board/boardListener */ "./src/js/modules/board/boardListener.js");
+/* harmony import */ var _modules_column_columnListener__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/column/columnListener */ "./src/js/modules/column/columnListener.js");
+/* harmony import */ var _modules_modal_openModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/modal/openModal */ "./src/js/modules/modal/openModal.js");
+/* harmony import */ var _modules_search__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/search */ "./src/js/modules/search.js");
 
 
 
 
 
 
-var link = "http://simple-trello-a0138-default-rtdb.firebaseio.com/trello.json";
+
+
+var link = "http://simpletrello-88eaf-default-rtdb.firebaseio.com/trello.json";
 var activeBoard = [];
 Object(_modules_loadResourses__WEBPACK_IMPORTED_MODULE_2__["default"])(link);
 window.addEventListener("DOMContentLoaded", function () {
-  Object(_modules_board_boardListener__WEBPACK_IMPORTED_MODULE_3__["default"])(link);
-  Object(_modules_column_columnListener__WEBPACK_IMPORTED_MODULE_4__["default"])();
-  Object(_modules_modal_openModal__WEBPACK_IMPORTED_MODULE_5__["default"])("column-item-content", _modules_cardModal_createModal__WEBPACK_IMPORTED_MODULE_0__["default"], "column-item-menu");
-  Object(_modules_modal_openModal__WEBPACK_IMPORTED_MODULE_5__["default"])("column-item-menu", _modules_cardMenu_createMenu__WEBPACK_IMPORTED_MODULE_1__["default"], "column-item-content");
+  Object(_modules_allClose__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  Object(_modules_board_boardListener__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  Object(_modules_column_columnListener__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  Object(_modules_search__WEBPACK_IMPORTED_MODULE_7__["default"])();
+  Object(_modules_modal_openModal__WEBPACK_IMPORTED_MODULE_6__["default"])("column-item-content", _modules_cardModal_createModal__WEBPACK_IMPORTED_MODULE_0__["default"], "column-item-menu");
+  Object(_modules_modal_openModal__WEBPACK_IMPORTED_MODULE_6__["default"])("column-item-menu", _modules_cardMenu_createMenu__WEBPACK_IMPORTED_MODULE_1__["default"], "column-item-content");
 });
 
 
@@ -1062,7 +1219,13 @@ var Board = /*#__PURE__*/function () {
       } catch (e) {}
 
       var currentBoard = document.querySelector('.board-current');
-      currentBoard.textContent = this.title;
+      var text = this.title;
+
+      if (text.length > 15) {
+        text = text.substring(0, 16) + '...';
+      }
+
+      currentBoard.textContent = text;
       currentBoard.setAttribute('data-board-id', this.id);
 
       for (var key in this.columns) {
@@ -1375,6 +1538,35 @@ var addInput = function addInput(element, placeholder, className, inputText, cal
 
 /***/ }),
 
+/***/ "./src/js/modules/allClose.js":
+/*!************************************!*\
+  !*** ./src/js/modules/allClose.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var allClose = function allClose() {
+  var main = document.querySelector('.main');
+  main.addEventListener('click', function (e) {
+    if (e.target === main) {
+      try {
+        document.querySelectorAll('.input-btn .btn')[1].click();
+      } catch (e) {}
+
+      document.querySelector('.board-list-items').classList.add('hide');
+      var res = document.querySelector('.search-results');
+      res.classList.add('hide');
+      res.textContent = '';
+    }
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (allClose);
+
+/***/ }),
+
 /***/ "./src/js/modules/board/addBoard.js":
 /*!******************************************!*\
   !*** ./src/js/modules/board/addBoard.js ***!
@@ -1400,7 +1592,6 @@ var addBoard = function addBoard() {
   btn.addEventListener('click', function () {
     btn.style.display = 'none';
     Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(btn, 'Введите название доски', 'input-add__board', false, function (value) {
-      value = value.trim();
       var board = document.createElement('div');
       board.classList.add("board-item");
       var id = Object(_idGenerate__WEBPACK_IMPORTED_MODULE_1__["default"])();
@@ -1473,6 +1664,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
 /* harmony import */ var _Classes_Board__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Classes/Board */ "./src/js/modules/Classes/Board.js");
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
+/* harmony import */ var _preloader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../preloader */ "./src/js/modules/preloader.js");
+
 
 
 
@@ -1482,15 +1675,14 @@ var chooseBoard = function chooseBoard() {
   header.addEventListener('click', function (e) {
     if (e.target.hasAttribute("data-board-title") || e.target.hasAttribute("data-board-id") && e.target.closest('.board-list-items')) {
       var newCurrentBoard = e.target.closest("[data-board-id]");
-      var currentBoard = header.querySelector(".board-current");
-      currentBoard.textContent = newCurrentBoard.children[0].textContent;
       var id = newCurrentBoard.getAttribute("data-board-id");
-      currentBoard.setAttribute("data-board-id", id);
       localStorage.setItem("activeBoardID", id);
+      var load = Object(_preloader__WEBPACK_IMPORTED_MODULE_3__["default"])(".main", "modal");
       Object(_services_services__WEBPACK_IMPORTED_MODULE_0__["getData"])(_index__WEBPACK_IMPORTED_MODULE_2__["link"], id).then(function (_ref) {
         var id = _ref.id,
             title = _ref.title,
             columns = _ref.columns;
+        load.remove();
         var board = new _Classes_Board__WEBPACK_IMPORTED_MODULE_1__["default"](id, title, columns);
         board.init();
         board.render();
@@ -1551,7 +1743,7 @@ var removeBoard = function removeBoard() {
             _index__WEBPACK_IMPORTED_MODULE_2__["activeBoard"].splice(0, 1, board);
           });
         } catch (e) {
-          currentBoard.textContent = 'Создайте первую доску';
+          currentBoard.textContent = 'Создать доску';
           localStorage.removeItem("activeBoardID");
           document.querySelectorAll('[data-column-id]').forEach(function (column) {
             return column.remove();
@@ -1610,7 +1802,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal_changeDesc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modal/changeDesc */ "./src/js/modules/modal/changeDesc.js");
 /* harmony import */ var _modal_changeTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modal/changeTitle */ "./src/js/modules/modal/changeTitle.js");
 /* harmony import */ var _modal_changeBg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modal/changeBg */ "./src/js/modules/modal/changeBg.js");
-/* harmony import */ var _removeCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./removeCard */ "./src/js/modules/cardMenu/removeCard.js");
+/* harmony import */ var _modal_removeCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modal/removeCard */ "./src/js/modules/modal/removeCard.js");
 /* harmony import */ var _openCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./openCard */ "./src/js/modules/cardMenu/openCard.js");
 
 
@@ -1626,7 +1818,7 @@ var menuListener = function menuListener(modal, card) {
     Object(_modal_changeTitle__WEBPACK_IMPORTED_MODULE_2__["default"])(e.target, card, place);
     Object(_modal_changeDesc__WEBPACK_IMPORTED_MODULE_1__["default"])(e.target, card, place);
     Object(_modal_changeBg__WEBPACK_IMPORTED_MODULE_3__["default"])(e.target, card, place);
-    Object(_removeCard__WEBPACK_IMPORTED_MODULE_4__["default"])(e.target, modal, card);
+    Object(_modal_removeCard__WEBPACK_IMPORTED_MODULE_4__["default"])(e.target, modal, card);
     Object(_openCard__WEBPACK_IMPORTED_MODULE_5__["default"])(e.target, modal, card);
   });
 };
@@ -1652,27 +1844,6 @@ function openCard(target, modal, card) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (openCard);
-
-/***/ }),
-
-/***/ "./src/js/modules/cardMenu/removeCard.js":
-/*!***********************************************!*\
-  !*** ./src/js/modules/cardMenu/removeCard.js ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function removeCard(target, modal, card) {
-  if (target.textContent === "Удалить карточку") {
-    card.domElement.remove();
-    modal.remove();
-    card.column.removeCard(card.id);
-  }
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (removeCard);
 
 /***/ }),
 
@@ -2010,6 +2181,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modalListener__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modalListener */ "./src/js/modules/cardModal/modalListener.js");
 /* harmony import */ var _checklist_createChecklist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./checklist/createChecklist */ "./src/js/modules/cardModal/checklist/createChecklist.js");
 /* harmony import */ var _progressBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./progressBar */ "./src/js/modules/cardModal/progressBar.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 
 
@@ -2017,7 +2194,7 @@ __webpack_require__.r(__webpack_exports__);
 function createModal(card) {
   var modal = document.createElement("div");
   modal.classList.add("modal");
-  modal.innerHTML = "\n    <div class=\"modal-popup\">\n      <div class=\"modal-close ".concat(card.background ? "modal__bg" : "", "\"\n      style=\"background-color: ").concat(card.background ? card.background : '', ";\">\n        <span data-modal-close>&times;</span>\n      </div>\n      <div class=\"wrapper\">\n        <div class=\"modal-main\">\n\n          <div class=\"title modal__item\">\n            <span class=\"modal-logo\">&#x2712;</span>\n            <div class=\"modal-content\">\n              <p data-card-title>").concat(card.title, "</p>\n            </div>\n          </div>\n\n          <div class=\"desc modal__item\">\n            <span class=\"modal-logo\"> &equiv;</span>\n            <div class=\"modal-content\">\n              <p>\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</p>\n              <p data-card-desc>").concat(card.desc ? card.desc : "Добавить более подробное описание...", "</p>\n            </div>\n          </div>\n\n          <div class=\"comments modal__item\">\n            <span class=\"modal-logo\"> &#x270E;</span>\n            <div class=\"modal-content\">\n              <p>\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0438</p>\n              <p data-modal-comments>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439</p>\n              <div class=\"comments-wrapper\"></div>\n            </div>\n          </div>\n\n        </div>\n\n        <div class=\"modal-add\">\n          <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0430 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n          <div>\n            <button data-modal-checklist>\u0427\u0435\u043A-\u043B\u0438\u0441\u0442</button>\n            <button data-card-bg>\u041E\u0431\u043B\u043E\u0436\u043A\u0430</button>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  ");
+  modal.innerHTML = "\n    <div class=\"modal-popup\">\n      <div class=\"modal-close ".concat(card.background ? "modal__bg" : "", "\"\n      style=\"background-color: ").concat(card.background ? card.background : '', ";\">\n        <span data-modal-close>&times;</span>\n      </div>\n      <div class=\"wrapper\">\n        <div class=\"modal-main\">\n\n          <div class=\"title modal__item\">\n            <span class=\"modal-logo\">&#x2712;</span>\n            <div class=\"modal-content\">\n              <p data-card-title>").concat(card.title, "</p>\n            </div>\n          </div>\n\n          <div class=\"desc modal__item\">\n            <span class=\"modal-logo\"> &equiv;</span>\n            <div class=\"modal-content\">\n              <p>\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435</p>\n              <p data-card-desc>").concat(card.desc ? card.desc : "Добавить более подробное описание...", "</p>\n            </div>\n          </div>\n\n          <div class=\"comments modal__item\">\n            <span class=\"modal-logo\"> &#x270E;</span>\n            <div class=\"modal-content\">\n              <p>\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0438</p>\n              <p data-modal-comments>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439</p>\n              <div class=\"comments-wrapper\"></div>\n            </div>\n          </div>\n\n        </div>\n\n        <div class=\"modal-add\">\n          <p>\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0430 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</p>\n          <div>\n            <button data-modal-checklist>\u0427\u0435\u043A-\u043B\u0438\u0441\u0442</button>\n            <button data-card-bg>\u041E\u0431\u043B\u043E\u0436\u043A\u0430</button>\n            <button data-delete-card>\u0423\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443</button>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  ");
   addComments(card, modal);
   addChecklist(card, modal);
   Object(_modalListener__WEBPACK_IMPORTED_MODULE_0__["default"])(modal, card);
@@ -2027,13 +2204,25 @@ function createModal(card) {
 function addComments(card, modal) {
   if (card.comments) {
     var wrap = modal.querySelector(".comments-wrapper");
+    var sorted = Object.entries(card.comments).sort(function (a, b) {
+      return a[1].date > b[1].date ? 1 : -1;
+    });
 
-    for (var i in card.comments) {
-      var comment = card.comments[i];
-      var div = document.createElement("div");
-      div.setAttribute('data-comment-id', comment.id);
-      div.innerHTML = "\n      <div>\n        <p>".concat(comment.value, "</p>\n        <span data-delete-comment>&times;</span>\n      </div>\n      <span>").concat(comment.date, "</span>\n      ");
-      wrap.prepend(div);
+    var _iterator = _createForOfIteratorHelper(sorted),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var i = _step.value;
+        var div = document.createElement("div");
+        div.setAttribute("data-comment-id", i[1].id);
+        div.innerHTML = "\n      <div>\n        <p>".concat(i[1].value, "</p>\n        <span data-delete-comment>&times;</span>\n      </div>\n      <span>").concat(i[1].date, "</span>\n      ");
+        wrap.prepend(div);
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
     }
   }
 }
@@ -2043,11 +2232,11 @@ function addChecklist(card, modal) {
     for (var key in card.checklists) {
       var item = card.checklists[key];
       var checklist = Object(_checklist_createChecklist__WEBPACK_IMPORTED_MODULE_1__["default"])(item.id, item.title);
-      modal.querySelector(".desc").after(checklist);
+      modal.querySelector(".comments").before(checklist);
 
       for (var _key in item.tasks) {
         var tasksItem = item.tasks[_key];
-        var wrap = modal.querySelector(".checklist div");
+        var wrap = checklist.querySelector(".checklist div");
         var attr = tasksItem.status ? "checked" : "";
         var task = document.createElement("li");
         task.classList.add("checklist-item");
@@ -2078,14 +2267,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal_changeTitle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modal/changeTitle */ "./src/js/modules/modal/changeTitle.js");
 /* harmony import */ var _modal_changeDesc__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modal/changeDesc */ "./src/js/modules/modal/changeDesc.js");
 /* harmony import */ var _modal_changeBg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../modal/changeBg */ "./src/js/modules/modal/changeBg.js");
-/* harmony import */ var _comments_addComment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./comments/addComment */ "./src/js/modules/cardModal/comments/addComment.js");
-/* harmony import */ var _comments_removeComment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./comments/removeComment */ "./src/js/modules/cardModal/comments/removeComment.js");
-/* harmony import */ var _checklist_addChecklist__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./checklist/addChecklist */ "./src/js/modules/cardModal/checklist/addChecklist.js");
-/* harmony import */ var _checklist_removeChecklist__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./checklist/removeChecklist */ "./src/js/modules/cardModal/checklist/removeChecklist.js");
-/* harmony import */ var _checklist_changeChecklistTitle__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./checklist/changeChecklistTitle */ "./src/js/modules/cardModal/checklist/changeChecklistTitle.js");
-/* harmony import */ var _checklist_addChecklistTask__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./checklist/addChecklistTask */ "./src/js/modules/cardModal/checklist/addChecklistTask.js");
-/* harmony import */ var _checklist_removeChecklistTask__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./checklist/removeChecklistTask */ "./src/js/modules/cardModal/checklist/removeChecklistTask.js");
-/* harmony import */ var _checklist_toggleChecklistTask__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./checklist/toggleChecklistTask */ "./src/js/modules/cardModal/checklist/toggleChecklistTask.js");
+/* harmony import */ var _modal_removeCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modal/removeCard */ "./src/js/modules/modal/removeCard.js");
+/* harmony import */ var _comments_addComment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./comments/addComment */ "./src/js/modules/cardModal/comments/addComment.js");
+/* harmony import */ var _comments_removeComment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./comments/removeComment */ "./src/js/modules/cardModal/comments/removeComment.js");
+/* harmony import */ var _checklist_addChecklist__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./checklist/addChecklist */ "./src/js/modules/cardModal/checklist/addChecklist.js");
+/* harmony import */ var _checklist_removeChecklist__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./checklist/removeChecklist */ "./src/js/modules/cardModal/checklist/removeChecklist.js");
+/* harmony import */ var _checklist_changeChecklistTitle__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./checklist/changeChecklistTitle */ "./src/js/modules/cardModal/checklist/changeChecklistTitle.js");
+/* harmony import */ var _checklist_addChecklistTask__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./checklist/addChecklistTask */ "./src/js/modules/cardModal/checklist/addChecklistTask.js");
+/* harmony import */ var _checklist_removeChecklistTask__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./checklist/removeChecklistTask */ "./src/js/modules/cardModal/checklist/removeChecklistTask.js");
+/* harmony import */ var _checklist_toggleChecklistTask__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./checklist/toggleChecklistTask */ "./src/js/modules/cardModal/checklist/toggleChecklistTask.js");
+
 
 
 
@@ -2101,19 +2292,20 @@ __webpack_require__.r(__webpack_exports__);
 
 var modalListener = function modalListener(modal, card) {
   modal.addEventListener('click', function (e) {
+    Object(_modal_removeCard__WEBPACK_IMPORTED_MODULE_4__["default"])(e.target, modal, card);
     Object(_modal_closeModal__WEBPACK_IMPORTED_MODULE_0__["default"])(e, modal);
     Object(_modal_changeTitle__WEBPACK_IMPORTED_MODULE_1__["default"])(e.target, card, e.target);
     Object(_modal_changeDesc__WEBPACK_IMPORTED_MODULE_2__["default"])(e.target, card, e.target);
     Object(_modal_changeBg__WEBPACK_IMPORTED_MODULE_3__["default"])(e.target, card, e.target);
-    Object(_comments_addComment__WEBPACK_IMPORTED_MODULE_4__["default"])(e.target, card);
-    Object(_comments_removeComment__WEBPACK_IMPORTED_MODULE_5__["default"])(e.target, card); // Чек-лист
+    Object(_comments_addComment__WEBPACK_IMPORTED_MODULE_5__["default"])(e.target, card);
+    Object(_comments_removeComment__WEBPACK_IMPORTED_MODULE_6__["default"])(e.target, card); // Чек-лист
 
-    Object(_checklist_addChecklist__WEBPACK_IMPORTED_MODULE_6__["default"])(e.target, modal, card);
-    Object(_checklist_removeChecklist__WEBPACK_IMPORTED_MODULE_7__["default"])(e.target, card);
-    Object(_checklist_changeChecklistTitle__WEBPACK_IMPORTED_MODULE_8__["default"])(e.target, card);
-    Object(_checklist_addChecklistTask__WEBPACK_IMPORTED_MODULE_9__["default"])(e.target, card, modal);
-    Object(_checklist_toggleChecklistTask__WEBPACK_IMPORTED_MODULE_11__["default"])(e.target, card, modal);
-    Object(_checklist_removeChecklistTask__WEBPACK_IMPORTED_MODULE_10__["default"])(e.target, card);
+    Object(_checklist_addChecklist__WEBPACK_IMPORTED_MODULE_7__["default"])(e.target, modal, card);
+    Object(_checklist_removeChecklist__WEBPACK_IMPORTED_MODULE_8__["default"])(e.target, card);
+    Object(_checklist_changeChecklistTitle__WEBPACK_IMPORTED_MODULE_9__["default"])(e.target, card);
+    Object(_checklist_addChecklistTask__WEBPACK_IMPORTED_MODULE_10__["default"])(e.target, card, modal);
+    Object(_checklist_toggleChecklistTask__WEBPACK_IMPORTED_MODULE_12__["default"])(e.target, card, modal);
+    Object(_checklist_removeChecklistTask__WEBPACK_IMPORTED_MODULE_11__["default"])(e.target, card);
   });
 };
 
@@ -2210,6 +2402,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
 /* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
 /* harmony import */ var _idGenerate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../idGenerate */ "./src/js/modules/idGenerate.js");
+/* harmony import */ var _noticeModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../noticeModal */ "./src/js/modules/noticeModal.js");
+
 
 
 
@@ -2218,6 +2412,12 @@ __webpack_require__.r(__webpack_exports__);
 var addColumn = function addColumn() {
   var elem = document.querySelector('.new__column');
   elem.addEventListener('click', function () {
+    var currentBoard = document.querySelector('.board-current');
+
+    if (currentBoard.textContent === 'Создать доску') {
+      return Object(_noticeModal__WEBPACK_IMPORTED_MODULE_4__["default"])();
+    }
+
     Object(_addInput__WEBPACK_IMPORTED_MODULE_0__["default"])(elem, 'Введите заголовок списка', 'input-add__column', false, function (value) {
       var body = {
         id: Object(_idGenerate__WEBPACK_IMPORTED_MODULE_3__["default"])(),
@@ -2278,18 +2478,43 @@ var removeColumn = function removeColumn() {
   var main = document.querySelector('.main');
   main.addEventListener('click', function (e) {
     if (e.target.hasAttribute('data-delete-column')) {
-      var idColumn = e.target.closest("[data-column-id]").getAttribute("data-column-id");
-      var idBoard = document.querySelector('.board-current').getAttribute('data-board-id');
+      var idColumn = e.target.closest("[data-column-id]").getAttribute("data-column-id"); // const idBoard = document
+      //   .querySelector('.board-current')
+      //   .getAttribute('data-board-id');
+
       e.target.parentElement.parentElement.remove();
       _index__WEBPACK_IMPORTED_MODULE_1__["activeBoard"][0].removeColumn(idColumn);
       var path = _index__WEBPACK_IMPORTED_MODULE_1__["activeBoard"][0].getPath(idColumn);
-      console.log(path);
       Object(_services_services__WEBPACK_IMPORTED_MODULE_0__["deleteData"])(_index__WEBPACK_IMPORTED_MODULE_1__["link"], path);
     }
   });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (removeColumn);
+
+/***/ }),
+
+/***/ "./src/js/modules/errorModal.js":
+/*!**************************************!*\
+  !*** ./src/js/modules/errorModal.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var errorModal = function errorModal(word) {
+  var modal = document.createElement("div");
+  modal.classList.add("modal");
+  modal.innerHTML = "\n    <div class=\"modal-error\">\n      <p>\u0412\u043E\u0437\u043D\u0438\u043A\u043B\u0430 \u043E\u0448\u0438\u0431\u043A\u0430! \u0414\u0430\u043D\u043D\u044B\u0435 \u043D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C ".concat(word, "!</p>\n    </div>\n  ");
+  modal.addEventListener('click', function (e) {
+    return modal.remove();
+  });
+  document.querySelector(".main").append(modal);
+  return modal;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (errorModal);
 
 /***/ }),
 
@@ -2330,6 +2555,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
 /* harmony import */ var _Classes_Board__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Classes/Board */ "./src/js/modules/Classes/Board.js");
 /* harmony import */ var _welcomeModal_welcomeModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./welcomeModal/welcomeModal */ "./src/js/modules/welcomeModal/welcomeModal.js");
+/* harmony import */ var _preloader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./preloader */ "./src/js/modules/preloader.js");
+
 
 
 
@@ -2337,7 +2564,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var loadResourses = function loadResourses(link) {
   var idLastActive = localStorage.getItem('activeBoardID');
+  var load = Object(_preloader__WEBPACK_IMPORTED_MODULE_4__["default"])(".main", "modal");
   Object(_services_services__WEBPACK_IMPORTED_MODULE_0__["getData"])(link).then(function (data) {
+    load.remove();
+
     if (!data) {
       return Object(_welcomeModal_welcomeModal__WEBPACK_IMPORTED_MODULE_3__["default"])();
     }
@@ -2351,7 +2581,7 @@ var loadResourses = function loadResourses(link) {
       var boardElem = document.createElement('div');
       boardElem.classList.add("board-item");
       boardElem.setAttribute("data-board-id", id);
-      boardElem.innerHTML = "\n          <p data-board-title>".concat(title, "</p>\n            <button data-delete-board>\u0423\u0434\u0430\u043B\u0438\u0442\u044C</button>\n          ");
+      boardElem.innerHTML = "\n      <p data-board-title>".concat(title, "</p>\n        <button data-delete-board>\u0423\u0434\u0430\u043B\u0438\u0442\u044C</button>\n      ");
       boardList.prepend(boardElem);
       var board = new _Classes_Board__WEBPACK_IMPORTED_MODULE_2__["default"](id, title, columns);
       board.init();
@@ -2578,6 +2808,301 @@ var openModal = function openModal(className, func, notContains) {
 
 /***/ }),
 
+/***/ "./src/js/modules/modal/removeCard.js":
+/*!********************************************!*\
+  !*** ./src/js/modules/modal/removeCard.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../index */ "./src/js/index.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/services */ "./src/js/services/services.js");
+
+
+
+function removeCard(target, modal, card) {
+  if (target.textContent === "Удалить карточку") {
+    card.domElement.remove();
+    modal.remove();
+    card.column.removeCard(card.id);
+    Object(_services_services__WEBPACK_IMPORTED_MODULE_1__["deleteData"])(_index__WEBPACK_IMPORTED_MODULE_0__["link"], card.getPath());
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (removeCard);
+
+/***/ }),
+
+/***/ "./src/js/modules/noticeModal.js":
+/*!***************************************!*\
+  !*** ./src/js/modules/noticeModal.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var noticeModal = function noticeModal() {
+  var modal = document.createElement('div');
+  modal.classList.add('modal');
+  modal.innerHTML = "\n    <div class=\"modal-welcome\">\n      <img\n      src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trello-logo-blue.svg/1200px-Trello-logo-blue.svg.png\"\n      alt=\"Trello\"/>\n      <p>\u0414\u043B\u044F \u043D\u0430\u0447\u0430\u043B\u0430 \u0441\u043E\u0437\u0434\u0430\u0439\u0442\u0435 \u0441\u0432\u043E\u044E \u043F\u0435\u0440\u0432\u0443\u044E \u0434\u043E\u0441\u043A\u0443!</p>\n      <div class=\"btn-group\"\">\n        <button>\u0417\u0430\u043A\u0440\u044B\u0442\u044C</button>\n      </div>\n    </div>\n  ";
+  modal.addEventListener('click', function (e) {
+    e.stopPropagation();
+
+    if (e.target.tagName === "BUTTON" || e.target.classList.contains('modal')) {
+      modal.remove();
+    }
+  });
+  document.querySelector(".main").append(modal);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (noticeModal);
+
+/***/ }),
+
+/***/ "./src/js/modules/preloader.js":
+/*!*************************************!*\
+  !*** ./src/js/modules/preloader.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var preloader = function preloader(selector, className) {
+  var modal = document.createElement("div");
+  modal.classList.add(className);
+  modal.innerHTML = "\n    <div id=\"fountainG\" class=\"modal-preload\">\n      <div id=\"fountainG_1\" class=\"fountainG\"></div>\n      <div id=\"fountainG_2\" class=\"fountainG\"></div>\n      <div id=\"fountainG_3\" class=\"fountainG\"></div>\n      <div id=\"fountainG_4\" class=\"fountainG\"></div>\n      <div id=\"fountainG_5\" class=\"fountainG\"></div>\n      <div id=\"fountainG_6\" class=\"fountainG\"></div>\n      <div id=\"fountainG_7\" class=\"fountainG\"></div>\n      <div id=\"fountainG_8\" class=\"fountainG\"></div>\n    </div>\n  ";
+  var elem = document.querySelector(selector);
+  elem.classList.remove('hide');
+  elem.append(modal);
+  return modal;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (preloader);
+
+/***/ }),
+
+/***/ "./src/js/modules/search.js":
+/*!**********************************!*\
+  !*** ./src/js/modules/search.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/services */ "./src/js/services/services.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../index */ "./src/js/index.js");
+/* harmony import */ var _preloader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./preloader */ "./src/js/modules/preloader.js");
+/* harmony import */ var _Classes_Board_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Classes/Board.js */ "./src/js/modules/Classes/Board.js");
+
+
+
+
+
+
+
+var search = function search() {
+  var input = document.querySelector('.search-area');
+  var btn = document.querySelector('.search-btn');
+  var results = document.querySelector('.search-results');
+  btn.addEventListener("click", letSearch);
+  input.addEventListener("keypress", letSearch);
+  results.addEventListener('click', goToResult);
+
+  function letSearch(e) {
+    if (e.key && e.key !== "Enter") return;
+
+    if (e.target === btn || e.key === "Enter") {
+      results.textContent = '';
+      var value = input.value.trim();
+      input.value = '';
+
+      if (value.length == 0) {
+        return;
+      }
+
+      var loader = Object(_preloader__WEBPACK_IMPORTED_MODULE_4__["default"])('.search-results', '.search-loader');
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_2__["getData"])(_index__WEBPACK_IMPORTED_MODULE_3__["link"]).then(function (data) {
+        var res = searching(data, value);
+
+        if (res.length === 0) {
+          return results.innerHTML = '<span class="result-zero"> Поиск не дал результатов</span>';
+        }
+
+        res.forEach(function (item) {
+          if (item.length < 4) {
+            createResult(item[item.length - 1], 'boards', item[0]);
+          } else {
+            for (var i = item.length - 1; i != 0; i--) {
+              if (["checklists", "comments", "cards", "columns"].includes(item[i])) {
+                return createResult(item[item.length - 1], item[i], item.slice(0, i + 2));
+              }
+            }
+          }
+        });
+        loader.remove();
+      });
+    }
+  }
+
+  function searching(data, value) {
+    var path = [];
+
+    var _loop = function _loop(key) {
+      if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(data[key]) === "object" && data[key] !== null) {
+        var res = searching(data[key], value);
+
+        if (res.length > 0) {
+          res.map(function (i) {
+            return i.unshift(key);
+          });
+          path.push.apply(path, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(res));
+        }
+      } else {
+        String(data[key]).indexOf(value) !== -1 ? path.push([key, data[key]]) : '';
+      }
+    };
+
+    for (var key in data) {
+      _loop(key);
+    }
+
+    return path;
+  }
+
+  function createResult(value, place, path) {
+    var places = {
+      checklists: 'Чек-лист',
+      comments: 'Комментарий',
+      cards: 'Карточка',
+      columns: 'Колонка',
+      boards: 'Доска'
+    };
+    var div = document.createElement('div');
+    div.classList.add('search-result');
+
+    try {
+      path = path.join('-');
+    } catch (e) {}
+
+    div.setAttribute('data-path', path);
+    div.innerHTML = "\n      <span>".concat(places[place], ":</span>\n      <span>").concat(value, "</span>\n      <button>\u041F\u0435\u0440\u0435\u0439\u0442\u0438</button>\n    ");
+    document.querySelector(".search-results").append(div);
+  }
+
+  function goToResult(e) {
+    if (e.target.closest(".search-result")) {
+      var path = e.target.closest(".search-result").getAttribute('data-path');
+      path = path.split('-');
+      e.target.closest(".search-results").classList.add('hide');
+      e.target.closest('.search-results').textContent = '';
+      var load = Object(_preloader__WEBPACK_IMPORTED_MODULE_4__["default"])(".main", "modal");
+      localStorage.setItem("activeBoardID", path[0]);
+      Object(_services_services__WEBPACK_IMPORTED_MODULE_2__["getData"])(_index__WEBPACK_IMPORTED_MODULE_3__["link"], path[0]).then(function (_ref) {
+        var id = _ref.id,
+            title = _ref.title,
+            columns = _ref.columns;
+        load.remove();
+        var board = new _Classes_Board_js__WEBPACK_IMPORTED_MODULE_5__["default"](id, title, columns);
+        board.init();
+        board.render();
+        _index__WEBPACK_IMPORTED_MODULE_3__["activeBoard"].splice(0, 1, board);
+
+        try {
+          var idx = path.indexOf("cards");
+          document.querySelector("[data-card-id=\"".concat(path[idx + 1], "\"] div")).click();
+        } catch (e) {}
+      });
+    }
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (search);
+
+/***/ }),
+
+/***/ "./src/js/modules/training.js":
+/*!************************************!*\
+  !*** ./src/js/modules/training.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _column_columnListener__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./column/columnListener */ "./src/js/modules/column/columnListener.js");
+
+
+
+
+function training() {
+  return _training.apply(this, arguments);
+}
+
+function _training() {
+  _training = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee() {
+    var main, modal, guide, boardList, btnBoardList, addBoard, inputAdd, btnAdd;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            main = document.querySelector('.main');
+            modal = document.createElement('div');
+            modal.classList.add('modal');
+            modal.innerHTML = '<div class="training"></div>';
+            guide = modal.querySelector('div');
+            modal.style.zIndex = 100;
+            main.append(modal);
+            boardList = document.querySelector('.board-list-items');
+            btnBoardList = document.querySelector('.board-list');
+            addBoard = document.querySelector('.board-add');
+            btnBoardList.click();
+            addBoard.click();
+            boardList.style.zIndex = 101;
+            btnBoardList.style.zIndex = 101;
+            inputAdd = document.querySelector(".input-add");
+            btnAdd = inputAdd.querySelector(".btn");
+            console.log(btnAdd);
+            btnAdd.addEventListener('click', function () {
+              console.log(boardList, btnBoardList);
+              boardList.style = '';
+              btnBoardList.style = '';
+              document.querySelector('.new__column').click();
+              var inputAdd = document.querySelector(".input-add");
+              inputAdd.style.zIndex = 101;
+              var btnAdd = inputAdd.querySelector(".btn");
+              btnAdd.addEventListener('click', function () {
+                var column = document.querySelector('[data-column-id]');
+                column.style.zIndex = 101;
+              });
+            });
+
+          case 18:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+  return _training.apply(this, arguments);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (training);
+
+/***/ }),
+
 /***/ "./src/js/modules/welcomeModal/welcomeModal.js":
 /*!*****************************************************!*\
   !*** ./src/js/modules/welcomeModal/welcomeModal.js ***!
@@ -2587,6 +3112,11 @@ var openModal = function openModal(className, func, notContains) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _loadResourses__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../loadResourses */ "./src/js/modules/loadResourses.js");
+/* harmony import */ var _training__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../training */ "./src/js/modules/training.js");
+
+
+
 var welcomeModal = function welcomeModal() {
   var modal = document.createElement('div');
   modal.classList.add('modal');
@@ -2600,8 +3130,9 @@ var welcomeModal = function welcomeModal() {
     }
 
     if (e.target.textContent === "Начать с примера") {
-      document.querySelector(".new__column").style.display = "";
       modal.remove();
+      Object(_training__WEBPACK_IMPORTED_MODULE_1__["default"])(); // const link = "http://simple-trello-a0138-default-rtdb.firebaseio.com/example.json";
+      // loadResourses(link);
     }
   });
   document.querySelector('.main').append(modal);
@@ -2627,6 +3158,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modules_errorModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../modules/errorModal */ "./src/js/modules/errorModal.js");
+
 
 
 
@@ -2657,20 +3190,21 @@ var getData = /*#__PURE__*/function () {
             data = _context.sent;
 
             if (data.ok) {
-              _context.next = 8;
+              _context.next = 9;
               break;
             }
 
+            Object(_modules_errorModal__WEBPACK_IMPORTED_MODULE_2__["default"])('загрузить');
             throw new Error("Could not fetch ".concat(link, ", status: ").concat(data.status));
 
-          case 8:
-            _context.next = 10;
+          case 9:
+            _context.next = 11;
             return data.json();
 
-          case 10:
+          case 11:
             return _context.abrupt("return", _context.sent);
 
-          case 11:
+          case 12:
           case "end":
             return _context.stop();
         }
@@ -2702,8 +3236,7 @@ var patchReq = /*#__PURE__*/function () {
               return "/".concat(id);
             }).join('');
             link = link.replace(/\.json/, "".concat(path, ".json"));
-            console.log(link);
-            _context2.next = 6;
+            _context2.next = 5;
             return fetch(link, {
               method: "PATCH",
               headers: {
@@ -2712,7 +3245,7 @@ var patchReq = /*#__PURE__*/function () {
               body: JSON.stringify(body)
             });
 
-          case 6:
+          case 5:
           case "end":
             return _context2.stop();
         }
@@ -2755,6 +3288,8 @@ var deleteData = /*#__PURE__*/function () {
 
             if (res.ok) {
               console.log("Task is delete");
+            } else {
+              Object(_modules_errorModal__WEBPACK_IMPORTED_MODULE_2__["default"])("удалить");
             }
 
           case 7:

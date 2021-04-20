@@ -1,9 +1,12 @@
+import errorModal from '../modules/errorModal';
+
 const getData = async (link, ...path) => {
   path = path.map((id) => `/${id}`).join("");
   link = link.replace(/\.json/, `${path}.json`);
 
   let data = await fetch(link);
   if (!data.ok) {
+    errorModal('загрузить');
     throw new Error(`Could not fetch ${link}, status: ${data.status}`);
   }
 
@@ -13,7 +16,7 @@ const getData = async (link, ...path) => {
 const patchReq = async (link, body, ...path) => {
   path = path.map(id => `/${id}`).join('')
   link = link.replace(/\.json/, `${path}.json`);
-  console.log(link);
+
   await fetch(link, {
     method: "PATCH",
     headers: { "Content-type": "application/json" },
@@ -28,6 +31,8 @@ const deleteData = async (link, ...path) => {
   const res = await fetch(link, { method: "DELETE" });
   if (res.ok) {
     console.log("Task is delete");
+  } else {
+    errorModal("удалить");
   }
 };
 

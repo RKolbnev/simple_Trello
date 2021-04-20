@@ -13,6 +13,7 @@
     justify-content: center
     height: 80%
     width: 13em
+    max-width: 33%
     & img
       height: 100%
   &-plus
@@ -26,11 +27,19 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 .board
   &-list
+    display: flex
+    justify-content: center
     cursor: pointer
     font-size: 1.1em
-    padding: 0.5em 0.7em
-    color: $b
+    padding: 0.5em
+    color: $d
+    width: 15.5vw
+    background: rgba(0, 0, 0, 0.3)
+    &:hover
+      background: $d
+      color: $b
     & span
+      flex-shrink: 1
       font-size: 1em
     &-items
       position: absolute
@@ -45,6 +54,7 @@
     cursor: pointer
     display: flex
     justify-content: space-between
+    align-items: center
     padding: 0.5em
     margin: 0.5em 0
     background: rgba(255, 255, 255, 0.05)
@@ -57,7 +67,7 @@
     & p
       margin: 0
     & button
-      padding: 0.2em 0.5em
+      padding: 0.4em 0.7em
       color: $a
       background-color: $c
       transition: 0.3s

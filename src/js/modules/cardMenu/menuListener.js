@@ -2,7 +2,7 @@ import closeModal from '../modal/closeModal';
 import changeDesc from '../modal/changeDesc';
 import changeTitle from '../modal/changeTitle';
 import changeBg from '../modal/changeBg';
-import removeCard from './removeCard';
+import removeCard from '../modal/removeCard';
 import openCard from './openCard';
 
 const menuListener = (modal, card) => {

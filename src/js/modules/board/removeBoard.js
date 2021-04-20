@@ -29,7 +29,7 @@ const removeBoard = () => {
           })
 
         } catch(e) {
-          currentBoard.textContent = 'Создайте первую доску';
+          currentBoard.textContent = 'Создать доску';
           localStorage.removeItem("activeBoardID");
           document.querySelectorAll('[data-column-id]').forEach(column => column.remove())
         }

@@ -1,0 +1,70 @@
+.search
+  display: flex
+  font-display: row
+  width: 40%
+  &-wrap
+    display: flex
+    flex-direction: column
+    margin-right: 0.5em
+    width: -webkit-fill-available
+  &-area
+    margin: 0
+    color: $f
+    padding: 0.5em
+    background: rgba(0, 0, 0, 0.2)
+  &-results
+    position: absolute
+    top: 8%
+    width: 31%
+    padding: 0.5em
+    border-radius: 0.5em
+    background-color: $a
+    & div
+      padding: 0.3em
+    & div.fountainG
+      width: 1em
+      height: 1em
+      margin: 0
+  &-result
+    display: flex
+    align-items: center
+    & button
+      opacity: 0.5
+      padding: 0.4em 0.7em
+      background-color: $c
+    & span:first-child
+      white-space: nowrap
+      margin-right: 1em
+      text-align: end
+      font-size: 0.9em
+      padding: 0.2em
+      color: $f
+    & span:last-of-type
+      width: -webkit-fill-available
+      margin-right: 1em
+      padding: 0.5em
+      padding-right: 1em
+      border-radius: 0.5em
+      color: $f
+      background: rgba(255, 255, 255, 0.05)
+    &:hover
+      background: rgba(255, 255, 255, 0.1)
+      border-radius: 0.5em
+      transition: 0.5s
+      & span:last-of-type
+        background: rgba(255, 255, 255, 0.3)
+        text-decoration: underline
+      & span:first-child
+      & button
+        opacity: 1
+  &-btn
+    font-size: 1.1em
+    padding: 0.5em 1.5em
+    color: $d
+    background: rgba(0, 0, 0, 0.3)
+    &:hover
+      background: $d
+      color: $b
+.result-zero
+  padding: 0.5em
+  color: $f

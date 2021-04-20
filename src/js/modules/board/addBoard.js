@@ -9,7 +9,6 @@ const addBoard = () => {
   btn.addEventListener('click', () => {
     btn.style.display = 'none';
     addInput(btn, 'Введите название доски', 'input-add__board', false, (value) => {
-      value = value.trim()
       const board = document.createElement('div');
       board.classList.add("board-item");
       const id = idGenerate();

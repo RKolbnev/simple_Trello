@@ -48,6 +48,7 @@ function createModal(card) {
           <div>
             <button data-modal-checklist>Чек-лист</button>
             <button data-card-bg>Обложка</button>
+            <button data-delete-card>Удалить карточку</button>
           </div>
         </div>
 
@@ -64,16 +65,16 @@ function createModal(card) {
 function addComments(card, modal) {
   if (card.comments) {
     const wrap = modal.querySelector(".comments-wrapper");
-    for (let i in card.comments) {
-      const comment = card.comments[i];
+    const sorted = Object.entries(card.comments).sort((a, b) => a[1].date > b[1].date ? 1 : -1)
+    for (let i of sorted) {
       const div = document.createElement("div");
-      div.setAttribute('data-comment-id', comment.id);
+      div.setAttribute("data-comment-id", i[1].id);
       div.innerHTML = `
       <div>
-        <p>${comment.value}</p>
+        <p>${i[1].value}</p>
         <span data-delete-comment>&times;</span>
       </div>
-      <span>${comment.date}</span>
+      <span>${i[1].date}</span>
       `;
       wrap.prepend(div);
     }
@@ -85,10 +86,10 @@ function addChecklist(card, modal) {
     for (let key in card.checklists) {
       const item = card.checklists[key];
       const checklist = createChecklist(item.id, item.title);
-      modal.querySelector(".desc").after(checklist);
+      modal.querySelector(".comments").before(checklist);
       for (let key in item.tasks) {
         const tasksItem = item.tasks[key];
-        const wrap = modal.querySelector(".checklist div");
+        const wrap = checklist.querySelector(".checklist div");
         const attr = tasksItem.status ? "checked" : "";
         const task = document.createElement("li");
         task.classList.add("checklist-item");

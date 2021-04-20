@@ -1,3 +1,5 @@
+import loadResourses from '../loadResourses';
+import training from '../training';
 
 const welcomeModal = () => {
 
@@ -26,8 +28,10 @@ const welcomeModal = () => {
       add.click();
     }
     if (e.target.textContent === "Начать с примера") {
-      document.querySelector(".new__column").style.display = "";
       modal.remove();
+      training();
+      // const link = "http://simple-trello-a0138-default-rtdb.firebaseio.com/example.json";
+      // loadResourses(link);
     }
   })
 
