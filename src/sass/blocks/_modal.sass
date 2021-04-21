@@ -53,8 +53,36 @@
     & p
       margin: 0.5em
       color: $b
-      &[data-modal-comments], &[data-card-desc]
+      &[data-card-desc], &[data-card-title], & span[data-check-title], &[data-modal-comments]
         cursor: pointer
+        &::before
+          pointer-events: none
+          position: absolute
+          opacity: 0
+          margin-top: -2.5em
+          margin-left: 3em
+          padding: 0.5em
+          color: $a
+          background: darken($f, 5%)
+          border: 1px solid #0000007a
+          border-radius: 0.5em
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3)
+          transition: 0.8s
+        &:hover::before
+            opacity: 1
+      &[data-modal-comments]
+        &::before
+          content: 'Нажмите что-бы добавить комментарий'
+      &[data-card-desc],
+        &::before
+          content: 'Нажмите что бы изменить описание карточки'
+      &[data-card-title],
+        &::before
+          content: 'Нажмите что бы исправить название карточки'
+          margin-top: -4em
+      & span[data-check-title],
+        &::before
+          content: 'Нажмите что бы исправить название чек-листа'
       &:first-child
         display: flex
         justify-content: space-between

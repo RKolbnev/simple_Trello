@@ -3029,80 +3029,6 @@ var search = function search() {
 
 /***/ }),
 
-/***/ "./src/js/modules/training.js":
-/*!************************************!*\
-  !*** ./src/js/modules/training.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _column_columnListener__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./column/columnListener */ "./src/js/modules/column/columnListener.js");
-
-
-
-
-function training() {
-  return _training.apply(this, arguments);
-}
-
-function _training() {
-  _training = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_0___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.mark(function _callee() {
-    var main, modal, guide, boardList, btnBoardList, addBoard, inputAdd, btnAdd;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            main = document.querySelector('.main');
-            modal = document.createElement('div');
-            modal.classList.add('modal');
-            modal.innerHTML = '<div class="training"></div>';
-            guide = modal.querySelector('div');
-            modal.style.zIndex = 100;
-            main.append(modal);
-            boardList = document.querySelector('.board-list-items');
-            btnBoardList = document.querySelector('.board-list');
-            addBoard = document.querySelector('.board-add');
-            btnBoardList.click();
-            addBoard.click();
-            boardList.style.zIndex = 101;
-            btnBoardList.style.zIndex = 101;
-            inputAdd = document.querySelector(".input-add");
-            btnAdd = inputAdd.querySelector(".btn");
-            console.log(btnAdd);
-            btnAdd.addEventListener('click', function () {
-              console.log(boardList, btnBoardList);
-              boardList.style = '';
-              btnBoardList.style = '';
-              document.querySelector('.new__column').click();
-              var inputAdd = document.querySelector(".input-add");
-              inputAdd.style.zIndex = 101;
-              var btnAdd = inputAdd.querySelector(".btn");
-              btnAdd.addEventListener('click', function () {
-                var column = document.querySelector('[data-column-id]');
-                column.style.zIndex = 101;
-              });
-            });
-
-          case 18:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _training.apply(this, arguments);
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (training);
-
-/***/ }),
-
 /***/ "./src/js/modules/welcomeModal/welcomeModal.js":
 /*!*****************************************************!*\
   !*** ./src/js/modules/welcomeModal/welcomeModal.js ***!
@@ -3112,27 +3038,16 @@ function _training() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _loadResourses__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../loadResourses */ "./src/js/modules/loadResourses.js");
-/* harmony import */ var _training__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../training */ "./src/js/modules/training.js");
-
-
-
 var welcomeModal = function welcomeModal() {
   var modal = document.createElement('div');
   modal.classList.add('modal');
-  modal.innerHTML = "\n    <div class=\"modal-welcome\">\n      <img\n      src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trello-logo-blue.svg/1200px-Trello-logo-blue.svg.png\"\n      alt=\"Trello\"/>\n      <p>\u0414\u043E\u0431\u0440\u043E \u043F\u043E\u0436\u0430\u043B\u043E\u0432\u0430\u0442\u044C \u0432 \u0443\u043F\u0440\u043E\u0449\u0435\u043D\u043D\u0443\u044E \u0432\u0435\u0440\u0441\u0438\u044E \u043F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u044F Trello!</p>\n      <p>\u0416\u0435\u043B\u0430\u0435\u0442\u0435 \u0441\u043E\u0437\u0434\u0430\u0442\u044C \u043D\u043E\u0432\u0443\u044E \u0434\u043E\u0441\u043A\u0443, \u0438\u043B\u0438 \u043D\u0430\u0447\u043D\u0435\u0442\u0435 \u043F\u0440\u0438\u043C\u0435\u0440\u0430 ?</p>\n      <div class=\"btn-group\"\">\n        <button>\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u043D\u043E\u0432\u0443\u044E \u0434\u043E\u0441\u043A\u0443</button>\n        <button>\u041D\u0430\u0447\u0430\u0442\u044C \u0441 \u043F\u0440\u0438\u043C\u0435\u0440\u0430</button>\n      </div>\n    </div>\n  ";
+  modal.innerHTML = "\n    <div class=\"modal-welcome\">\n      <img\n      src=\"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trello-logo-blue.svg/1200px-Trello-logo-blue.svg.png\"\n      alt=\"Trello\"/>\n      <p>\u0414\u043E\u0431\u0440\u043E \u043F\u043E\u0436\u0430\u043B\u043E\u0432\u0430\u0442\u044C \u0432 \u0443\u043F\u0440\u043E\u0449\u0435\u043D\u043D\u0443\u044E \u0432\u0435\u0440\u0441\u0438\u044E \u043F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u044F Trello!</p>\n      <p>\u0421\u043E\u0437\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0432\u0443\u044E \u0434\u043E\u0441\u043A\u0443 \u0447\u0442\u043E-\u0431\u044B \u043F\u0440\u0438\u0441\u0442\u0443\u043F\u0438\u0442\u044C \u043A \u0440\u0430\u0431\u043E\u0442\u0435!</p>\n      <div class=\"btn-group\"\">\n        <button>\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u043D\u043E\u0432\u0443\u044E \u0434\u043E\u0441\u043A\u0443</button>\n      </div>\n    </div>\n  ";
   modal.addEventListener('click', function (e) {
     if (e.target.textContent === 'Создать новую доску') {
       modal.remove();
       document.querySelector('.board-list').click();
       var add = document.querySelector('.board-add');
       add.click();
-    }
-
-    if (e.target.textContent === "Начать с примера") {
-      modal.remove();
-      Object(_training__WEBPACK_IMPORTED_MODULE_1__["default"])(); // const link = "http://simple-trello-a0138-default-rtdb.firebaseio.com/example.json";
-      // loadResourses(link);
     }
   });
   document.querySelector('.main').append(modal);
