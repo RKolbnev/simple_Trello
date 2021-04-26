@@ -1,5 +1,4 @@
 'use strict';
-
 const gulp = require('gulp');
 const webpack = require('webpack-stream');
 const gulpSass = require('gulp-sass');
@@ -23,6 +22,12 @@ gulp.task('html', () => {
     .pipe(browsersync.stream())
 })
 
+gulp.task('img', () => {
+  return gulp.src("./src/img/*")
+    .pipe(gulp.dest('./dist/img'))
+    .pipe(browsersync.stream())
+})
+
 gulp.task('js', () => {
   return gulp
     .src("./src/js/index.js")
@@ -30,7 +35,7 @@ gulp.task('js', () => {
       webpack({
         mode: "development",
         output: {
-          filename: "main.js",
+          filename: "bundle.js",
         },
         watch: false,
         devtool: "source-map",
@@ -69,12 +74,13 @@ gulp.task('watch', () => {
     notify: true
   });
 
+  gulp.watch('./src/img/*', gulp.parallel('img'));
   gulp.watch('./src/index.html', gulp.parallel('html'));
   gulp.watch('./src/sass/**/*.sass', gulp.parallel('css'));
   gulp.watch('./src/js/**/*.js', gulp.parallel('js'));
 })
 
-gulp.task('dev', gulp.parallel('html', 'css', 'js'));
+gulp.task('dev', gulp.parallel('html', 'css', 'js', 'img'));
 
 gulp.task('default', gulp.parallel('watch', 'dev'));
 

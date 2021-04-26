@@ -13,7 +13,6 @@ const link = "http://simpletrello-88eaf-default-rtdb.firebaseio.com/trello.json"
 let activeBoard = [];
 loadResourses(link);
 
-
 window.addEventListener("DOMContentLoaded", () => {
   allClose();
   boardListener();

@@ -1,4 +1,3 @@
-
 const welcomeModal = () => {
 
   const modal = document.createElement('div');
@@ -6,7 +5,7 @@ const welcomeModal = () => {
   modal.innerHTML = `
     <div class="modal-welcome">
       <img
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trello-logo-blue.svg/1200px-Trello-logo-blue.svg.png"
+      src="img/logo.png"
       alt="Trello"/>
       <p>Добро пожаловать в упрощенную версию приложения Trello!</p>
       <p>Создайте первую доску что-бы приступить к работе!</p>
