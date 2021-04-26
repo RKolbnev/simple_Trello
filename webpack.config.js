@@ -37,7 +37,7 @@ module.exports = {
       filename: "[name].css",
     }),
     new TerserWebpackPlugin({
-      extractComments: false
+      // extractComments: false
     }),
   ],
   module: {
