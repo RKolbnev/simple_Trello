@@ -1,0 +1,38 @@
+@media screen and (max-width: 768px)
+  .header-logo
+    display: none
+  .column
+    min-width: 30vw
+  .input-add
+    max-width: 40vw
+  .modal
+    &-popup
+      width: -webkit-fill-available
+    &-add p
+      text-align: center
+    &-bg-popup
+      max-width: 28vw
+@media screen and (max-width: 600px)
+  .column
+    min-width: 40vw
+  .modal
+    padding: 0
+    height: 100vh
+    &-popup
+      width: -webkit-fill-available
+      overflow-y: hidden
+      min-height: 91vh
+      padding: 1.5em
+    &__bg
+      padding: 1em
+    &-bg-popup
+      max-width: 28vw
+  .board
+    &-list-items
+      width: 40vw
+      right: 8%
+    &-current
+      display: none
+@media screen and (max-width: 450px)
+  .column
+    min-width: 70vw
