@@ -1129,8 +1129,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var link = "https://simpletrello-88eaf-default-rtdb.firebaseio.com/trello.json"; // const link = "http://simpletrello-88eaf-default-rtdb.firebaseio.com/trello.json";
-
+var link = "https://simpletrello-88eaf-default-rtdb.firebaseio.com/trello.json";
 var activeBoard = [];
 Object(_modules_loadResourses__WEBPACK_IMPORTED_MODULE_2__["default"])(link);
 window.addEventListener("DOMContentLoaded", function () {

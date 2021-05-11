@@ -9,7 +9,6 @@ import openModal from './modules/modal/openModal';
 import search from './modules/search';
 
 const link = "https://simpletrello-88eaf-default-rtdb.firebaseio.com/trello.json";
-// const link = "http://simpletrello-88eaf-default-rtdb.firebaseio.com/trello.json";
 
 let activeBoard = [];
 loadResourses(link);
