@@ -1,0 +1,303 @@
+.modal
+  position: fixed
+  display: flex
+  align-items: start
+  justify-content: center
+  width: -webkit-fill-available
+  height: -webkit-fill-available
+  padding: 5em
+  top: 0
+  left: 0
+  color: $d
+  background-color: #00000094
+  overflow-y: auto
+  &::-webkit-scrollbar
+    width: 0.5em
+  &::-webkit-scrollbar-thumb
+    background-color: $f
+    width: 0.2em
+    border-radius: 1em
+  &-popup
+    display: flex
+    flex-direction: column
+    padding: 2em
+    width: 60vw
+    min-height: 70vh
+    border-radius: 0.5em
+    background-color: $b
+  &-main
+    width: 70%
+    padding: 0 1em 0 0
+  &__item
+    display: flex
+    margin-top: 1em
+  &-logo
+    font-size: 2em
+    min-width: 1em
+    padding: 0
+    padding-right: 0.5em
+  &-content
+    display: flex
+    flex-direction: column
+    flex-shrink: 1
+    width: 100%
+    max-height: 50vh
+    color: $a
+    background-color: $f
+    border-radius: 0.5em
+    & input
+      width: -webkit-fill-available
+      padding: 0.5em 1em
+      border-radius: 0.5em
+      outline: none
+    & p
+      margin: 0.5em
+      color: $b
+      &[data-card-desc], &[data-card-title], & span[data-check-title], &[data-modal-comments]
+        cursor: pointer
+        &::before
+          pointer-events: none
+          position: absolute
+          opacity: 0
+          margin-top: -2.5em
+          margin-left: 3em
+          padding: 0.5em
+          color: $a
+          background: darken($f, 5%)
+          border: 1px solid #0000007a
+          border-radius: 0.5em
+          box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3)
+          transition: 0.8s
+        &:hover::before
+            opacity: 1
+      &[data-modal-comments]
+        &::before
+          content: 'Нажмите что-бы добавить комментарий'
+      &[data-card-desc],
+        &::before
+          content: 'Нажмите что бы изменить описание карточки'
+      &[data-card-title],
+        &::before
+          content: 'Нажмите что бы исправить название карточки'
+          margin-top: -4em
+      & span[data-check-title],
+        &::before
+          content: 'Нажмите что бы исправить название чек-листа'
+      &:first-child
+        display: flex
+        justify-content: space-between
+        align-items: center
+        color: $a
+        font-size: 1.1em
+        & span
+          cursor: pointer
+          &:last-child
+            font-size: 1.2em
+          &[data-delete-checklist]
+            font-size: 0.8em
+            padding: 0.4em 0.7em
+            color: #fff
+            border-radius: 0.5em
+            background-color: $c
+            &:hover
+              background-color: darken($b, 10%)
+
+  &-add
+    & div
+      display: flex
+      flex-direction: column
+      & button
+        cursor: pointer
+        margin: 0.5em
+        border-radius: 0.25em
+        padding: 0.25em 0.5em
+    & .hide
+      display: none
+  &-close
+    cursor: pointer
+    margin-top: -1.2em
+    margin-right: -1.2em
+    margin-left: -1.2em
+    border-radius: 0.25em
+    text-align: right
+    padding: 0.25em 0.5em
+    font-size: 1.7em
+  &-btn button
+    margin: 0.3em 0
+    padding: 0 1em
+    color: $f
+    background-color: $b
+  &-desc
+    padding: 0.5em 1em
+    border-radius: 0.5em
+    color: $a
+    background-color: $f
+
+
+  &__bg
+    border-bottom-right-radius: 0
+    border-bottom-left-radius: 0
+    margin: -1.2em -1.18em 1em -1.18em
+    padding: 0.5em 1em
+    padding-bottom: 3em
+  &-bg
+    &-popup
+      display: flex
+      flex-direction: column
+      position: absolute
+      max-width: 14.5vw
+      border-radius: 0.5em
+      padding: 0 0.5em
+      color: $a
+      background-color: $f
+      & button
+        cursor: pointer
+        background-color: lighten($a, 15%)
+        color: $f
+        margin: 0.5em
+        border-radius: 0.25em
+        padding: 0.25em 0.5em
+      & div
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        width: 100%
+        & span
+          cursor: pointer
+          width: 2.5em
+          height: 2em
+          margin: 0.5em
+          border-radius: 0.25em
+          background-color: black
+          &[data-bg="red"]
+            background-color: red
+          &[data-bg="blue"]
+            background-color: blue
+          &[data-bg="green"]
+            background-color: green
+          &[data-bg="yellow"]
+            background-color: yellow
+          &[data-bg="darkblue"]
+            background-color: #454a5e
+          &[data-bg="darkred"]
+            background-color: #811717
+          &[data-bg="darkgreen"]
+            background-color: #317728
+          &[data-bg="darkgrey"]
+            background-color: #7c7171
+
+.title
+  & p:first-child
+    cursor: pointer
+.title, .comments
+  margin-top: 1em
+.comments
+  &-wrapper
+    display: flex
+    flex-direction: column
+    justify-content: start
+    max-height: 40vh
+    overflow-x: auto
+    margin: 0.5em
+    &::-webkit-scrollbar
+      width: 0.35em
+    &::-webkit-scrollbar-thumb
+      background-color: $a
+      width: 0.2em
+      border-radius: 1em
+    & div
+      padding: 0 0.2em
+      margin: 0.2em
+      color: $a
+      background-color: $c
+      border-radius: 0.5em
+      & div:first-child
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin: 0
+        padding: 0
+        color: $f
+        border-bottom: 1px solid $a
+        & span
+          cursor: pointer
+          font-size: 1.5em
+          padding: 0.2em
+      & span:last-child
+        display: block
+        text-align: center
+        padding: 0.2em
+        font-size: 0.8em
+
+
+
+.wrapper
+  display: flex
+  font-display: row
+  width: -webkit-fill-available
+
+
+
+.checklist
+  display: flex
+  flex-direction: column
+  padding: 0 0.5em
+  & progress
+    width: -webkit-fill-available
+    height: 0.5em
+    background: $f
+    &::-webkit-progress-value
+      background: $b
+      border-radius: 0.5em
+    &::-webkit-progress-bar
+      background: $d
+      border-radius: 1em
+  & label
+    display: flex
+    flex-direction: row
+    justify-content: start
+    margin: 0.5em
+    & input
+      flex-shrink: 0
+      margin: auto 0
+      width: 1em
+      margin-right: 0.5em
+  & p:last-child
+    cursor: pointer
+  & div
+    overflow-x: auto
+    max-height: 20vh
+    &::-webkit-scrollbar
+      width: 0.35em
+    &::-webkit-scrollbar-thumb
+      background-color: $a
+      width: 0.2em
+      border-radius: 1em
+  &-item
+    display: flex
+    align-items: center
+    justify-content: space-between
+    & span:last-child
+      cursor: pointer
+      font-size: 1.5em
+      margin-right: 0.5em
+      opacity: 0.5
+      &:hover
+        opacity: 1
+
+.bg
+  &__modal
+    margin-top: 5em
+  &__menu
+    margin-left: 2em
+    text-align: center
+
+.modal-error
+  text-align: center
+  width: 40vw
+  padding: 1em
+  color: darken($b, 15%)
+  border-radius: 0.5em
+  background-color: rgba(255, 255, 255, 0.80)
+  & p
+    font-size: 1.2em

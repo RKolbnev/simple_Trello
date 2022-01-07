@@ -1,0 +1,52 @@
+.main
+  padding: 1em
+  display: flex
+  flex-direction: row
+  height: 87vh
+  overflow-y: hidden
+  overflow-x: auto
+  &::-webkit-scrollbar
+    height: 0.5em
+  &::-webkit-scrollbar-thumb
+    background-color: #ffffffa8
+    border-radius: 1em
+
+// Стили для компонента Input
+.input
+  &-add
+    height: fit-content
+    width: -webkit-fill-available
+    max-width: 20vw
+    border-radius: 0.5em
+    background-color: transparent
+    & input
+      width: -webkit-fill-available
+      padding: 0.5em
+      margin-bottom: 0.5em
+    & button:first-child
+      font-size: 1em
+      color: $f
+      background-color: $c
+    & button:last-child
+      padding: 0
+      margin-left: 0.5em
+      font-size: 1.5em
+      color: $f
+      background-color: transparent
+    &__column
+      padding: 0.5em
+      background-color: $b
+      background: rgba(0, 0, 0, .40)
+    &__modal
+      max-width: none
+      padding: 0.5em
+      & button:first-child
+        background-color: $a
+      & button:last-child
+        color: $a
+    &__menu
+      & input
+        padding: 0.6em 0
+        padding-left: 0.5em
+    &__board
+      margin: 0.5em 0

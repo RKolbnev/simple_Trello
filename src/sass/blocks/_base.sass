@@ -5,6 +5,7 @@ $c: #8ea6b2
 $d: #c3ccd3
 $f: #f6f8fa
 
+
 body
   display: flex
   flex-direction: column
@@ -14,32 +15,32 @@ body
   font-family: Arial, Helvetica, sans-serif
   font-weight: normal
   box-sizing: border-box
+  background: url('./img/main_bg.jpg') no-repeat center
+  background-size: cover
   background-color: $c
-
 input
-  border-radius: 1em
+  font-size: 1.1em
+  border-radius: 0.25em
   border: none
   outline: none
   &:focus
     outline: none
-
 button
   outline: none
   border: none
-  border-radius: 1em
+  border-radius: 0.5em
   &:focus
     outline: none
-
 .btn
   cursor: pointer
   outline: none
   padding: 0.5em 2em
-
-.primary
-  color: #fff
-  background-color: green
-
-
-
-
-
+  &-add
+    cursor: pointer
+    padding: 0.2em 0.5em
+    border-radius: 0.15em
+    font-size: 1.7em
+    color: $f
+    background-color: $a
+.hide
+  display: none

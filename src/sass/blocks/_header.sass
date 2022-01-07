@@ -7,15 +7,83 @@
   max-width: 100vw
   padding: 0 1em
   background-color: $d
+  background: rgba(0, 0, 0, .25)
   &-logo
     display: flex
     justify-content: center
     height: 80%
-    width: 8em
+    width: 13em
+    max-width: 33%
+    & img
+      height: 100%
   &-plus
     cursor: pointer
-    padding: 0.2em 0.5em
+    padding: 0.1em 0.4em
     border-radius: 0.25em
     font-size: 1.7em
     color: $b
     background-color: $f
+
+.board
+  &-list
+    display: flex
+    justify-content: center
+    cursor: pointer
+    font-size: 1.1em
+    padding: 0.5em
+    color: $d
+    width: 15.5vw
+    background: rgba(0, 0, 0, 0.3)
+    &:hover
+      background: $d
+      color: $b
+    & span
+      flex-shrink: 1
+      font-size: 1em
+    &-items
+      position: absolute
+      right: 1%
+      top: 6%
+      width: 20vw
+      padding: 0.2em 0.5em
+      color: $f
+      border-radius: 0.5em
+      background-color: $a
+  &-item
+    cursor: pointer
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 0.5em
+    margin: 0.5em 0
+    background: rgba(255, 255, 255, 0.05)
+    border-radius: 0.5em
+    transition: 0.3s
+    &:hover
+      background: rgba(255, 255, 255, 0.2)
+      & p
+        text-decoration: underline
+    & p
+      margin: 0
+    & button
+      padding: 0.4em 0.7em
+      color: $a
+      background-color: $c
+      transition: 0.3s
+      &:hover
+        color: darken($a, 10%)
+        background-color: $d
+  &-add
+    width: -webkit-fill-available
+    padding: 0.5em
+    margin: 0.25em
+    opacity: 0.5
+    background-color: transparent
+    font-size: 1em
+    color: $f
+    transition: 0.3s
+    &:hover
+      opacity: 1
+      background: rgba(255, 255, 255, 0.1)
+
+

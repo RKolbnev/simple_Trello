@@ -1,0 +1,37 @@
+.modal-menu
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+  background-color: #000000af
+  &-content
+    display: flex
+    flex-direction: row
+    width: fit-content
+  &-wrap
+    display: flex
+    flex-direction: column
+    align-items: start
+    width: 15vw
+    & button
+      cursor: pointer
+      padding: 0.5em
+      margin: 0.25em
+      color: $a
+      background-color: $f
+      transition: all 0.2s
+      &:hover
+        padding: 0.7em
+        margin-left: 0.5em
+        transition: all 0.2s
+
+  &-card
+    width: 19.5vw
+    margin-right: 1em
+    & div
+      width: -webkit-fill-available
+      height: fit-content
+
+
+

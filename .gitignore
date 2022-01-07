@@ -2,6 +2,7 @@
 firebase.json
 .firebaserc
 package-lock.json
+
 # Logs
 logs
 *.log
@@ -86,6 +87,10 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
+<<<<<<< HEAD
+=======
+dist
+>>>>>>> dev
 
 # Gatsby files
 .cache/
@@ -155,4 +160,9 @@ out
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
+<<<<<<< HEAD
 .gitignore
+=======
+.gitignore
+
+>>>>>>> dev
